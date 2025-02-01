@@ -8,6 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 .env
+credentials.json
 .Python
 build/
 develop-eggs/
