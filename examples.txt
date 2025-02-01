@@ -1,0 +1,13 @@
+python generate_dynamic_sql.py --table_name "hca-hin-dev-landing-clinical.clinical_eim_hde_bronze.hde_encounter" --mapping_file "fhir files/nursing_related_fields.json" --schema_file "fhir files/encounters_table_schema.json"
+python generate_mapping_document.py --table_schema_file_path "fhir files/encounters_table_schema.json" --mapping_schema_file_path "fhir files/nursing_related_fields.json" --domain "Nursing"
+python generate_description_for_schema.py --input_schema "fhir files/encounters_table_schema.json" --output_json "fhir files/schema_with_descriptions.json"  --sql_output="fhir files/create_table.sql" --table_name "fhir_encounters" --model gpt-4o
+python generate_description_for_schema.py --input_schema "fhir files/encounters_table_schema.json" --output_json "fhir files/schema_with_descriptions.json" --sql_output="fhir files/alter_table.sql" --table_name "fhir_encounters" --model gemini-1.5-pro
+
+
+python generate_description_for_schema.py --input_schema "fhir files/encounters_table_schema.json" --output_json "fhir files/schema_with_descriptions.json" --sql_output="fhir files/alter_table.sql" --full_table_name "hca-sandbox.hca_metadata_pot.fhir_encounters" --model gemini-2.0-flash-exp
+
+
+python generate_description_for_schema.py --yaml "yaml/encounters.yaml"
+
+bq --project_id hca-sandbox query --use_legacy_sql=false < "fhir files/alter_table.sql"
+

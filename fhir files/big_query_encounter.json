@@ -1,0 +1,2335 @@
+[
+  {
+    "encounter_id": "1033b34a-baba-4649-b537-99aa0ef34876",
+    "lastupdated": "2025-01-22 18:00:02.008000 UTC",
+    "hl7_message_date_time": "2025-01-22T12:00:02.008+00:00",
+    "hl7_message_date_time_UTC": "2025-01-22 18:00:02.008000 UTC",
+    "hl7_message_control_id": "MT_COCDL_ADT_DLGTADM.1.46479114",
+    "meta_latest_source_date_time": "2025-01-22T18:00:02.008+00:00",
+    "intermediate_snapshot_creation_date_time": "2025-01-22T18:07:28.533675+00:00",
+    "final_fhir_write_date_time": "2025-01-22T18:08:41.226629+00:00",
+    "final_fhir_commit_date_time": "2025-01-22 18:08:41.343322 UTC",
+    "encounter_version_id": "MTczNzU2ODgwMjAwODAwMDAwMA",
+    "version_id_fingerprint": "6624095415244224276",
+    "consent_coid": "34325",
+    "meta_action_code": "UPDATE",
+    "hl7_v2_source_interface": "ADT",
+    "patient_account_num": "H00754934959",
+    "patient_primary_id": "H1719122",
+    "network_mnemonic": "TXG",
+    "medical_record_num": "H002419835",
+    "coid": "34325",
+    "facility_mnemonic": "COCDL",
+    "fhir_visit_status": "in-progress",
+    "fhir_patient_class_code": "IMP",
+    "fhir_patient_class_display": null,
+    "patient_type": "IN",
+    "admission_type": "EM",
+    "patient_class_code": "I",
+    "account_status_code": "ADM",
+    "vip_indicator_code": "N",
+    "financial_class_code": "07",
+    "mode_of_arrival_code": "WI",
+    "accommodation_code": "H.OBP",
+    "accommodation_code_category": "Accommodation Code",
+    "hospital_service_type_code": "LD",
+    "hospital_service_type_text": "Hospital Service",
+    "admit_source_code": "PR",
+    "discharge_disposition": [],
+    "patient_id": "1d351942-2475-46c7-8114-163331f3e404",
+    "appointment_id": null,
+    "account_id": "ccea8b93-2b73-47f7-b53d-2dbd25a76f98",
+    "deceased_date_time": null,
+    "admission_date": "2025-01-21T19:00:00+00:00",
+    "discharge_date": null,
+    "is_valid_date_ind": "true",
+    "alt_admission_date_time": "2025-01-21T19:00:00+00:00",
+    "hl7_admission_date_time": "202501211900",
+    "alt_discharge_date_time": null,
+    "hl7_discharge_date_time": null,
+    "reason_for_visit_text": "24HR URINE COLLECTION,ELEV BP",
+    "mt_reason_for_visit_code": "24HR URINE COLLECTION,ELEV BP",
+    "patient_location": [
+      {
+        "location_id": "e11a5d52-9fa4-45d5-9381-1d09bddea600",
+        "mnemonic": "COCDL",
+        "physical_type": "Facility"
+      },
+      {
+        "location_id": "a44f3bb9-a362-4a60-af6d-5df219a4eba6",
+        "mnemonic": "H.LD",
+        "physical_type": "Unit"
+      },
+      {
+        "location_id": "5606a192-014a-4a84-a36c-3b535e543d8e",
+        "mnemonic": "H.LDR17",
+        "physical_type": "Room"
+      },
+      {
+        "location_id": "419e9226-362c-4729-83e0-c45f9ee376f9",
+        "mnemonic": "1",
+        "physical_type": "Bed"
+      }
+    ],
+    "emergency_department": {
+      "edm_arrived_date_time": "2025-01-21T15:00:00+00:00",
+      "edm_triaged_date_time": null,
+      "edm_departure_date_time": null,
+      "coid": null,
+      "priority_rank": null,
+      "priority_code": null,
+      "priority_text": null,
+      "edm_reason_for_visit_code": null,
+      "edm_reason_for_visit_text": null,
+      "departure_info": {
+        "departure_disposition_code": null,
+        "departure_disposition_text": null,
+        "departure_disposition_display": null,
+        "departure_condition_code": null,
+        "departure_condition_text": null,
+        "departure_condition_display": null,
+        "departure_comments": null
+      },
+      "patient_location": {
+        "treatment_room": {
+          "room_code": null,
+          "room_text": null
+        },
+        "edm_location": {
+          "location_code": "H.OBED",
+          "location_text": "OB ED TRIAGE"
+        },
+        "reserved_room": {
+          "room_code": null,
+          "room_text": null
+        }
+      },
+      "edm_transport": null
+    },
+    "registration_query": [
+      {
+        "mnemonic": "1IN0FHIR1A",
+        "question": "FHIR MESSAGE ID:",
+        "response": "FHIR_0HN9NSKJFJQLP_00000228"
+      },
+      {
+        "mnemonic": "1PAO0F246A",
+        "question": "-IP Deductible or OP CoPay:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F247A",
+        "question": "\u003d",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F249A",
+        "question": "\u003d",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F250A",
+        "question": "+IP Deductible or OP CoPay:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F251A",
+        "question": "Estimated Out-of-Pocket:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F251B",
+        "question": "ESTIMATED AMOUNT DUE:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F252A",
+        "question": "Out of Pocket Leftover:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F253A",
+        "question": "Is the estimated out-of-pocket larger than the leftover out-of-pocket?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1PAO0F264A",
+        "question": "Copay:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F265A",
+        "question": "DED:",
+        "response": "3300.00"
+      },
+      {
+        "mnemonic": "1PAO0F266A",
+        "question": "Met:",
+        "response": "228.24"
+      },
+      {
+        "mnemonic": "1PAO0F269A",
+        "question": "Remain:",
+        "response": "3071.76"
+      },
+      {
+        "mnemonic": "1PAO0F272A",
+        "question": "Ins 1:",
+        "response": "BC.PPOUT.H"
+      },
+      {
+        "mnemonic": "1PAO0F272B",
+        "question": "Verified:",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1PAO0F273A",
+        "question": "Ins 2:",
+        "response": "BC.TRSHMO"
+      },
+      {
+        "mnemonic": "1PAO0F273B",
+        "question": "Verified:",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1PAO0FI65A",
+        "question": "PMT DTL?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0F072A",
+        "question": ":",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0M031B",
+        "question": "2. Illness/injury due to work related accident/condition?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0M041A",
+        "question": "1. Was illness/injury due to a non-work related accident?",
+        "response": "NO"
+      },
+      {
+        "mnemonic": "1REG0M065A",
+        "question": "Occurrence Code:",
+        "response": "10"
+      },
+      {
+        "mnemonic": "1REG0M066A",
+        "question": "Date:",
+        "response": "20240521"
+      },
+      {
+        "mnemonic": "1REG0M234A",
+        "question": "FC1:",
+        "response": "08"
+      },
+      {
+        "mnemonic": "1REG0M235A",
+        "question": "FC2:",
+        "response": "07"
+      },
+      {
+        "mnemonic": "1REG0M237A",
+        "question": ".",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0M293A",
+        "question": "ST:",
+        "response": "TX"
+      },
+      {
+        "mnemonic": "1REG0M295A",
+        "question": "This includes medical-payment coverage, premises or automobile",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0M297B",
+        "question": "party may be liable?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0R041A",
+        "question": "Was the PT referred from, or is the PCP an Urgent Care Center?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0R080A",
+        "question": "Registration Interruption?",
+        "response": "NONE"
+      },
+      {
+        "mnemonic": "1REG0R261A",
+        "question": "If you are admitted today would you like your PCP to be notified?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0R321A",
+        "question": ":",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0R322A",
+        "question": "LAWFULL PRESENT IN THE UNITED STATES:",
+        "response": "U"
+      },
+      {
+        "mnemonic": "1REG60R01A",
+        "question": "COCID 1",
+        "response": "COCDL"
+      },
+      {
+        "mnemonic": "1REG60R01B",
+        "question": "Acct Number 1",
+        "response": "H00754183968"
+      },
+      {
+        "mnemonic": "1REG60R01C",
+        "question": "Date 1",
+        "response": "20250226"
+      },
+      {
+        "mnemonic": "1REGEOC01A",
+        "question": "Does the patient have accessibility needs:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "ETHNICITY",
+        "question": "ETHNICITY",
+        "response": "3"
+      },
+      {
+        "mnemonic": "K31100068A",
+        "question": "Have you or a close contact traveled outside the US in the last 3 weeks:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100070A",
+        "question": "Have you ever had TB or a positive TB skin test:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100072A",
+        "question": "Fever greater than 100.4 F or 38.0 C:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100073A",
+        "question": "Cough not related to allergy or COPD:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100076A",
+        "question": "Sore throat:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100077A",
+        "question": "Night sweats:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100078A",
+        "question": "Unexplained weight loss:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100079A",
+        "question": "Fatigue:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100080A",
+        "question": "Body aches:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100081A",
+        "question": "Rash:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100082A",
+        "question": "Nasal congestion unrelated to allergies/sinus infections:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100083A",
+        "question": "Point of entry screening status:",
+        "response": "Negative TB Risk"
+      },
+      {
+        "mnemonic": "K31100185A",
+        "question": "Patient states having shortness of breath:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "M38000000A",
+        "question": "Preferred language:",
+        "response": "ENG"
+      },
+      {
+        "mnemonic": "Z.EDT00002",
+        "question": "Arrival Date:",
+        "response": "20250121"
+      },
+      {
+        "mnemonic": "Z.EDT00004",
+        "question": "Arrival Time:",
+        "response": "1500"
+      },
+      {
+        "mnemonic": "Z.EDT00018",
+        "question": "Date Patient Physically Leaves ED:",
+        "response": "20250121"
+      },
+      {
+        "mnemonic": "Z.EDT00020",
+        "question": "Time Patient Physically Leaves ED:",
+        "response": "1728"
+      },
+      {
+        "mnemonic": "Z.EDT00054",
+        "question": "Disposition Category:",
+        "response": "5"
+      },
+      {
+        "mnemonic": "Z.EDTB0014",
+        "question": "MD/DO/PA/NP Makes Decision to Disposition Date:",
+        "response": "20250121"
+      },
+      {
+        "mnemonic": "Z.EDTB0016",
+        "question": "MD/DO/PA/NP Makes Decision to Disposition Time:",
+        "response": "1727"
+      },
+      {
+        "mnemonic": "Z.OGUATT",
+        "question": "DO YOU WISH TO IDENTIFY ANOTHER GUARANTOR?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "Z.SUBUNT#",
+        "question": "SUB-UNIT #",
+        "response": "0001"
+      },
+      {
+        "mnemonic": "Z.eRESPTXT",
+        "question": "Use guarantor cell phone for text/SMS messaging?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "ZSS.CONSNT",
+        "question": "COA/COS SIGNED?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "ZSS.DEPREQ",
+        "question": "DEPOSIT REQ?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "ZSS.DISFIN",
+        "question": "DISCHARGE FINANCIAL STATUS",
+        "response": "COMP"
+      },
+      {
+        "mnemonic": "ZSS.ESTCHG",
+        "question": "EST PT DUE",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "ZSS.MEDSCR",
+        "question": "HAS PATIENT BEEN MEDICALLY SCREENED   STABILIZED?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "ZSS.PHYORD",
+        "question": "WRITTEN PHYSICIAN\u0027S ORDER ON FILE?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "hcaMU2OPT5",
+        "question": "Do you have any objections to sharing your data?",
+        "response": "N"
+      }
+    ],
+    "insert_timestamp": null
+  },
+  {
+    "encounter_id": "1033b34a-baba-4649-b537-99aa0ef34876",
+    "lastupdated": "2025-01-22 18:00:02.008000 UTC",
+    "hl7_message_date_time": "2025-01-22T12:00:02.008+00:00",
+    "hl7_message_date_time_UTC": "2025-01-22 18:00:02.008000 UTC",
+    "hl7_message_control_id": "MT_COCDL_ADT_DLGTADM.1.46479114",
+    "meta_latest_source_date_time": "2025-01-22T18:00:02.008+00:00",
+    "intermediate_snapshot_creation_date_time": "2025-01-22T18:09:22.075656+00:00",
+    "final_fhir_write_date_time": "2025-01-22T18:11:56.740913+00:00",
+    "final_fhir_commit_date_time": "2025-01-22 18:11:56.915512 UTC",
+    "encounter_version_id": "MTczNzU2ODgwMjAwODAwMDAwMA",
+    "version_id_fingerprint": "6624095415244224276",
+    "consent_coid": "34325",
+    "meta_action_code": "UPDATE",
+    "hl7_v2_source_interface": "ADT",
+    "patient_account_num": "H00754934959",
+    "patient_primary_id": "H1719122",
+    "network_mnemonic": "TXG",
+    "medical_record_num": "H002419835",
+    "coid": "34325",
+    "facility_mnemonic": "COCDL",
+    "fhir_visit_status": "in-progress",
+    "fhir_patient_class_code": "IMP",
+    "fhir_patient_class_display": null,
+    "patient_type": "IN",
+    "admission_type": "EM",
+    "patient_class_code": "I",
+    "account_status_code": "ADM",
+    "vip_indicator_code": "N",
+    "financial_class_code": "07",
+    "mode_of_arrival_code": "WI",
+    "accommodation_code": "H.OBP",
+    "accommodation_code_category": "Accommodation Code",
+    "hospital_service_type_code": "LD",
+    "hospital_service_type_text": "Hospital Service",
+    "admit_source_code": "PR",
+    "discharge_disposition": [],
+    "patient_id": "1d351942-2475-46c7-8114-163331f3e404",
+    "appointment_id": null,
+    "account_id": "ccea8b93-2b73-47f7-b53d-2dbd25a76f98",
+    "deceased_date_time": null,
+    "admission_date": "2025-01-21T19:00:00+00:00",
+    "discharge_date": null,
+    "is_valid_date_ind": "true",
+    "alt_admission_date_time": "2025-01-21T19:00:00+00:00",
+    "hl7_admission_date_time": "202501211900",
+    "alt_discharge_date_time": null,
+    "hl7_discharge_date_time": null,
+    "reason_for_visit_text": "24HR URINE COLLECTION,ELEV BP",
+    "mt_reason_for_visit_code": "24HR URINE COLLECTION,ELEV BP",
+    "patient_location": [
+      {
+        "location_id": "e11a5d52-9fa4-45d5-9381-1d09bddea600",
+        "mnemonic": "COCDL",
+        "physical_type": "Facility"
+      },
+      {
+        "location_id": "a44f3bb9-a362-4a60-af6d-5df219a4eba6",
+        "mnemonic": "H.LD",
+        "physical_type": "Unit"
+      },
+      {
+        "location_id": "5606a192-014a-4a84-a36c-3b535e543d8e",
+        "mnemonic": "H.LDR17",
+        "physical_type": "Room"
+      },
+      {
+        "location_id": "419e9226-362c-4729-83e0-c45f9ee376f9",
+        "mnemonic": "1",
+        "physical_type": "Bed"
+      }
+    ],
+    "emergency_department": {
+      "edm_arrived_date_time": "2025-01-21T15:00:00+00:00",
+      "edm_triaged_date_time": null,
+      "edm_departure_date_time": null,
+      "coid": null,
+      "priority_rank": null,
+      "priority_code": null,
+      "priority_text": null,
+      "edm_reason_for_visit_code": null,
+      "edm_reason_for_visit_text": null,
+      "departure_info": {
+        "departure_disposition_code": null,
+        "departure_disposition_text": null,
+        "departure_disposition_display": null,
+        "departure_condition_code": null,
+        "departure_condition_text": null,
+        "departure_condition_display": null,
+        "departure_comments": null
+      },
+      "patient_location": {
+        "treatment_room": {
+          "room_code": null,
+          "room_text": null
+        },
+        "edm_location": {
+          "location_code": "H.OBED",
+          "location_text": "OB ED TRIAGE"
+        },
+        "reserved_room": {
+          "room_code": null,
+          "room_text": null
+        }
+      },
+      "edm_transport": null
+    },
+    "registration_query": [
+      {
+        "mnemonic": "1IN0FHIR1A",
+        "question": "FHIR MESSAGE ID:",
+        "response": "FHIR_0HN9NSKJFJQLP_00000228"
+      },
+      {
+        "mnemonic": "1PAO0F246A",
+        "question": "-IP Deductible or OP CoPay:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F247A",
+        "question": "\u003d",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F249A",
+        "question": "\u003d",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F250A",
+        "question": "+IP Deductible or OP CoPay:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F251A",
+        "question": "Estimated Out-of-Pocket:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F251B",
+        "question": "ESTIMATED AMOUNT DUE:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F252A",
+        "question": "Out of Pocket Leftover:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F253A",
+        "question": "Is the estimated out-of-pocket larger than the leftover out-of-pocket?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1PAO0F264A",
+        "question": "Copay:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F265A",
+        "question": "DED:",
+        "response": "3300.00"
+      },
+      {
+        "mnemonic": "1PAO0F266A",
+        "question": "Met:",
+        "response": "228.24"
+      },
+      {
+        "mnemonic": "1PAO0F269A",
+        "question": "Remain:",
+        "response": "3071.76"
+      },
+      {
+        "mnemonic": "1PAO0F272A",
+        "question": "Ins 1:",
+        "response": "BC.PPOUT.H"
+      },
+      {
+        "mnemonic": "1PAO0F272B",
+        "question": "Verified:",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1PAO0F273A",
+        "question": "Ins 2:",
+        "response": "BC.TRSHMO"
+      },
+      {
+        "mnemonic": "1PAO0F273B",
+        "question": "Verified:",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1PAO0FI65A",
+        "question": "PMT DTL?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0F072A",
+        "question": ":",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0M031B",
+        "question": "2. Illness/injury due to work related accident/condition?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0M041A",
+        "question": "1. Was illness/injury due to a non-work related accident?",
+        "response": "NO"
+      },
+      {
+        "mnemonic": "1REG0M065A",
+        "question": "Occurrence Code:",
+        "response": "10"
+      },
+      {
+        "mnemonic": "1REG0M066A",
+        "question": "Date:",
+        "response": "20240521"
+      },
+      {
+        "mnemonic": "1REG0M234A",
+        "question": "FC1:",
+        "response": "08"
+      },
+      {
+        "mnemonic": "1REG0M235A",
+        "question": "FC2:",
+        "response": "07"
+      },
+      {
+        "mnemonic": "1REG0M237A",
+        "question": ".",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0M293A",
+        "question": "ST:",
+        "response": "TX"
+      },
+      {
+        "mnemonic": "1REG0M295A",
+        "question": "This includes medical-payment coverage, premises or automobile",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0M297B",
+        "question": "party may be liable?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0R041A",
+        "question": "Was the PT referred from, or is the PCP an Urgent Care Center?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0R080A",
+        "question": "Registration Interruption?",
+        "response": "NONE"
+      },
+      {
+        "mnemonic": "1REG0R261A",
+        "question": "If you are admitted today would you like your PCP to be notified?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0R321A",
+        "question": ":",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0R322A",
+        "question": "LAWFULL PRESENT IN THE UNITED STATES:",
+        "response": "U"
+      },
+      {
+        "mnemonic": "1REG60R01A",
+        "question": "COCID 1",
+        "response": "COCDL"
+      },
+      {
+        "mnemonic": "1REG60R01B",
+        "question": "Acct Number 1",
+        "response": "H00754183968"
+      },
+      {
+        "mnemonic": "1REG60R01C",
+        "question": "Date 1",
+        "response": "20250226"
+      },
+      {
+        "mnemonic": "1REGEOC01A",
+        "question": "Does the patient have accessibility needs:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "ETHNICITY",
+        "question": "ETHNICITY",
+        "response": "3"
+      },
+      {
+        "mnemonic": "K31100068A",
+        "question": "Have you or a close contact traveled outside the US in the last 3 weeks:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100070A",
+        "question": "Have you ever had TB or a positive TB skin test:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100072A",
+        "question": "Fever greater than 100.4 F or 38.0 C:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100073A",
+        "question": "Cough not related to allergy or COPD:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100076A",
+        "question": "Sore throat:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100077A",
+        "question": "Night sweats:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100078A",
+        "question": "Unexplained weight loss:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100079A",
+        "question": "Fatigue:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100080A",
+        "question": "Body aches:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100081A",
+        "question": "Rash:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100082A",
+        "question": "Nasal congestion unrelated to allergies/sinus infections:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100083A",
+        "question": "Point of entry screening status:",
+        "response": "Negative TB Risk"
+      },
+      {
+        "mnemonic": "K31100185A",
+        "question": "Patient states having shortness of breath:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "M38000000A",
+        "question": "Preferred language:",
+        "response": "ENG"
+      },
+      {
+        "mnemonic": "Z.EDT00002",
+        "question": "Arrival Date:",
+        "response": "20250121"
+      },
+      {
+        "mnemonic": "Z.EDT00004",
+        "question": "Arrival Time:",
+        "response": "1500"
+      },
+      {
+        "mnemonic": "Z.EDT00018",
+        "question": "Date Patient Physically Leaves ED:",
+        "response": "20250121"
+      },
+      {
+        "mnemonic": "Z.EDT00020",
+        "question": "Time Patient Physically Leaves ED:",
+        "response": "1728"
+      },
+      {
+        "mnemonic": "Z.EDT00054",
+        "question": "Disposition Category:",
+        "response": "5"
+      },
+      {
+        "mnemonic": "Z.EDTB0014",
+        "question": "MD/DO/PA/NP Makes Decision to Disposition Date:",
+        "response": "20250121"
+      },
+      {
+        "mnemonic": "Z.EDTB0016",
+        "question": "MD/DO/PA/NP Makes Decision to Disposition Time:",
+        "response": "1727"
+      },
+      {
+        "mnemonic": "Z.OGUATT",
+        "question": "DO YOU WISH TO IDENTIFY ANOTHER GUARANTOR?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "Z.SUBUNT#",
+        "question": "SUB-UNIT #",
+        "response": "0001"
+      },
+      {
+        "mnemonic": "Z.eRESPTXT",
+        "question": "Use guarantor cell phone for text/SMS messaging?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "ZSS.CONSNT",
+        "question": "COA/COS SIGNED?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "ZSS.DEPREQ",
+        "question": "DEPOSIT REQ?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "ZSS.DISFIN",
+        "question": "DISCHARGE FINANCIAL STATUS",
+        "response": "COMP"
+      },
+      {
+        "mnemonic": "ZSS.ESTCHG",
+        "question": "EST PT DUE",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "ZSS.MEDSCR",
+        "question": "HAS PATIENT BEEN MEDICALLY SCREENED   STABILIZED?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "ZSS.PHYORD",
+        "question": "WRITTEN PHYSICIAN\u0027S ORDER ON FILE?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "hcaMU2OPT5",
+        "question": "Do you have any objections to sharing your data?",
+        "response": "N"
+      }
+    ],
+    "insert_timestamp": null
+  },
+  {
+    "encounter_id": "52022608-ed0c-4a38-8b71-6838feb561e6",
+    "lastupdated": "2025-01-22 18:00:04.267000 UTC",
+    "hl7_message_date_time": "2025-01-22T12:00:04.267+00:00",
+    "hl7_message_date_time_UTC": "2025-01-22 18:00:04.267000 UTC",
+    "hl7_message_control_id": "MT_COCDAE_ADT_DAEGTADM.1.11314534",
+    "meta_latest_source_date_time": "2025-01-22T18:00:04.267+00:00",
+    "intermediate_snapshot_creation_date_time": "2025-01-22T18:09:04.235888+00:00",
+    "final_fhir_write_date_time": "2025-01-22T18:11:27.917196+00:00",
+    "final_fhir_commit_date_time": "2025-01-22 18:11:28.010910 UTC",
+    "encounter_version_id": "MTczNzU2ODgwNDI2NzAwMDAwMA",
+    "version_id_fingerprint": "-3091758205455840058",
+    "consent_coid": "06742",
+    "meta_action_code": "UPDATE",
+    "hl7_v2_source_interface": "ADT",
+    "patient_account_num": "AF0106236880",
+    "patient_primary_id": "AF388134",
+    "network_mnemonic": "TXG",
+    "medical_record_num": "AF00489243",
+    "coid": "06742",
+    "facility_mnemonic": "COCDAE",
+    "fhir_visit_status": "in-progress",
+    "fhir_patient_class_code": "AMB",
+    "fhir_patient_class_display": null,
+    "patient_type": "REF",
+    "admission_type": "EL",
+    "patient_class_code": "O",
+    "account_status_code": "REG",
+    "vip_indicator_code": "N",
+    "financial_class_code": "07",
+    "mode_of_arrival_code": null,
+    "accommodation_code": null,
+    "accommodation_code_category": null,
+    "hospital_service_type_code": "SOLIS",
+    "hospital_service_type_text": "Hospital Service",
+    "admit_source_code": "CR",
+    "discharge_disposition": [],
+    "patient_id": "d13da3a6-05da-4212-8fd1-6e40c228c5ba",
+    "appointment_id": null,
+    "account_id": "cc8c10f3-1e1b-43c3-a1d6-ab466db149e3",
+    "deceased_date_time": null,
+    "admission_date": "2025-01-20T08:00:00+00:00",
+    "discharge_date": null,
+    "is_valid_date_ind": "true",
+    "alt_admission_date_time": "2025-01-20T08:00:00+00:00",
+    "hl7_admission_date_time": "202501200800",
+    "alt_discharge_date_time": null,
+    "hl7_discharge_date_time": null,
+    "reason_for_visit_text": ".",
+    "mt_reason_for_visit_code": ".",
+    "patient_location": [
+      {
+        "location_id": "38f70b60-8cc4-40e2-b167-18cfe53f3595",
+        "mnemonic": "COCDAE",
+        "physical_type": "Facility"
+      },
+      {
+        "location_id": "a2318e68-7f98-4e9c-9f28-fe51e8783877",
+        "mnemonic": "AF.SOLIS",
+        "physical_type": "Unit"
+      }
+    ],
+    "emergency_department": {
+      "edm_arrived_date_time": null,
+      "edm_triaged_date_time": null,
+      "edm_departure_date_time": null,
+      "coid": null,
+      "priority_rank": null,
+      "priority_code": null,
+      "priority_text": null,
+      "edm_reason_for_visit_code": null,
+      "edm_reason_for_visit_text": null,
+      "departure_info": {
+        "departure_disposition_code": null,
+        "departure_disposition_text": null,
+        "departure_disposition_display": null,
+        "departure_condition_code": null,
+        "departure_condition_text": null,
+        "departure_condition_display": null,
+        "departure_comments": null
+      },
+      "patient_location": {
+        "treatment_room": {
+          "room_code": null,
+          "room_text": null
+        },
+        "edm_location": {
+          "location_code": null,
+          "location_text": null
+        },
+        "reserved_room": {
+          "room_code": null,
+          "room_text": null
+        }
+      },
+      "edm_transport": null
+    },
+    "registration_query": [
+      {
+        "mnemonic": "1IN0FHIR1A",
+        "question": "FHIR MESSAGE ID:",
+        "response": "FHIR_0HN9Q5TSFHSUJ_000000E1"
+      },
+      {
+        "mnemonic": "1PAO0F265A",
+        "question": "DED:",
+        "response": "3400.00"
+      },
+      {
+        "mnemonic": "1PAO0F266A",
+        "question": "Met:",
+        "response": "44.44"
+      },
+      {
+        "mnemonic": "ETHNICITY",
+        "question": "ETHNICITY",
+        "response": "2"
+      },
+      {
+        "mnemonic": "M3801A000F",
+        "question": "Preferred Name:",
+        "response": "Sukhee"
+      },
+      {
+        "mnemonic": "Z.OGUATT",
+        "question": "DO YOU WISH TO IDENTIFY ANOTHER GUARANTOR?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "Z.eRESPTXT",
+        "question": "Use guarantor cell phone for text/SMS messaging?",
+        "response": "N"
+      }
+    ],
+    "insert_timestamp": null
+  },
+  {
+    "encounter_id": "52022608-ed0c-4a38-8b71-6838feb561e6",
+    "lastupdated": "2025-01-22 18:00:04.267000 UTC",
+    "hl7_message_date_time": "2025-01-22T12:00:04.267+00:00",
+    "hl7_message_date_time_UTC": "2025-01-22 18:00:04.267000 UTC",
+    "hl7_message_control_id": "MT_COCDAE_ADT_DAEGTADM.1.11314534",
+    "meta_latest_source_date_time": "2025-01-22T18:00:04.267+00:00",
+    "intermediate_snapshot_creation_date_time": "2025-01-22T18:09:04.235888+00:00",
+    "final_fhir_write_date_time": "2025-01-22T18:11:06.044857+00:00",
+    "final_fhir_commit_date_time": "2025-01-22 18:11:06.146829 UTC",
+    "encounter_version_id": "MTczNzU2ODgwNDI2NzAwMDAwMA",
+    "version_id_fingerprint": "-3091758205455840058",
+    "consent_coid": "06742",
+    "meta_action_code": "CREATE",
+    "hl7_v2_source_interface": "ADT",
+    "patient_account_num": "AF0106236880",
+    "patient_primary_id": "AF388134",
+    "network_mnemonic": "TXG",
+    "medical_record_num": "AF00489243",
+    "coid": "06742",
+    "facility_mnemonic": "COCDAE",
+    "fhir_visit_status": "in-progress",
+    "fhir_patient_class_code": "AMB",
+    "fhir_patient_class_display": null,
+    "patient_type": "REF",
+    "admission_type": "EL",
+    "patient_class_code": "O",
+    "account_status_code": "REG",
+    "vip_indicator_code": "N",
+    "financial_class_code": "07",
+    "mode_of_arrival_code": null,
+    "accommodation_code": null,
+    "accommodation_code_category": null,
+    "hospital_service_type_code": "SOLIS",
+    "hospital_service_type_text": "Hospital Service",
+    "admit_source_code": "CR",
+    "discharge_disposition": [],
+    "patient_id": "d13da3a6-05da-4212-8fd1-6e40c228c5ba",
+    "appointment_id": null,
+    "account_id": "cc8c10f3-1e1b-43c3-a1d6-ab466db149e3",
+    "deceased_date_time": null,
+    "admission_date": "2025-01-20T08:00:00+00:00",
+    "discharge_date": null,
+    "is_valid_date_ind": "true",
+    "alt_admission_date_time": "2025-01-20T08:00:00+00:00",
+    "hl7_admission_date_time": "202501200800",
+    "alt_discharge_date_time": null,
+    "hl7_discharge_date_time": null,
+    "reason_for_visit_text": ".",
+    "mt_reason_for_visit_code": ".",
+    "patient_location": [
+      {
+        "location_id": "38f70b60-8cc4-40e2-b167-18cfe53f3595",
+        "mnemonic": "COCDAE",
+        "physical_type": "Facility"
+      },
+      {
+        "location_id": "a2318e68-7f98-4e9c-9f28-fe51e8783877",
+        "mnemonic": "AF.SOLIS",
+        "physical_type": "Unit"
+      }
+    ],
+    "emergency_department": {
+      "edm_arrived_date_time": null,
+      "edm_triaged_date_time": null,
+      "edm_departure_date_time": null,
+      "coid": null,
+      "priority_rank": null,
+      "priority_code": null,
+      "priority_text": null,
+      "edm_reason_for_visit_code": null,
+      "edm_reason_for_visit_text": null,
+      "departure_info": {
+        "departure_disposition_code": null,
+        "departure_disposition_text": null,
+        "departure_disposition_display": null,
+        "departure_condition_code": null,
+        "departure_condition_text": null,
+        "departure_condition_display": null,
+        "departure_comments": null
+      },
+      "patient_location": {
+        "treatment_room": {
+          "room_code": null,
+          "room_text": null
+        },
+        "edm_location": {
+          "location_code": null,
+          "location_text": null
+        },
+        "reserved_room": {
+          "room_code": null,
+          "room_text": null
+        }
+      },
+      "edm_transport": null
+    },
+    "registration_query": [
+      {
+        "mnemonic": "1IN0FHIR1A",
+        "question": "FHIR MESSAGE ID:",
+        "response": "FHIR_0HN9Q5TSFHSUJ_000000E1"
+      },
+      {
+        "mnemonic": "1PAO0F265A",
+        "question": "DED:",
+        "response": "3400.00"
+      },
+      {
+        "mnemonic": "1PAO0F266A",
+        "question": "Met:",
+        "response": "44.44"
+      },
+      {
+        "mnemonic": "ETHNICITY",
+        "question": "ETHNICITY",
+        "response": "2"
+      },
+      {
+        "mnemonic": "M3801A000F",
+        "question": "Preferred Name:",
+        "response": "Sukhee"
+      },
+      {
+        "mnemonic": "Z.OGUATT",
+        "question": "DO YOU WISH TO IDENTIFY ANOTHER GUARANTOR?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "Z.eRESPTXT",
+        "question": "Use guarantor cell phone for text/SMS messaging?",
+        "response": "N"
+      }
+    ],
+    "insert_timestamp": null
+  },
+  {
+    "encounter_id": "61a3e0c8-24ce-44d5-a6e3-8ac2df60bfc5",
+    "lastupdated": "2025-01-22 16:14:59.753000 UTC",
+    "hl7_message_date_time": "2025-01-22T10:14:59.753+00:00",
+    "hl7_message_date_time_UTC": "2025-01-22 16:14:59.753000 UTC",
+    "hl7_message_control_id": "MT_COCLE_ADT_LEGTADM.1.18726060",
+    "meta_latest_source_date_time": "2025-01-22T16:14:59.753+00:00",
+    "intermediate_snapshot_creation_date_time": "2025-01-22T16:21:54.132914+00:00",
+    "final_fhir_write_date_time": "2025-01-22T16:24:38.771182+00:00",
+    "final_fhir_commit_date_time": "2025-01-22 16:24:38.945354 UTC",
+    "encounter_version_id": "MTczNzU2MjQ5OTc1MzAwMDAwMA",
+    "version_id_fingerprint": "3969780336184537887",
+    "consent_coid": "34372",
+    "meta_action_code": "CREATE",
+    "hl7_v2_source_interface": "ADT",
+    "patient_account_num": "L00523627860",
+    "patient_primary_id": "L655938",
+    "network_mnemonic": "TXG",
+    "medical_record_num": "L000718871",
+    "coid": "34372",
+    "facility_mnemonic": "COCLE",
+    "fhir_visit_status": "planned",
+    "fhir_patient_class_code": "PRENC",
+    "fhir_patient_class_display": null,
+    "patient_type": "ER",
+    "admission_type": null,
+    "patient_class_code": "P",
+    "account_status_code": "PRE",
+    "vip_indicator_code": "N",
+    "financial_class_code": null,
+    "mode_of_arrival_code": null,
+    "accommodation_code": null,
+    "accommodation_code_category": null,
+    "hospital_service_type_code": "LVERS",
+    "hospital_service_type_text": "Hospital Service",
+    "admit_source_code": null,
+    "discharge_disposition": [],
+    "patient_id": "084f0f28-9d3a-4323-968a-43cc0986dc32",
+    "appointment_id": null,
+    "account_id": "abfe0514-6b29-4b57-b0d5-132aca8c1ef8",
+    "deceased_date_time": null,
+    "admission_date": "2025-01-22T10:11:00+00:00",
+    "discharge_date": null,
+    "is_valid_date_ind": "true",
+    "alt_admission_date_time": "2025-01-22T10:11:00+00:00",
+    "hl7_admission_date_time": "202501221011",
+    "alt_discharge_date_time": null,
+    "hl7_discharge_date_time": null,
+    "reason_for_visit_text": "ABD PAIN",
+    "mt_reason_for_visit_code": "ABD PAIN",
+    "patient_location": [
+      {
+        "location_id": "4a003721-80d1-4ab8-a97e-c62ea6c8ee3b",
+        "mnemonic": "COCLE",
+        "physical_type": "Facility"
+      },
+      {
+        "location_id": "f3343938-baa1-4877-892c-1369dd968a4d",
+        "mnemonic": "L.ER",
+        "physical_type": "Unit"
+      }
+    ],
+    "emergency_department": {
+      "edm_arrived_date_time": "2025-01-22T10:11:00+00:00",
+      "edm_triaged_date_time": null,
+      "edm_departure_date_time": null,
+      "coid": null,
+      "priority_rank": null,
+      "priority_code": null,
+      "priority_text": null,
+      "edm_reason_for_visit_code": null,
+      "edm_reason_for_visit_text": null,
+      "departure_info": {
+        "departure_disposition_code": null,
+        "departure_disposition_text": null,
+        "departure_disposition_display": null,
+        "departure_condition_code": null,
+        "departure_condition_text": null,
+        "departure_condition_display": null,
+        "departure_comments": null
+      },
+      "patient_location": {
+        "treatment_room": {
+          "room_code": null,
+          "room_text": null
+        },
+        "edm_location": {
+          "location_code": "L.ER",
+          "location_text": "Main ER"
+        },
+        "reserved_room": {
+          "room_code": null,
+          "room_text": null
+        }
+      },
+      "edm_transport": {
+        "transport_company_code": null,
+        "transport_company_display": null,
+        "transport_id_code": null,
+        "transport_id_display": null,
+        "transport_call_date_time": "2025-01-22T10:05:00+00:00"
+      }
+    },
+    "registration_query": [],
+    "insert_timestamp": null
+  },
+  {
+    "encounter_id": "61a3e0c8-24ce-44d5-a6e3-8ac2df60bfc5",
+    "lastupdated": "2025-01-22 16:14:59.753000 UTC",
+    "hl7_message_date_time": "2025-01-22T10:14:59.753+00:00",
+    "hl7_message_date_time_UTC": "2025-01-22 16:14:59.753000 UTC",
+    "hl7_message_control_id": "MT_COCLE_ADT_LEGTADM.1.18726060",
+    "meta_latest_source_date_time": "2025-01-22T16:14:59.753+00:00",
+    "intermediate_snapshot_creation_date_time": "2025-01-22T16:21:54.132914+00:00",
+    "final_fhir_write_date_time": "2025-01-22T16:26:24.530248+00:00",
+    "final_fhir_commit_date_time": "2025-01-22 16:26:24.648272 UTC",
+    "encounter_version_id": "MTczNzU2MjQ5OTc1MzAwMDAwMA",
+    "version_id_fingerprint": "3969780336184537887",
+    "consent_coid": "34372",
+    "meta_action_code": "UPDATE",
+    "hl7_v2_source_interface": "ADT",
+    "patient_account_num": "L00523627860",
+    "patient_primary_id": "L655938",
+    "network_mnemonic": "TXG",
+    "medical_record_num": "L000718871",
+    "coid": "34372",
+    "facility_mnemonic": "COCLE",
+    "fhir_visit_status": "planned",
+    "fhir_patient_class_code": "PRENC",
+    "fhir_patient_class_display": null,
+    "patient_type": "ER",
+    "admission_type": null,
+    "patient_class_code": "P",
+    "account_status_code": "PRE",
+    "vip_indicator_code": "N",
+    "financial_class_code": null,
+    "mode_of_arrival_code": null,
+    "accommodation_code": null,
+    "accommodation_code_category": null,
+    "hospital_service_type_code": "LVERS",
+    "hospital_service_type_text": "Hospital Service",
+    "admit_source_code": null,
+    "discharge_disposition": [],
+    "patient_id": "084f0f28-9d3a-4323-968a-43cc0986dc32",
+    "appointment_id": null,
+    "account_id": "abfe0514-6b29-4b57-b0d5-132aca8c1ef8",
+    "deceased_date_time": null,
+    "admission_date": "2025-01-22T10:11:00+00:00",
+    "discharge_date": null,
+    "is_valid_date_ind": "true",
+    "alt_admission_date_time": "2025-01-22T10:11:00+00:00",
+    "hl7_admission_date_time": "202501221011",
+    "alt_discharge_date_time": null,
+    "hl7_discharge_date_time": null,
+    "reason_for_visit_text": "ABD PAIN",
+    "mt_reason_for_visit_code": "ABD PAIN",
+    "patient_location": [
+      {
+        "location_id": "4a003721-80d1-4ab8-a97e-c62ea6c8ee3b",
+        "mnemonic": "COCLE",
+        "physical_type": "Facility"
+      },
+      {
+        "location_id": "f3343938-baa1-4877-892c-1369dd968a4d",
+        "mnemonic": "L.ER",
+        "physical_type": "Unit"
+      }
+    ],
+    "emergency_department": {
+      "edm_arrived_date_time": "2025-01-22T10:11:00+00:00",
+      "edm_triaged_date_time": null,
+      "edm_departure_date_time": null,
+      "coid": null,
+      "priority_rank": null,
+      "priority_code": null,
+      "priority_text": null,
+      "edm_reason_for_visit_code": null,
+      "edm_reason_for_visit_text": null,
+      "departure_info": {
+        "departure_disposition_code": null,
+        "departure_disposition_text": null,
+        "departure_disposition_display": null,
+        "departure_condition_code": null,
+        "departure_condition_text": null,
+        "departure_condition_display": null,
+        "departure_comments": null
+      },
+      "patient_location": {
+        "treatment_room": {
+          "room_code": null,
+          "room_text": null
+        },
+        "edm_location": {
+          "location_code": "L.ER",
+          "location_text": "Main ER"
+        },
+        "reserved_room": {
+          "room_code": null,
+          "room_text": null
+        }
+      },
+      "edm_transport": {
+        "transport_company_code": null,
+        "transport_company_display": null,
+        "transport_id_code": null,
+        "transport_id_display": null,
+        "transport_call_date_time": "2025-01-22T10:05:00+00:00"
+      }
+    },
+    "registration_query": [],
+    "insert_timestamp": null
+  },
+  {
+    "encounter_id": "61a3e0c8-24ce-44d5-a6e3-8ac2df60bfc5",
+    "lastupdated": "2025-01-22 16:14:59.753000 UTC",
+    "hl7_message_date_time": "2025-01-22T10:14:59.753+00:00",
+    "hl7_message_date_time_UTC": "2025-01-22 16:14:59.753000 UTC",
+    "hl7_message_control_id": "MT_COCLE_ADT_LEGTADM.1.18726060",
+    "meta_latest_source_date_time": "2025-01-22T16:14:59.753+00:00",
+    "intermediate_snapshot_creation_date_time": "2025-01-22T16:21:54.132914+00:00",
+    "final_fhir_write_date_time": "2025-01-22T16:24:39.918117+00:00",
+    "final_fhir_commit_date_time": "2025-01-22 16:24:40.009639 UTC",
+    "encounter_version_id": "MTczNzU2MjQ5OTc1MzAwMDAwMA",
+    "version_id_fingerprint": "3969780336184537887",
+    "consent_coid": "34372",
+    "meta_action_code": "UPDATE",
+    "hl7_v2_source_interface": "ADT",
+    "patient_account_num": "L00523627860",
+    "patient_primary_id": "L655938",
+    "network_mnemonic": "TXG",
+    "medical_record_num": "L000718871",
+    "coid": "34372",
+    "facility_mnemonic": "COCLE",
+    "fhir_visit_status": "planned",
+    "fhir_patient_class_code": "PRENC",
+    "fhir_patient_class_display": null,
+    "patient_type": "ER",
+    "admission_type": null,
+    "patient_class_code": "P",
+    "account_status_code": "PRE",
+    "vip_indicator_code": "N",
+    "financial_class_code": null,
+    "mode_of_arrival_code": null,
+    "accommodation_code": null,
+    "accommodation_code_category": null,
+    "hospital_service_type_code": "LVERS",
+    "hospital_service_type_text": "Hospital Service",
+    "admit_source_code": null,
+    "discharge_disposition": [],
+    "patient_id": "084f0f28-9d3a-4323-968a-43cc0986dc32",
+    "appointment_id": null,
+    "account_id": "abfe0514-6b29-4b57-b0d5-132aca8c1ef8",
+    "deceased_date_time": null,
+    "admission_date": "2025-01-22T10:11:00+00:00",
+    "discharge_date": null,
+    "is_valid_date_ind": "true",
+    "alt_admission_date_time": "2025-01-22T10:11:00+00:00",
+    "hl7_admission_date_time": "202501221011",
+    "alt_discharge_date_time": null,
+    "hl7_discharge_date_time": null,
+    "reason_for_visit_text": "ABD PAIN",
+    "mt_reason_for_visit_code": "ABD PAIN",
+    "patient_location": [
+      {
+        "location_id": "4a003721-80d1-4ab8-a97e-c62ea6c8ee3b",
+        "mnemonic": "COCLE",
+        "physical_type": "Facility"
+      },
+      {
+        "location_id": "f3343938-baa1-4877-892c-1369dd968a4d",
+        "mnemonic": "L.ER",
+        "physical_type": "Unit"
+      }
+    ],
+    "emergency_department": {
+      "edm_arrived_date_time": "2025-01-22T10:11:00+00:00",
+      "edm_triaged_date_time": null,
+      "edm_departure_date_time": null,
+      "coid": null,
+      "priority_rank": null,
+      "priority_code": null,
+      "priority_text": null,
+      "edm_reason_for_visit_code": null,
+      "edm_reason_for_visit_text": null,
+      "departure_info": {
+        "departure_disposition_code": null,
+        "departure_disposition_text": null,
+        "departure_disposition_display": null,
+        "departure_condition_code": null,
+        "departure_condition_text": null,
+        "departure_condition_display": null,
+        "departure_comments": null
+      },
+      "patient_location": {
+        "treatment_room": {
+          "room_code": null,
+          "room_text": null
+        },
+        "edm_location": {
+          "location_code": "L.ER",
+          "location_text": "Main ER"
+        },
+        "reserved_room": {
+          "room_code": null,
+          "room_text": null
+        }
+      },
+      "edm_transport": {
+        "transport_company_code": null,
+        "transport_company_display": null,
+        "transport_id_code": null,
+        "transport_id_display": null,
+        "transport_call_date_time": "2025-01-22T10:05:00+00:00"
+      }
+    },
+    "registration_query": [],
+    "insert_timestamp": null
+  },
+  {
+    "encounter_id": "d2f3aa86-0b24-4052-890c-57b582488b7c",
+    "lastupdated": "2025-01-22 15:44:59.132000 UTC",
+    "hl7_message_date_time": "2025-01-22T10:44:59.132+00:00",
+    "hl7_message_date_time_UTC": "2025-01-22 15:44:59.132000 UTC",
+    "hl7_message_control_id": "MT_COCKN_ADT_KNGTADM.1.31893741",
+    "meta_latest_source_date_time": "2025-01-22T15:44:59.132+00:00",
+    "intermediate_snapshot_creation_date_time": "2025-01-22T15:56:13.215174+00:00",
+    "final_fhir_write_date_time": "2025-01-22T15:56:42.654747+00:00",
+    "final_fhir_commit_date_time": "2025-01-22 15:56:42.760123 UTC",
+    "encounter_version_id": "MTczNzU2MDY5OTEzMjAwMDAwMA",
+    "version_id_fingerprint": "9066843871083871853",
+    "consent_coid": "35941",
+    "meta_action_code": "UPDATE",
+    "hl7_v2_source_interface": "ADT",
+    "patient_account_num": "K031984322",
+    "patient_primary_id": "K617168",
+    "network_mnemonic": "FLA",
+    "medical_record_num": "K690205",
+    "coid": "35941",
+    "facility_mnemonic": "COCKN",
+    "fhir_visit_status": "in-progress",
+    "fhir_patient_class_code": "EMER",
+    "fhir_patient_class_display": null,
+    "patient_type": "ER",
+    "admission_type": "EM",
+    "patient_class_code": "E",
+    "account_status_code": "REG",
+    "vip_indicator_code": "N",
+    "financial_class_code": "09",
+    "mode_of_arrival_code": "WI",
+    "accommodation_code": null,
+    "accommodation_code_category": null,
+    "hospital_service_type_code": "EME",
+    "hospital_service_type_text": "Hospital Service",
+    "admit_source_code": "PR",
+    "discharge_disposition": [],
+    "patient_id": "f67d6953-c5ed-4d91-a37c-2d30fb334b8c",
+    "appointment_id": null,
+    "account_id": "c8551ae2-9647-4d42-be19-fe89043f24ec",
+    "deceased_date_time": null,
+    "admission_date": "2025-01-22T08:57:00+00:00",
+    "discharge_date": null,
+    "is_valid_date_ind": "true",
+    "alt_admission_date_time": "2025-01-22T08:57:00+00:00",
+    "hl7_admission_date_time": "202501220857",
+    "alt_discharge_date_time": null,
+    "hl7_discharge_date_time": null,
+    "reason_for_visit_text": "LOW ABD PAIN  AND FATIGUE",
+    "mt_reason_for_visit_code": "LOW ABD PAIN  AND FATIGUE",
+    "patient_location": [
+      {
+        "location_id": "184856bc-2e80-4436-ac52-4a8c5921b5bf",
+        "mnemonic": "COCKN",
+        "physical_type": "Facility"
+      },
+      {
+        "location_id": "990a11ee-7fcb-46df-ab80-c00ab4f453af",
+        "mnemonic": "ERA",
+        "physical_type": "Unit"
+      }
+    ],
+    "emergency_department": {
+      "edm_arrived_date_time": "2025-01-22T08:57:00+00:00",
+      "edm_triaged_date_time": "2025-01-22T09:10:00+00:00",
+      "edm_departure_date_time": null,
+      "coid": "35941",
+      "priority_rank": "3",
+      "priority_code": "3",
+      "priority_text": "ESI 3 / Urgent",
+      "edm_reason_for_visit_code": "GIABD",
+      "edm_reason_for_visit_text": "GI/Abdominal Pain",
+      "departure_info": {
+        "departure_disposition_code": null,
+        "departure_disposition_text": null,
+        "departure_disposition_display": null,
+        "departure_condition_code": null,
+        "departure_condition_text": null,
+        "departure_condition_display": null,
+        "departure_comments": null
+      },
+      "patient_location": {
+        "treatment_room": {
+          "room_code": "24H",
+          "room_text": "ED BED 24 HALLWAY"
+        },
+        "edm_location": {
+          "location_code": "EDHALLA",
+          "location_text": "ED HALL A"
+        },
+        "reserved_room": {
+          "room_code": null,
+          "room_text": null
+        }
+      },
+      "edm_transport": null
+    },
+    "registration_query": [
+      {
+        "mnemonic": "1IN0FHIR1A",
+        "question": "FHIR MESSAGE ID:",
+        "response": "FHIR_0HN9Q5TSFHSID_0000035A"
+      },
+      {
+        "mnemonic": "1PAO0F246A",
+        "question": "-IP Deductible and OP CoPay",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F247A",
+        "question": "\u003d",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F249A",
+        "question": "\u003d",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F250A",
+        "question": "+IP Deductible and OP CoPay",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F251A",
+        "question": "Estimated Out-of-Pocket:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F251B",
+        "question": "ESTIMATED AMOUNT DUE:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F252A",
+        "question": "Out of Pocket Leftover:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F253A",
+        "question": "Is the estimated out-of-pocket larger than the leftover out-of-pocket?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1PAO0F264A",
+        "question": "Copay:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F265A",
+        "question": "DED:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F266A",
+        "question": "Met:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F268A",
+        "question": "PMT Rate:",
+        "response": "100.00"
+      },
+      {
+        "mnemonic": "1PAO0F269A",
+        "question": "Remain:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F271A",
+        "question": "OOP Met:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F272A",
+        "question": "Ins 1:",
+        "response": "HUMMCD"
+      },
+      {
+        "mnemonic": "1PAO0F272B",
+        "question": "Verified:",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1PAO0FI65A",
+        "question": "PMT DTL?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0F072A",
+        "question": ":",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0M031B",
+        "question": "2. Illness/injury due to work related accident/condition?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0M041A",
+        "question": "Was illness/injury due to a non-work related accident?",
+        "response": "NO"
+      },
+      {
+        "mnemonic": "1REG0M065A",
+        "question": "Occurrence Code:",
+        "response": "11"
+      },
+      {
+        "mnemonic": "1REG0M066A",
+        "question": "Date:",
+        "response": "20250122"
+      },
+      {
+        "mnemonic": "1REG0M234A",
+        "question": "FC1:",
+        "response": "99"
+      },
+      {
+        "mnemonic": "1REG0M237A",
+        "question": ".",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0M293A",
+        "question": "ST:",
+        "response": "FL"
+      },
+      {
+        "mnemonic": "1REG0M295A",
+        "question": "This includes medical-payment coverage, premises or automobile",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0M297B",
+        "question": "party may be liable?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0R321A",
+        "question": ":",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REGEOC01A",
+        "question": "Does the patient have accessibility needs:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "ETHNICITY",
+        "question": "ETHNICITY",
+        "response": "1"
+      },
+      {
+        "mnemonic": "K31100068A",
+        "question": "Have you or a close contact traveled outside the US in the last 3 weeks:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100070A",
+        "question": "Have you ever had TB or a positive TB skin test:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100072A",
+        "question": "Fever greater than 100.4 F or 38.0 C:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100073A",
+        "question": "Cough not related to allergy or COPD:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100076A",
+        "question": "Sore throat:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100077A",
+        "question": "Night sweats:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100078A",
+        "question": "Unexplained weight loss:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100079A",
+        "question": "Fatigue:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100080A",
+        "question": "Body aches:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100081A",
+        "question": "Rash:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100082A",
+        "question": "Nasal congestion unrelated to allergies/sinus infections:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100083A",
+        "question": "Point of entry screening status:",
+        "response": "Unable to assess"
+      },
+      {
+        "mnemonic": "K31100185A",
+        "question": "Patient states having shortness of breath:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "M38000000A",
+        "question": "Preferred language:",
+        "response": "SPA"
+      },
+      {
+        "mnemonic": "Z.EDTA0040",
+        "question": "ESP?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "Z.OGUATT",
+        "question": "DO YOU WISH TO IDENTIFY ANOTHER GUARANTOR?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "Z.SUBUNT#",
+        "question": "SUB-UNIT #",
+        "response": "K.1"
+      },
+      {
+        "mnemonic": "Z.eRESPTXT",
+        "question": "Use guarantor cell phone for text/SMS messaging?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "ZSS.CONSNT",
+        "question": "COA/COS SIGNED?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "ZSS.DEPREQ",
+        "question": "DEPOSIT REQ?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "ZSS.ESTCHG",
+        "question": "EST PT DUE",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "hcaMU2OPT5",
+        "question": "Do you have any objections to sharing your data?",
+        "response": "N"
+      }
+    ],
+    "insert_timestamp": null
+  },
+  {
+    "encounter_id": "d2f3aa86-0b24-4052-890c-57b582488b7c",
+    "lastupdated": "2025-01-22 15:44:59.132000 UTC",
+    "hl7_message_date_time": "2025-01-22T10:44:59.132+00:00",
+    "hl7_message_date_time_UTC": "2025-01-22 15:44:59.132000 UTC",
+    "hl7_message_control_id": "MT_COCKN_ADT_KNGTADM.1.31893741",
+    "meta_latest_source_date_time": "2025-01-22T15:44:59.132+00:00",
+    "intermediate_snapshot_creation_date_time": "2025-01-22T15:52:19.888979+00:00",
+    "final_fhir_write_date_time": "2025-01-22T15:52:51.765093+00:00",
+    "final_fhir_commit_date_time": "2025-01-22 15:52:51.854260 UTC",
+    "encounter_version_id": "MTczNzU2MDY5OTEzMjAwMDAwMA",
+    "version_id_fingerprint": "9066843871083871853",
+    "consent_coid": "35941",
+    "meta_action_code": "UPDATE",
+    "hl7_v2_source_interface": "ADT",
+    "patient_account_num": "K031984322",
+    "patient_primary_id": "K617168",
+    "network_mnemonic": "FLA",
+    "medical_record_num": "K690205",
+    "coid": "35941",
+    "facility_mnemonic": "COCKN",
+    "fhir_visit_status": "in-progress",
+    "fhir_patient_class_code": "EMER",
+    "fhir_patient_class_display": null,
+    "patient_type": "ER",
+    "admission_type": "EM",
+    "patient_class_code": "E",
+    "account_status_code": "REG",
+    "vip_indicator_code": "N",
+    "financial_class_code": "09",
+    "mode_of_arrival_code": "WI",
+    "accommodation_code": null,
+    "accommodation_code_category": null,
+    "hospital_service_type_code": "EME",
+    "hospital_service_type_text": "Hospital Service",
+    "admit_source_code": "PR",
+    "discharge_disposition": [],
+    "patient_id": "f67d6953-c5ed-4d91-a37c-2d30fb334b8c",
+    "appointment_id": null,
+    "account_id": "c8551ae2-9647-4d42-be19-fe89043f24ec",
+    "deceased_date_time": null,
+    "admission_date": "2025-01-22T08:57:00+00:00",
+    "discharge_date": null,
+    "is_valid_date_ind": "true",
+    "alt_admission_date_time": "2025-01-22T08:57:00+00:00",
+    "hl7_admission_date_time": "202501220857",
+    "alt_discharge_date_time": null,
+    "hl7_discharge_date_time": null,
+    "reason_for_visit_text": "LOW ABD PAIN  AND FATIGUE",
+    "mt_reason_for_visit_code": "LOW ABD PAIN  AND FATIGUE",
+    "patient_location": [
+      {
+        "location_id": "184856bc-2e80-4436-ac52-4a8c5921b5bf",
+        "mnemonic": "COCKN",
+        "physical_type": "Facility"
+      },
+      {
+        "location_id": "990a11ee-7fcb-46df-ab80-c00ab4f453af",
+        "mnemonic": "ERA",
+        "physical_type": "Unit"
+      }
+    ],
+    "emergency_department": {
+      "edm_arrived_date_time": "2025-01-22T08:57:00+00:00",
+      "edm_triaged_date_time": "2025-01-22T09:10:00+00:00",
+      "edm_departure_date_time": null,
+      "coid": "35941",
+      "priority_rank": "3",
+      "priority_code": "3",
+      "priority_text": "ESI 3 / Urgent",
+      "edm_reason_for_visit_code": "GIABD",
+      "edm_reason_for_visit_text": "GI/Abdominal Pain",
+      "departure_info": {
+        "departure_disposition_code": null,
+        "departure_disposition_text": null,
+        "departure_disposition_display": null,
+        "departure_condition_code": null,
+        "departure_condition_text": null,
+        "departure_condition_display": null,
+        "departure_comments": null
+      },
+      "patient_location": {
+        "treatment_room": {
+          "room_code": "24H",
+          "room_text": "ED BED 24 HALLWAY"
+        },
+        "edm_location": {
+          "location_code": "EDHALLA",
+          "location_text": "ED HALL A"
+        },
+        "reserved_room": {
+          "room_code": null,
+          "room_text": null
+        }
+      },
+      "edm_transport": null
+    },
+    "registration_query": [
+      {
+        "mnemonic": "1IN0FHIR1A",
+        "question": "FHIR MESSAGE ID:",
+        "response": "FHIR_0HN9Q5TSFHSID_0000035A"
+      },
+      {
+        "mnemonic": "1PAO0F246A",
+        "question": "-IP Deductible and OP CoPay",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F247A",
+        "question": "\u003d",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F249A",
+        "question": "\u003d",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F250A",
+        "question": "+IP Deductible and OP CoPay",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F251A",
+        "question": "Estimated Out-of-Pocket:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F251B",
+        "question": "ESTIMATED AMOUNT DUE:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F252A",
+        "question": "Out of Pocket Leftover:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F253A",
+        "question": "Is the estimated out-of-pocket larger than the leftover out-of-pocket?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1PAO0F264A",
+        "question": "Copay:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F265A",
+        "question": "DED:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F266A",
+        "question": "Met:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F268A",
+        "question": "PMT Rate:",
+        "response": "100.00"
+      },
+      {
+        "mnemonic": "1PAO0F269A",
+        "question": "Remain:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F271A",
+        "question": "OOP Met:",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "1PAO0F272A",
+        "question": "Ins 1:",
+        "response": "HUMMCD"
+      },
+      {
+        "mnemonic": "1PAO0F272B",
+        "question": "Verified:",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1PAO0FI65A",
+        "question": "PMT DTL?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0F072A",
+        "question": ":",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0M031B",
+        "question": "2. Illness/injury due to work related accident/condition?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0M041A",
+        "question": "Was illness/injury due to a non-work related accident?",
+        "response": "NO"
+      },
+      {
+        "mnemonic": "1REG0M065A",
+        "question": "Occurrence Code:",
+        "response": "11"
+      },
+      {
+        "mnemonic": "1REG0M066A",
+        "question": "Date:",
+        "response": "20250122"
+      },
+      {
+        "mnemonic": "1REG0M234A",
+        "question": "FC1:",
+        "response": "99"
+      },
+      {
+        "mnemonic": "1REG0M237A",
+        "question": ".",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "1REG0M293A",
+        "question": "ST:",
+        "response": "FL"
+      },
+      {
+        "mnemonic": "1REG0M295A",
+        "question": "This includes medical-payment coverage, premises or automobile",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0M297B",
+        "question": "party may be liable?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REG0R321A",
+        "question": ":",
+        "response": "N"
+      },
+      {
+        "mnemonic": "1REGEOC01A",
+        "question": "Does the patient have accessibility needs:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "ETHNICITY",
+        "question": "ETHNICITY",
+        "response": "1"
+      },
+      {
+        "mnemonic": "K31100068A",
+        "question": "Have you or a close contact traveled outside the US in the last 3 weeks:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100070A",
+        "question": "Have you ever had TB or a positive TB skin test:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100072A",
+        "question": "Fever greater than 100.4 F or 38.0 C:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100073A",
+        "question": "Cough not related to allergy or COPD:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100076A",
+        "question": "Sore throat:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100077A",
+        "question": "Night sweats:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100078A",
+        "question": "Unexplained weight loss:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100079A",
+        "question": "Fatigue:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100080A",
+        "question": "Body aches:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100081A",
+        "question": "Rash:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100082A",
+        "question": "Nasal congestion unrelated to allergies/sinus infections:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "K31100083A",
+        "question": "Point of entry screening status:",
+        "response": "Unable to assess"
+      },
+      {
+        "mnemonic": "K31100185A",
+        "question": "Patient states having shortness of breath:",
+        "response": "No"
+      },
+      {
+        "mnemonic": "M38000000A",
+        "question": "Preferred language:",
+        "response": "SPA"
+      },
+      {
+        "mnemonic": "Z.EDTA0040",
+        "question": "ESP?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "Z.OGUATT",
+        "question": "DO YOU WISH TO IDENTIFY ANOTHER GUARANTOR?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "Z.SUBUNT#",
+        "question": "SUB-UNIT #",
+        "response": "K.1"
+      },
+      {
+        "mnemonic": "Z.eRESPTXT",
+        "question": "Use guarantor cell phone for text/SMS messaging?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "ZSS.CONSNT",
+        "question": "COA/COS SIGNED?",
+        "response": "Y"
+      },
+      {
+        "mnemonic": "ZSS.DEPREQ",
+        "question": "DEPOSIT REQ?",
+        "response": "N"
+      },
+      {
+        "mnemonic": "ZSS.ESTCHG",
+        "question": "EST PT DUE",
+        "response": "0.00"
+      },
+      {
+        "mnemonic": "hcaMU2OPT5",
+        "question": "Do you have any objections to sharing your data?",
+        "response": "N"
+      }
+    ],
+    "insert_timestamp": null
+  },
+  {
+    "encounter_id": "f363eb5f-b5cd-45c1-9c40-1b6fc89eef70",
+    "lastupdated": "2025-01-22 18:52:24.837000 UTC",
+    "hl7_message_date_time": "2025-01-22T12:52:24.837+00:00",
+    "hl7_message_date_time_UTC": "2025-01-22 18:52:24.837000 UTC",
+    "hl7_message_control_id": "IP_COCMK_ORU_EDMMK.250122.808",
+    "meta_latest_source_date_time": "2025-01-22T18:52:24.837+00:00",
+    "intermediate_snapshot_creation_date_time": "2025-01-22T19:07:01.885811+00:00",
+    "final_fhir_write_date_time": "2025-01-22T19:10:05.628744+00:00",
+    "final_fhir_commit_date_time": "2025-01-22 19:10:05.728208 UTC",
+    "encounter_version_id": "MTczNzU3MTk0NDgzNzAwMDAwMA",
+    "version_id_fingerprint": "3460440387613522111",
+    "consent_coid": "38333",
+    "meta_action_code": "UPDATE",
+    "hl7_v2_source_interface": "EDM",
+    "patient_account_num": "Q00055814792",
+    "patient_primary_id": "H1280060",
+    "network_mnemonic": "TXG",
+    "medical_record_num": "Q000726685",
+    "coid": "38333",
+    "facility_mnemonic": "COCMK",
+    "fhir_visit_status": "planned",
+    "fhir_patient_class_code": "PRENC",
+    "fhir_patient_class_display": null,
+    "patient_type": null,
+    "admission_type": null,
+    "patient_class_code": null,
+    "account_status_code": null,
+    "vip_indicator_code": null,
+    "financial_class_code": null,
+    "mode_of_arrival_code": null,
+    "accommodation_code": null,
+    "accommodation_code_category": null,
+    "hospital_service_type_code": null,
+    "hospital_service_type_text": null,
+    "admit_source_code": null,
+    "discharge_disposition": [],
+    "patient_id": "499252be-bd4f-439b-b43b-78187e7b1f50",
+    "appointment_id": null,
+    "account_id": null,
+    "deceased_date_time": null,
+    "admission_date": null,
+    "discharge_date": null,
+    "is_valid_date_ind": null,
+    "alt_admission_date_time": null,
+    "hl7_admission_date_time": null,
+    "alt_discharge_date_time": null,
+    "hl7_discharge_date_time": null,
+    "reason_for_visit_text": null,
+    "mt_reason_for_visit_code": null,
+    "patient_location": [],
+    "emergency_department": {
+      "edm_arrived_date_time": "2025-01-22T12:52:00+00:00",
+      "edm_triaged_date_time": null,
+      "edm_departure_date_time": null,
+      "coid": null,
+      "priority_rank": null,
+      "priority_code": null,
+      "priority_text": null,
+      "edm_reason_for_visit_code": null,
+      "edm_reason_for_visit_text": null,
+      "departure_info": {
+        "departure_disposition_code": null,
+        "departure_disposition_text": null,
+        "departure_disposition_display": null,
+        "departure_condition_code": null,
+        "departure_condition_text": null,
+        "departure_condition_display": null,
+        "departure_comments": null
+      },
+      "patient_location": {
+        "treatment_room": {
+          "room_code": "WR",
+          "room_text": "Waiting Room"
+        },
+        "edm_location": {
+          "location_code": "Q.EMERG",
+          "location_text": "EMERGENCY ROOM MCM"
+        },
+        "reserved_room": {
+          "room_code": null,
+          "room_text": null
+        }
+      },
+      "edm_transport": null
+    },
+    "registration_query": [],
+    "insert_timestamp": null
+  }
+]

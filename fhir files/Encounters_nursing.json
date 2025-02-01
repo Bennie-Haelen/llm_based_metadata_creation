@@ -1,0 +1,98 @@
+{
+    "resourceType": "Encounter",
+    "id": "example-encounter-nursing",
+    "status": "finished", 
+    "class": {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/encounter-class",
+          "code": "INPATIENT", 
+          "display": "Inpatient"
+        }
+      ]
+    },
+    "type": [
+      {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct", 
+            "code": "YOUR_SNOMED_CODE_FOR_NURSING_ASSESSMENT", 
+            "display": "Nursing Assessment" 
+          }
+        ]
+      }
+    ],
+    "participant": [
+      {
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/participant-type", 
+                "code": "PRF", 
+                "display": "Practitioner" 
+              }
+            ]
+          }
+        ],
+        "individual": {
+          "reference": "Practitioner/example-nurse" 
+        }
+      }
+    ],
+    "serviceType": [
+      {
+        "coding": [
+          {
+            "system": "http://your-local-coding-system", 
+            "code": "WOUND_CARE", 
+            "display": "Wound Care" 
+          }
+        ]
+      }
+    ],
+    "reasonCode": [
+      {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/diagnosis", 
+            "code": "YOUR_NANDA_CODE_FOR_DIAGNOSIS", 
+            "display": "Impaired Skin Integrity" 
+          }
+        ]
+      }
+    ],
+    "location": [
+      {
+        "location": {
+          "reference": "Location/123-ward" 
+        }
+      }
+    ],
+    "extension": [
+      {
+        "url": "http://your-organization/fhir/StructureDefinition/nursing-assessment", 
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://your-local-coding-system", 
+              "code": "PAIN_ASSESSMENT", 
+              "display": "Pain Assessment" 
+            }
+          ]
+        }
+      },
+      {
+        "url": "http://your-organization/fhir/StructureDefinition/nursing-intervention", 
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://your-local-coding-system", 
+              "code": "POSITION_CHANGE", 
+              "display": "Position Change" 
+            }
+          ]
+        }
+      }
+    ]
+  }

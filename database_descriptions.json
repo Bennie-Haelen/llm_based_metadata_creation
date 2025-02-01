@@ -1,0 +1,586 @@
+{
+    "allergy_intolerances": {
+        "description": "The `allergy_intolerances` table is designed to store information about patients' allergies and intolerances, which are critical for ensuring safe medical care and treatment. This table is part of a larger relational database schema used in a healthcare setting, such as a hospital or clinic, to manage patient data efficiently.\n\n### Table Structure:\n\n- **allergy_id (Primary Key)**: A unique identifier for each allergy or intolerance record. This is typically an auto-incrementing integer that ensures each entry is distinct.\n\n- **patient_id (Foreign Key)**: A reference to the unique identifier of the patient in the `patients` table. This establishes a relationship between the patient and their recorded allergies or intolerances.\n\n- **substance**: A string field that specifies the substance to which the patient is allergic or intolerant. This could include medications, foods, environmental factors, etc.\n\n- **reaction**: A text field that describes the adverse reaction experienced by the patient upon exposure to the substance. This may include symptoms like rash, anaphylaxis, nausea, etc.\n\n- **severity**: A categorical field indicating the severity of the reaction, such as mild, moderate, or severe. This helps healthcare providers assess the risk associated with the allergy or intolerance.\n\n- **status**: A field that indicates the current status of the allergy or intolerance, such as active, inactive, or resolved. This helps in understanding whether the allergy is currently relevant to the patient's care.\n\n- **onset_date**: A date field that records when the allergy or intolerance was first identified or reported. This provides a timeline for the patient's allergy history.\n\n- **recorded_date**: A date field indicating when the allergy or intolerance was documented in the database. This helps track the currency of the information.\n\n- **notes**: An optional text field for additional comments or details about the allergy or intolerance, which may include information about testing, confirmation, or special instructions for care.\n\n### Purpose and Usage:\n\nThe `allergy_intolerances` table is crucial for maintaining comprehensive and up-to-date records of patient allergies and intolerances. It supports clinical decision-making by providing healthcare professionals with essential information to avoid adverse reactions during treatment. The table's design ensures that data is organized, accessible, and linked to the broader patient record system, facilitating seamless integration into electronic health records (EHR) and other healthcare applications.",
+        "columns": {
+            "allergy_code": {
+                "is_primary_key": false,
+                "description": "A code representing a specific allergy or intolerance, used to identify and categorize patient allergies in the medical database.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "allergy_description": {
+                "is_primary_key": false,
+                "description": "A detailed description of the patient's allergy or intolerance, including the type of reaction and severity.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "clinical_status": {
+                "is_primary_key": false,
+                "description": "The clinical_status column in the allergy_intolerances table indicates the current status of the allergy or intolerance, such as active, inactive, or resolved.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "id": {
+                "is_primary_key": true,
+                "description": "A unique identifier for each record in the allergy_intolerances table.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "patient_id": {
+                "is_primary_key": false,
+                "description": "The unique identifier of the patient.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": true,
+                "contains_pii": true,
+                "hippa_compliant": true,
+                "is_foreign_key": true,
+                "referenced_table": "patients",
+                "referenced_column": "id"
+            },
+            "verification_status": {
+                "is_primary_key": false,
+                "description": "Indicates the verification status of an allergy or intolerance, such as whether it is confirmed, unconfirmed, or refuted.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            }
+        }
+    },
+    "conditions": {
+        "description": "The \"conditions\" table is a crucial component of a relational database schema designed to store and manage information related to medical conditions. This table serves as a repository for standardized data about various health conditions, diseases, or disorders that patients may be diagnosed with. Below is a brief description of the typical structure and purpose of the \"conditions\" table:\n\n- **Table Name**: conditions\n\n- **Primary Key**: condition_id (A unique identifier for each medical condition entry in the table)\n\n- **Columns**:\n  - **condition_id** (INTEGER, PRIMARY KEY): A unique identifier for each condition, ensuring that each entry can be distinctly referenced.\n  - **condition_name** (VARCHAR): The name of the medical condition, providing a clear and recognizable label for healthcare professionals and systems.\n  - **description** (TEXT): A detailed description of the condition, including symptoms, causes, and potential complications, to aid in understanding and diagnosis.\n  - **icd_code** (VARCHAR): The International Classification of Diseases (ICD) code associated with the condition, facilitating standardized reporting and billing.\n  - **category** (VARCHAR): A classification of the condition into broader categories (e.g., cardiovascular, respiratory, neurological) to assist in organization and analysis.\n  - **severity** (VARCHAR): An optional field indicating the typical severity level of the condition (e.g., mild, moderate, severe), which can be useful for treatment planning.\n  - **common_treatments** (TEXT): A list or description of common treatments or management strategies for the condition, providing guidance for healthcare providers.\n  - **last_updated** (DATE): The date when the condition entry was last reviewed or updated, ensuring the information remains current and accurate.\n\n- **Purpose**: The \"conditions\" table is designed to support healthcare applications by providing a comprehensive and standardized dataset of medical conditions. It enables efficient retrieval and analysis of condition-related data, supports clinical decision-making, and facilitates interoperability between different healthcare systems. By maintaining up-to-date and detailed information, this table plays a vital role in patient care, research, and healthcare administration.",
+        "columns": {
+            "code": {
+                "is_primary_key": false,
+                "description": "A unique identifier for medical conditions, typically represented as a string of characters.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "description": {
+                "is_primary_key": false,
+                "description": "A detailed textual description of a medical condition, providing insights into symptoms, diagnosis, and treatment options.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "encounter_id": {
+                "is_primary_key": false,
+                "description": "A unique identifier for each encounter in the conditions table, typically represented as a string of characters.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": true,
+                "referenced_table": "encounters",
+                "referenced_column": "id"
+            },
+            "id": {
+                "is_primary_key": true,
+                "description": "A unique identifier for each condition entry in the conditions table.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "onset_date": {
+                "is_primary_key": false,
+                "description": "The onset_date column in the conditions table represents the date when a medical condition first appeared or was diagnosed.",
+                "mapped_data_type": "DATE",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "patient_id": {
+                "is_primary_key": false,
+                "description": "The unique identifier of the patient.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": true,
+                "contains_pii": true,
+                "hippa_compliant": true,
+                "is_foreign_key": true,
+                "referenced_table": "patients",
+                "referenced_column": "id"
+            }
+        }
+    },
+    "diagnostic_reports": {
+        "description": "Certainly! The `diagnostic_reports` table is a crucial component of a healthcare database schema, designed to store and manage information related to diagnostic evaluations conducted on patients. This table serves as a repository for detailed reports generated from various diagnostic tests and procedures, facilitating efficient data retrieval and analysis for healthcare providers.\n\n### Table Structure:\n\n- **report_id** (Primary Key): A unique identifier for each diagnostic report, typically an auto-incremented integer, ensuring that each report can be distinctly referenced.\n\n- **patient_id** (Foreign Key): A reference to the `patients` table, linking each diagnostic report to the specific patient who underwent the diagnostic procedure. This ensures that all reports are associated with the correct patient record.\n\n- **test_type**: A string or enumerated type field that specifies the type of diagnostic test performed, such as blood test, MRI, X-ray, or ultrasound. This helps in categorizing and filtering reports based on the test type.\n\n- **test_date**: A date field indicating when the diagnostic test was conducted. This is essential for tracking the timeline of patient diagnostics and for longitudinal studies.\n\n- **results**: A text or JSON field that contains the detailed findings of the diagnostic test. This may include numerical data, qualitative observations, or structured data depending on the test type.\n\n- **diagnosis**: A text field where the interpreting physician or specialist records their diagnostic conclusion based on the test results. This may include medical terms and ICD codes.\n\n- **physician_id** (Foreign Key): A reference to the `physicians` table, identifying the healthcare professional who interpreted the test results and provided the diagnosis. This ensures accountability and traceability.\n\n- **comments**: An optional text field for additional notes or observations made by the healthcare provider, which may include recommendations for further testing or treatment.\n\n- **created_at**: A timestamp indicating when the report was created in the database, useful for auditing and tracking report generation.\n\n- **updated_at**: A timestamp that records the last time the report was modified, ensuring that any updates to the report are tracked over time.\n\n### Purpose and Usage:\n\nThe `diagnostic_reports` table is designed to support healthcare providers in managing patient diagnostics efficiently. It allows for quick access to historical diagnostic data, supports clinical decision-making, and facilitates research and analysis by providing structured and comprehensive diagnostic information. By integrating with other tables such as `patients` and `physicians`, it ensures a holistic view of patient care and enhances the overall functionality of the healthcare database system.",
+        "columns": {
+            "id": {
+                "is_primary_key": true,
+                "description": "A unique identifier for each diagnostic report in the diagnostic_reports table.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "issued_date": {
+                "is_primary_key": false,
+                "description": "The issued_date column in the diagnostic_reports table represents the date on which the diagnostic report was issued.",
+                "mapped_data_type": "DATE",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "patient_id": {
+                "is_primary_key": false,
+                "description": "The unique identifier of the patient.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": true,
+                "contains_pii": true,
+                "hippa_compliant": true,
+                "is_foreign_key": true,
+                "referenced_table": "patients",
+                "referenced_column": "id"
+            },
+            "report_code": {
+                "is_primary_key": false,
+                "description": "A unique identifier for each diagnostic report, typically represented as a string of characters.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "report_description": {
+                "is_primary_key": false,
+                "description": "A detailed narrative of the diagnostic findings and observations related to a patient's medical condition.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "status": {
+                "is_primary_key": false,
+                "description": "The 'status' column in the 'diagnostic_reports' table represents the current state or condition of a diagnostic report, typically indicating whether it is pending, completed, or in another state.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            }
+        }
+    },
+    "encounters": {
+        "description": "Certainly! The \"encounters\" table is a crucial component of a healthcare relational database schema, designed to store detailed information about patient interactions within a medical facility. Each row in this table represents a unique encounter, capturing essential data related to the event. \n\n### Table Structure:\n\n- **encounter_id (Primary Key)**: A unique identifier for each encounter, typically an auto-incrementing integer, ensuring that each record can be distinctly referenced.\n\n- **patient_id (Foreign Key)**: A reference to the patient table, linking the encounter to the specific patient involved. This establishes a relationship between the patient's demographic and medical history data.\n\n- **provider_id (Foreign Key)**: A reference to the healthcare provider table, indicating the medical professional responsible for the encounter. This helps in tracking provider performance and patient care continuity.\n\n- **encounter_date**: The date and time when the encounter occurred, stored in a datetime format. This is critical for chronological tracking of patient care and for scheduling follow-ups.\n\n- **encounter_type**: A categorical field describing the nature of the encounter, such as 'inpatient', 'outpatient', 'emergency', or 'telehealth'. This helps in analyzing the types of services utilized by patients.\n\n- **diagnosis_code**: A reference to a standardized coding system (such as ICD-10), indicating the primary diagnosis made during the encounter. This is essential for billing, reporting, and clinical research.\n\n- **treatment_code**: A reference to a standardized procedure coding system (such as CPT), detailing the treatments or procedures performed during the encounter. This aids in billing and treatment outcome analysis.\n\n- **notes**: A text field allowing healthcare providers to enter additional comments or observations about the encounter. This can include patient symptoms, treatment plans, or any other relevant information.\n\n- **billing_status**: A field indicating the current billing status of the encounter, such as 'pending', 'billed', or 'paid'. This is important for financial tracking and revenue cycle management.\n\n### Purpose and Usage:\n\nThe \"encounters\" table is integral for managing and analyzing patient care within a healthcare facility. It allows for comprehensive tracking of patient interactions, supports clinical decision-making, and facilitates efficient billing processes. By linking to other tables such as patients, providers, and billing, it provides a holistic view of healthcare delivery and operational efficiency.",
+        "columns": {
+            "encounter_date": {
+                "is_primary_key": false,
+                "description": "The date on which the medical encounter took place.",
+                "mapped_data_type": "DATE",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "encounter_type": {
+                "is_primary_key": false,
+                "description": "The encounter_type column stores the type of medical encounter, such as 'inpatient', 'outpatient', or 'emergency'.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "id": {
+                "is_primary_key": true,
+                "description": "A unique identifier for each encounter record in the encounters table.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "patient_id": {
+                "is_primary_key": false,
+                "description": "The unique identifier of the patient.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": true,
+                "contains_pii": true,
+                "hippa_compliant": true,
+                "is_foreign_key": true,
+                "referenced_table": "patients",
+                "referenced_column": "id"
+            }
+        }
+    },
+    "immunizations": {
+        "description": "The \"immunizations\" table is a crucial component of a healthcare database schema, designed to store and manage information related to patient immunizations. This table typically includes the following columns:\n\n1. **immunization_id (Primary Key)**: A unique identifier for each immunization record, ensuring that each entry can be distinctly referenced.\n\n2. **patient_id (Foreign Key)**: A reference to the unique identifier of the patient in the \"patients\" table, establishing a relationship between the patient and their immunization records.\n\n3. **vaccine_name**: The name of the vaccine administered, such as \"Influenza,\" \"MMR,\" or \"COVID-19.\"\n\n4. **vaccine_code**: A standardized code representing the vaccine, often using coding systems like CVX (Clinical Vaccines Administered) for consistency and interoperability.\n\n5. **administration_date**: The date on which the vaccine was administered to the patient, crucial for tracking immunization schedules and compliance.\n\n6. **dose_number**: Indicates the sequence of the dose in a series, such as \"1\" for the first dose or \"2\" for the second dose, which is important for vaccines requiring multiple doses.\n\n7. **administered_by**: The name or identifier of the healthcare professional who administered the vaccine, providing accountability and traceability.\n\n8. **site_of_administration**: The anatomical site where the vaccine was administered, such as \"left arm\" or \"right thigh.\"\n\n9. **lot_number**: The manufacturer's lot number of the vaccine, important for tracking vaccine batches in case of recalls or adverse events.\n\n10. **expiration_date**: The expiration date of the vaccine, ensuring that only viable vaccines are administered.\n\n11. **adverse_reactions**: A text field or reference to a related table documenting any adverse reactions experienced by the patient following the immunization.\n\n12. **notes**: Additional notes or comments related to the immunization, which may include special instructions or observations.\n\nThis table is designed to facilitate efficient tracking and management of immunization records, supporting healthcare providers in ensuring patient safety, adherence to vaccination schedules, and compliance with public health guidelines.",
+        "columns": {
+            "date": {
+                "is_primary_key": false,
+                "description": "The date column in the immunizations table records the date on which an immunization was administered.",
+                "mapped_data_type": "DATE",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "id": {
+                "is_primary_key": true,
+                "description": "A unique identifier for each immunization record.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "patient_id": {
+                "is_primary_key": false,
+                "description": "The unique identifier of the patient.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": true,
+                "contains_pii": true,
+                "hippa_compliant": true,
+                "is_foreign_key": true,
+                "referenced_table": "patients",
+                "referenced_column": "id"
+            },
+            "status": {
+                "is_primary_key": false,
+                "description": "The status column in the immunizations table represents the current state of an immunization record, such as 'completed', 'pending', or 'canceled'.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "vaccine_code": {
+                "is_primary_key": false,
+                "description": "A code representing the type of vaccine administered, stored as a string of characters.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "vaccine_description": {
+                "is_primary_key": false,
+                "description": "A detailed description of the vaccine administered, including name, manufacturer, and other relevant details.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            }
+        }
+    },
+    "medications": {
+        "description": "The \"medications\" table is a crucial component of a healthcare-related relational database schema, designed to store detailed information about various pharmaceutical products prescribed or administered to patients. This table typically includes the following columns:\n\n1. **medication_id (Primary Key)**: A unique identifier for each medication entry, usually an auto-incrementing integer or a universally unique identifier (UUID).\n\n2. **name**: The official name of the medication, which may include both the brand name and the generic name to ensure comprehensive identification.\n\n3. **dosage_form**: Describes the physical form of the medication, such as tablet, capsule, liquid, injection, etc., which is essential for proper administration.\n\n4. **strength**: Indicates the concentration or amount of active ingredient(s) in the medication, often expressed in units such as milligrams (mg), micrograms (mcg), or milliliters (ml).\n\n5. **route_of_administration**: Specifies how the medication is to be taken or applied, such as orally, intravenously, topically, etc.\n\n6. **indications**: Lists the medical conditions or symptoms for which the medication is prescribed, providing context for its use.\n\n7. **contraindications**: Details any conditions or factors that would make the use of the medication inadvisable, ensuring patient safety.\n\n8. **side_effects**: Describes potential adverse effects associated with the medication, aiding in risk assessment and patient counseling.\n\n9. **manufacturer**: The name of the pharmaceutical company that produces the medication, which can be important for tracking and quality assurance.\n\n10. **approval_date**: The date when the medication was approved for use by relevant health authorities, such as the FDA or EMA.\n\n11. **expiration_date**: The date after which the medication should not be used, ensuring efficacy and safety.\n\n12. **price**: The cost of the medication, which can be useful for billing and insurance purposes.\n\nThis table is designed to support healthcare providers, pharmacists, and administrative staff in managing medication-related information efficiently, ensuring accurate prescribing, dispensing, and monitoring of pharmaceutical treatments.",
+        "columns": {
+            "id": {
+                "is_primary_key": true,
+                "description": "A unique identifier for each medication entry in the medications table.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "medication_code": {
+                "is_primary_key": false,
+                "description": "A unique identifier for each medication, typically represented as a code in string format.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "medication_description": {
+                "is_primary_key": false,
+                "description": "A detailed description of the medication, including its name, dosage, and any other relevant information.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "patient_id": {
+                "is_primary_key": false,
+                "description": "The unique identifier of the patient.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": true,
+                "contains_pii": true,
+                "hippa_compliant": true,
+                "is_foreign_key": true,
+                "referenced_table": "patients",
+                "referenced_column": "id"
+            },
+            "status": {
+                "is_primary_key": false,
+                "description": "The 'status' column in the 'medications' table indicates the current state or condition of a medication, such as 'active', 'inactive', or 'discontinued'.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            }
+        }
+    },
+    "observations": {
+        "description": "Certainly! The \"observations\" table is a crucial component of a relational database schema, particularly within a healthcare or medical research context. This table is designed to store detailed records of various clinical or research observations related to patients or study subjects. Each row in the table represents a unique observation event, capturing essential data points that are critical for patient monitoring, diagnosis, treatment, or research analysis.\n\n### Table Structure:\n\n- **observation_id (Primary Key)**: A unique identifier for each observation record, ensuring that each entry can be distinctly referenced.\n\n- **patient_id (Foreign Key)**: A reference to the unique identifier of the patient or subject associated with the observation. This links to a \"patients\" table, facilitating the association of observations with specific individuals.\n\n- **observation_date**: The date and time when the observation was made, providing a temporal context for the data.\n\n- **observation_type**: A categorical field indicating the type of observation, such as vital signs, laboratory test results, imaging findings, or clinical notes.\n\n- **observation_value**: The actual data or result of the observation. This could be a numerical value, a text description, or a coded entry, depending on the type of observation.\n\n- **units**: The measurement units associated with the observation value, applicable for quantitative data (e.g., mg/dL, mmHg).\n\n- **observation_status**: A field indicating the status of the observation, such as 'preliminary', 'final', or 'amended', which helps in understanding the reliability and completeness of the data.\n\n- **recorded_by**: The identifier of the healthcare professional or system that recorded the observation, ensuring traceability and accountability.\n\n- **comments**: An optional field for additional notes or comments related to the observation, providing context or clarifications as needed.\n\n### Purpose and Usage:\n\nThe \"observations\" table is integral for tracking and analyzing patient data over time. It supports various healthcare operations, including:\n\n- **Clinical Decision Support**: By providing timely and accurate observation data, healthcare providers can make informed decisions regarding patient care.\n\n- **Research and Analytics**: Researchers can use the data to identify trends, correlations, and outcomes, contributing to medical knowledge and innovation.\n\n- **Quality Assurance**: The table aids in monitoring the quality and consistency of care provided, ensuring adherence to clinical guidelines and standards.\n\nOverall, the \"observations\" table is a foundational element in healthcare databases, enabling comprehensive data management and facilitating improved patient outcomes.",
+        "columns": {
+            "effective_date": {
+                "is_primary_key": false,
+                "description": "The effective_date column in the observations table represents the date on which the observation was recorded or became effective.",
+                "mapped_data_type": "DATE",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "id": {
+                "is_primary_key": true,
+                "description": "A unique identifier for each observation in the observations table.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "observation_code": {
+                "is_primary_key": false,
+                "description": "A code representing a specific observation in the medical records, typically used to identify and categorize the type of observation being recorded.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "observation_value": {
+                "is_primary_key": false,
+                "description": "The observation_value column stores the recorded values of various medical observations, which can include numerical measurements, categorical data, or textual notes.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "patient_id": {
+                "is_primary_key": false,
+                "description": "The unique identifier of the patient.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": true,
+                "contains_pii": true,
+                "hippa_compliant": true,
+                "is_foreign_key": true,
+                "referenced_table": "patients",
+                "referenced_column": "id"
+            },
+            "unit": {
+                "is_primary_key": false,
+                "description": "The 'unit' column in the 'observations' table stores the measurement units associated with the observed values, such as 'mg/dL', 'mmHg', or 'bpm'.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            }
+        }
+    },
+    "patients": {
+        "description": "The \"patients\" table is a fundamental component of a healthcare database schema, designed to store and manage essential information about individuals receiving medical care. This table serves as a centralized repository for patient-related data, facilitating efficient retrieval and management of patient records within a healthcare setting. Below is a brief description of the typical structure and attributes you might find in the \"patients\" table:\n\n1. **patient_id** (Primary Key): A unique identifier for each patient, typically an auto-incrementing integer or a UUID, ensuring that each patient record can be distinctly recognized and accessed.\n\n2. **first_name**: A string field to store the patient's first name, allowing for easy identification and personalization of care.\n\n3. **last_name**: A string field to store the patient's last name, used in conjunction with the first name for full identification.\n\n4. **date_of_birth**: A date field capturing the patient's birth date, crucial for calculating age and tailoring age-appropriate medical care.\n\n5. **gender**: A string or enumerated type field indicating the patient's gender, which can be important for certain medical treatments and statistical analyses.\n\n6. **contact_number**: A string field for storing the patient's primary contact number, facilitating communication between healthcare providers and the patient.\n\n7. **email_address**: A string field to store the patient's email address, used for electronic communication and notifications.\n\n8. **address**: A string field capturing the patient's residential address, important for demographic analysis and emergency contact purposes.\n\n9. **emergency_contact_name**: A string field for the name of a designated emergency contact person, ensuring that someone can be reached in urgent situations.\n\n10. **emergency_contact_number**: A string field for the phone number of the emergency contact, providing a direct line of communication in emergencies.\n\n11. **medical_history**: A text field or a separate related table that includes a summary or detailed account of the patient's past medical conditions, surgeries, allergies, and ongoing treatments.\n\n12. **insurance_provider**: A string field indicating the patient's health insurance provider, essential for billing and claims processing.\n\n13. **policy_number**: A string field for the patient's insurance policy number, used to verify coverage and facilitate insurance claims.\n\nThis table is typically linked to other tables in the database, such as appointments, medical_records, and prescriptions, through foreign keys, enabling comprehensive management of patient care and medical services. Proper indexing and normalization of this table are crucial to ensure efficient query performance and data integrity.",
+        "columns": {
+            "birth_date": {
+                "is_primary_key": false,
+                "description": "The birth_date column in the patients table stores the date of birth of each patient.",
+                "mapped_data_type": "DATE",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "first_name": {
+                "is_primary_key": false,
+                "description": "The first name of the patient, typically used for identification and record-keeping purposes.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "gender": {
+                "is_primary_key": false,
+                "description": "The gender of the patient, typically represented as 'male', 'female', or other gender identities.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "id": {
+                "is_primary_key": true,
+                "description": "A unique identifier for each patient in the patients table.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "last_name": {
+                "is_primary_key": false,
+                "description": "The last name of the patient, used for identification and record-keeping purposes.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            }
+        }
+    },
+    "procedures": {
+        "description": "The \"procedures\" table is a critical component of a healthcare database schema, designed to store detailed information about medical procedures performed on patients. This table typically includes the following columns:\n\n1. **procedure_id (Primary Key)**: A unique identifier for each medical procedure entry, ensuring that each record can be distinctly referenced.\n\n2. **patient_id (Foreign Key)**: A reference to the unique identifier of the patient undergoing the procedure, linking to the patients table to maintain relational integrity.\n\n3. **procedure_code**: A standardized code representing the specific medical procedure, often using coding systems like CPT (Current Procedural Terminology) or ICD (International Classification of Diseases).\n\n4. **procedure_name**: A descriptive name of the medical procedure, providing a human-readable understanding of the procedure performed.\n\n5. **procedure_date**: The date on which the procedure was performed, crucial for maintaining accurate medical records and timelines.\n\n6. **performing_physician_id (Foreign Key)**: A reference to the unique identifier of the physician or healthcare provider who performed the procedure, linking to the providers table.\n\n7. **facility_id (Foreign Key)**: A reference to the unique identifier of the healthcare facility where the procedure was conducted, linking to the facilities table.\n\n8. **procedure_notes**: A text field for any additional notes or comments related to the procedure, such as observations, complications, or follow-up instructions.\n\n9. **status**: The current status of the procedure, such as scheduled, completed, or canceled, providing insight into the procedure's lifecycle.\n\nThis table is essential for tracking and managing patient care, facilitating billing and insurance processes, and supporting clinical research and reporting. Proper indexing and relationships with other tables, such as patients, providers, and facilities, ensure efficient data retrieval and integrity across the healthcare database system.",
+        "columns": {
+            "id": {
+                "is_primary_key": true,
+                "description": "A unique identifier for each procedure in the procedures table.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "patient_id": {
+                "is_primary_key": false,
+                "description": "The unique identifier of the patient.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": true,
+                "contains_pii": true,
+                "hippa_compliant": true,
+                "is_foreign_key": true,
+                "referenced_table": "patients",
+                "referenced_column": "id"
+            },
+            "performed_date": {
+                "is_primary_key": false,
+                "description": "The date on which the medical procedure was performed.",
+                "mapped_data_type": "DATE",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "procedure_code": {
+                "is_primary_key": false,
+                "description": "A code representing a medical procedure performed on a patient.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            },
+            "procedure_description": {
+                "is_primary_key": false,
+                "description": "A detailed narrative of the medical procedure performed, including steps, techniques, and any relevant observations.",
+                "mapped_data_type": "STRING",
+                "used_global_concept": false,
+                "contains_pii": false,
+                "hippa_compliant": false,
+                "is_foreign_key": false,
+                "referenced_table": null,
+                "referenced_column": null
+            }
+        }
+    }
+}

@@ -1,0 +1,433 @@
+[
+    {
+        "reason_for_visit_text":"24HR URINE COLLECTION,ELEV BP",
+        "mt_reason_for_visit_code":"24HR URINE COLLECTION,ELEV BP",
+        "patient_location":[
+            {
+                "location_id":"e11a5d52-9fa4-45d5-9381-1d09bddea600",
+                "mnemonic":"COCDL",
+                "physical_type":"Facility"
+            },
+            {
+                "location_id":"a44f3bb9-a362-4a60-af6d-5df219a4eba6",
+                "mnemonic":"H.LD",
+                "physical_type":"Unit"
+            },
+            {
+                "location_id":"5606a192-014a-4a84-a36c-3b535e543d8e",
+                "mnemonic":"H.LDR17",
+                "physical_type":"Room"
+            },
+            {
+                "location_id":"419e9226-362c-4729-83e0-c45f9ee376f9",
+                "mnemonic":"1",
+                "physical_type":"Bed"
+            }
+        ],
+        "admission_date":"2025-01-21T19:00:00+00:00",
+        "discharge_date":null,
+        "fhir_patient_class_code":"IMP",
+        "hospital_service_type_code":"LD",
+        "hospital_service_type_text":"Hospital Service",
+        "mode_of_arrival_code":"WI",
+        "edm_arrived_date_time":"N\/A",
+        "edm_triaged_date_time":"N\/A",
+        "edm_reason_for_visit_code":"N\/A",
+        "edm_reason_for_visit_text":"N\/A",
+        "priority_rank":"N\/A",
+        "priority_code":"N\/A",
+        "priority_text":"N\/A",
+        "departure_info.departure_disposition_code":"N\/A",
+        "departure_info.departure_disposition_text":"N\/A",
+        "departure_info.departure_condition_code":"N\/A",
+        "departure_info.departure_condition_text":"N\/A",
+        "departure_info.departure_comments":"N\/A",
+        "ETHNICITY":"N\/A",
+        "Preferred language":"N\/A",
+        "vip_indicator_code":"N",
+        "patient_type":"IN",
+        "fhir_visit_status":"in-progress",
+        "discharge_disposition":[
+
+        ]
+    },
+    {
+        "reason_for_visit_text":"24HR URINE COLLECTION,ELEV BP",
+        "mt_reason_for_visit_code":"24HR URINE COLLECTION,ELEV BP",
+        "patient_location":[
+            {
+                "location_id":"e11a5d52-9fa4-45d5-9381-1d09bddea600",
+                "mnemonic":"COCDL",
+                "physical_type":"Facility"
+            },
+            {
+                "location_id":"a44f3bb9-a362-4a60-af6d-5df219a4eba6",
+                "mnemonic":"H.LD",
+                "physical_type":"Unit"
+            },
+            {
+                "location_id":"5606a192-014a-4a84-a36c-3b535e543d8e",
+                "mnemonic":"H.LDR17",
+                "physical_type":"Room"
+            },
+            {
+                "location_id":"419e9226-362c-4729-83e0-c45f9ee376f9",
+                "mnemonic":"1",
+                "physical_type":"Bed"
+            }
+        ],
+        "admission_date":"2025-01-21T19:00:00+00:00",
+        "discharge_date":null,
+        "fhir_patient_class_code":"IMP",
+        "hospital_service_type_code":"LD",
+        "hospital_service_type_text":"Hospital Service",
+        "mode_of_arrival_code":"WI",
+        "edm_arrived_date_time":"N\/A",
+        "edm_triaged_date_time":"N\/A",
+        "edm_reason_for_visit_code":"N\/A",
+        "edm_reason_for_visit_text":"N\/A",
+        "priority_rank":"N\/A",
+        "priority_code":"N\/A",
+        "priority_text":"N\/A",
+        "departure_info.departure_disposition_code":"N\/A",
+        "departure_info.departure_disposition_text":"N\/A",
+        "departure_info.departure_condition_code":"N\/A",
+        "departure_info.departure_condition_text":"N\/A",
+        "departure_info.departure_comments":"N\/A",
+        "ETHNICITY":"N\/A",
+        "Preferred language":"N\/A",
+        "vip_indicator_code":"N",
+        "patient_type":"IN",
+        "fhir_visit_status":"in-progress",
+        "discharge_disposition":[
+
+        ]
+    },
+    {
+        "reason_for_visit_text":".",
+        "mt_reason_for_visit_code":".",
+        "patient_location":[
+            {
+                "location_id":"38f70b60-8cc4-40e2-b167-18cfe53f3595",
+                "mnemonic":"COCDAE",
+                "physical_type":"Facility"
+            },
+            {
+                "location_id":"a2318e68-7f98-4e9c-9f28-fe51e8783877",
+                "mnemonic":"AF.SOLIS",
+                "physical_type":"Unit"
+            }
+        ],
+        "admission_date":"2025-01-20T08:00:00+00:00",
+        "discharge_date":null,
+        "fhir_patient_class_code":"AMB",
+        "hospital_service_type_code":"SOLIS",
+        "hospital_service_type_text":"Hospital Service",
+        "mode_of_arrival_code":null,
+        "edm_arrived_date_time":"N\/A",
+        "edm_triaged_date_time":"N\/A",
+        "edm_reason_for_visit_code":"N\/A",
+        "edm_reason_for_visit_text":"N\/A",
+        "priority_rank":"N\/A",
+        "priority_code":"N\/A",
+        "priority_text":"N\/A",
+        "departure_info.departure_disposition_code":"N\/A",
+        "departure_info.departure_disposition_text":"N\/A",
+        "departure_info.departure_condition_code":"N\/A",
+        "departure_info.departure_condition_text":"N\/A",
+        "departure_info.departure_comments":"N\/A",
+        "ETHNICITY":"N\/A",
+        "Preferred language":"N\/A",
+        "vip_indicator_code":"N",
+        "patient_type":"REF",
+        "fhir_visit_status":"in-progress",
+        "discharge_disposition":[
+
+        ]
+    },
+    {
+        "reason_for_visit_text":".",
+        "mt_reason_for_visit_code":".",
+        "patient_location":[
+            {
+                "location_id":"38f70b60-8cc4-40e2-b167-18cfe53f3595",
+                "mnemonic":"COCDAE",
+                "physical_type":"Facility"
+            },
+            {
+                "location_id":"a2318e68-7f98-4e9c-9f28-fe51e8783877",
+                "mnemonic":"AF.SOLIS",
+                "physical_type":"Unit"
+            }
+        ],
+        "admission_date":"2025-01-20T08:00:00+00:00",
+        "discharge_date":null,
+        "fhir_patient_class_code":"AMB",
+        "hospital_service_type_code":"SOLIS",
+        "hospital_service_type_text":"Hospital Service",
+        "mode_of_arrival_code":null,
+        "edm_arrived_date_time":"N\/A",
+        "edm_triaged_date_time":"N\/A",
+        "edm_reason_for_visit_code":"N\/A",
+        "edm_reason_for_visit_text":"N\/A",
+        "priority_rank":"N\/A",
+        "priority_code":"N\/A",
+        "priority_text":"N\/A",
+        "departure_info.departure_disposition_code":"N\/A",
+        "departure_info.departure_disposition_text":"N\/A",
+        "departure_info.departure_condition_code":"N\/A",
+        "departure_info.departure_condition_text":"N\/A",
+        "departure_info.departure_comments":"N\/A",
+        "ETHNICITY":"N\/A",
+        "Preferred language":"N\/A",
+        "vip_indicator_code":"N",
+        "patient_type":"REF",
+        "fhir_visit_status":"in-progress",
+        "discharge_disposition":[
+
+        ]
+    },
+    {
+        "reason_for_visit_text":"ABD PAIN",
+        "mt_reason_for_visit_code":"ABD PAIN",
+        "patient_location":[
+            {
+                "location_id":"4a003721-80d1-4ab8-a97e-c62ea6c8ee3b",
+                "mnemonic":"COCLE",
+                "physical_type":"Facility"
+            },
+            {
+                "location_id":"f3343938-baa1-4877-892c-1369dd968a4d",
+                "mnemonic":"L.ER",
+                "physical_type":"Unit"
+            }
+        ],
+        "admission_date":"2025-01-22T10:11:00+00:00",
+        "discharge_date":null,
+        "fhir_patient_class_code":"PRENC",
+        "hospital_service_type_code":"LVERS",
+        "hospital_service_type_text":"Hospital Service",
+        "mode_of_arrival_code":null,
+        "edm_arrived_date_time":"N\/A",
+        "edm_triaged_date_time":"N\/A",
+        "edm_reason_for_visit_code":"N\/A",
+        "edm_reason_for_visit_text":"N\/A",
+        "priority_rank":"N\/A",
+        "priority_code":"N\/A",
+        "priority_text":"N\/A",
+        "departure_info.departure_disposition_code":"N\/A",
+        "departure_info.departure_disposition_text":"N\/A",
+        "departure_info.departure_condition_code":"N\/A",
+        "departure_info.departure_condition_text":"N\/A",
+        "departure_info.departure_comments":"N\/A",
+        "ETHNICITY":"N\/A",
+        "Preferred language":"N\/A",
+        "vip_indicator_code":"N",
+        "patient_type":"ER",
+        "fhir_visit_status":"planned",
+        "discharge_disposition":[
+
+        ]
+    },
+    {
+        "reason_for_visit_text":"ABD PAIN",
+        "mt_reason_for_visit_code":"ABD PAIN",
+        "patient_location":[
+            {
+                "location_id":"4a003721-80d1-4ab8-a97e-c62ea6c8ee3b",
+                "mnemonic":"COCLE",
+                "physical_type":"Facility"
+            },
+            {
+                "location_id":"f3343938-baa1-4877-892c-1369dd968a4d",
+                "mnemonic":"L.ER",
+                "physical_type":"Unit"
+            }
+        ],
+        "admission_date":"2025-01-22T10:11:00+00:00",
+        "discharge_date":null,
+        "fhir_patient_class_code":"PRENC",
+        "hospital_service_type_code":"LVERS",
+        "hospital_service_type_text":"Hospital Service",
+        "mode_of_arrival_code":null,
+        "edm_arrived_date_time":"N\/A",
+        "edm_triaged_date_time":"N\/A",
+        "edm_reason_for_visit_code":"N\/A",
+        "edm_reason_for_visit_text":"N\/A",
+        "priority_rank":"N\/A",
+        "priority_code":"N\/A",
+        "priority_text":"N\/A",
+        "departure_info.departure_disposition_code":"N\/A",
+        "departure_info.departure_disposition_text":"N\/A",
+        "departure_info.departure_condition_code":"N\/A",
+        "departure_info.departure_condition_text":"N\/A",
+        "departure_info.departure_comments":"N\/A",
+        "ETHNICITY":"N\/A",
+        "Preferred language":"N\/A",
+        "vip_indicator_code":"N",
+        "patient_type":"ER",
+        "fhir_visit_status":"planned",
+        "discharge_disposition":[
+
+        ]
+    },
+    {
+        "reason_for_visit_text":"ABD PAIN",
+        "mt_reason_for_visit_code":"ABD PAIN",
+        "patient_location":[
+            {
+                "location_id":"4a003721-80d1-4ab8-a97e-c62ea6c8ee3b",
+                "mnemonic":"COCLE",
+                "physical_type":"Facility"
+            },
+            {
+                "location_id":"f3343938-baa1-4877-892c-1369dd968a4d",
+                "mnemonic":"L.ER",
+                "physical_type":"Unit"
+            }
+        ],
+        "admission_date":"2025-01-22T10:11:00+00:00",
+        "discharge_date":null,
+        "fhir_patient_class_code":"PRENC",
+        "hospital_service_type_code":"LVERS",
+        "hospital_service_type_text":"Hospital Service",
+        "mode_of_arrival_code":null,
+        "edm_arrived_date_time":"N\/A",
+        "edm_triaged_date_time":"N\/A",
+        "edm_reason_for_visit_code":"N\/A",
+        "edm_reason_for_visit_text":"N\/A",
+        "priority_rank":"N\/A",
+        "priority_code":"N\/A",
+        "priority_text":"N\/A",
+        "departure_info.departure_disposition_code":"N\/A",
+        "departure_info.departure_disposition_text":"N\/A",
+        "departure_info.departure_condition_code":"N\/A",
+        "departure_info.departure_condition_text":"N\/A",
+        "departure_info.departure_comments":"N\/A",
+        "ETHNICITY":"N\/A",
+        "Preferred language":"N\/A",
+        "vip_indicator_code":"N",
+        "patient_type":"ER",
+        "fhir_visit_status":"planned",
+        "discharge_disposition":[
+
+        ]
+    },
+    {
+        "reason_for_visit_text":"LOW ABD PAIN  AND FATIGUE",
+        "mt_reason_for_visit_code":"LOW ABD PAIN  AND FATIGUE",
+        "patient_location":[
+            {
+                "location_id":"184856bc-2e80-4436-ac52-4a8c5921b5bf",
+                "mnemonic":"COCKN",
+                "physical_type":"Facility"
+            },
+            {
+                "location_id":"990a11ee-7fcb-46df-ab80-c00ab4f453af",
+                "mnemonic":"ERA",
+                "physical_type":"Unit"
+            }
+        ],
+        "admission_date":"2025-01-22T08:57:00+00:00",
+        "discharge_date":null,
+        "fhir_patient_class_code":"EMER",
+        "hospital_service_type_code":"EME",
+        "hospital_service_type_text":"Hospital Service",
+        "mode_of_arrival_code":"WI",
+        "edm_arrived_date_time":"N\/A",
+        "edm_triaged_date_time":"N\/A",
+        "edm_reason_for_visit_code":"N\/A",
+        "edm_reason_for_visit_text":"N\/A",
+        "priority_rank":"N\/A",
+        "priority_code":"N\/A",
+        "priority_text":"N\/A",
+        "departure_info.departure_disposition_code":"N\/A",
+        "departure_info.departure_disposition_text":"N\/A",
+        "departure_info.departure_condition_code":"N\/A",
+        "departure_info.departure_condition_text":"N\/A",
+        "departure_info.departure_comments":"N\/A",
+        "ETHNICITY":"N\/A",
+        "Preferred language":"N\/A",
+        "vip_indicator_code":"N",
+        "patient_type":"ER",
+        "fhir_visit_status":"in-progress",
+        "discharge_disposition":[
+
+        ]
+    },
+    {
+        "reason_for_visit_text":"LOW ABD PAIN  AND FATIGUE",
+        "mt_reason_for_visit_code":"LOW ABD PAIN  AND FATIGUE",
+        "patient_location":[
+            {
+                "location_id":"184856bc-2e80-4436-ac52-4a8c5921b5bf",
+                "mnemonic":"COCKN",
+                "physical_type":"Facility"
+            },
+            {
+                "location_id":"990a11ee-7fcb-46df-ab80-c00ab4f453af",
+                "mnemonic":"ERA",
+                "physical_type":"Unit"
+            }
+        ],
+        "admission_date":"2025-01-22T08:57:00+00:00",
+        "discharge_date":null,
+        "fhir_patient_class_code":"EMER",
+        "hospital_service_type_code":"EME",
+        "hospital_service_type_text":"Hospital Service",
+        "mode_of_arrival_code":"WI",
+        "edm_arrived_date_time":"N\/A",
+        "edm_triaged_date_time":"N\/A",
+        "edm_reason_for_visit_code":"N\/A",
+        "edm_reason_for_visit_text":"N\/A",
+        "priority_rank":"N\/A",
+        "priority_code":"N\/A",
+        "priority_text":"N\/A",
+        "departure_info.departure_disposition_code":"N\/A",
+        "departure_info.departure_disposition_text":"N\/A",
+        "departure_info.departure_condition_code":"N\/A",
+        "departure_info.departure_condition_text":"N\/A",
+        "departure_info.departure_comments":"N\/A",
+        "ETHNICITY":"N\/A",
+        "Preferred language":"N\/A",
+        "vip_indicator_code":"N",
+        "patient_type":"ER",
+        "fhir_visit_status":"in-progress",
+        "discharge_disposition":[
+
+        ]
+    },
+    {
+        "reason_for_visit_text":null,
+        "mt_reason_for_visit_code":null,
+        "patient_location":[
+
+        ],
+        "admission_date":null,
+        "discharge_date":null,
+        "fhir_patient_class_code":"PRENC",
+        "hospital_service_type_code":null,
+        "hospital_service_type_text":null,
+        "mode_of_arrival_code":null,
+        "edm_arrived_date_time":"N\/A",
+        "edm_triaged_date_time":"N\/A",
+        "edm_reason_for_visit_code":"N\/A",
+        "edm_reason_for_visit_text":"N\/A",
+        "priority_rank":"N\/A",
+        "priority_code":"N\/A",
+        "priority_text":"N\/A",
+        "departure_info.departure_disposition_code":"N\/A",
+        "departure_info.departure_disposition_text":"N\/A",
+        "departure_info.departure_condition_code":"N\/A",
+        "departure_info.departure_condition_text":"N\/A",
+        "departure_info.departure_comments":"N\/A",
+        "ETHNICITY":"N\/A",
+        "Preferred language":"N\/A",
+        "vip_indicator_code":null,
+        "patient_type":null,
+        "fhir_visit_status":"planned",
+        "discharge_disposition":[
+
+        ]
+    }
+]

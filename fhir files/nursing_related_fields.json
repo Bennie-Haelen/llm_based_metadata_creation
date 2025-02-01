@@ -1,0 +1,139 @@
+{
+    "Patient Information": {
+        "patient_account_num": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": true,
+            "HIPAA": true,
+            "examples": ["123456"],
+            "description": "Unique identifier for the patient's account."
+        },
+        "patient_primary_id": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": true,
+            "HIPAA": true,
+            "examples": ["P123456"],
+            "description": "Primary identifier for the patient."
+        },
+        "medical_record_num": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": true,
+            "HIPAA": true,
+            "examples": ["MRN123456"],
+            "description": "Medical record number of the patient."
+        },
+        "patient_id": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": true,
+            "HIPAA": true,
+            "examples": ["PID123456"],
+            "description": "Unique identifier for the patient."
+        }
+    },
+    "Nursing Assessment": {
+        "emergency_department.edm_triaged_date_time": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": false,
+            "HIPAA": true,
+            "examples": ["2023-10-01T12:00:00Z"],
+            "description": "Date and time when the patient was triaged in the emergency department."
+        },
+        "emergency_department.priority_code": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": false,
+            "HIPAA": false,
+            "examples": ["1", "2", "3"],
+            "description": "Code representing the priority level assigned during triage."
+        },
+        "emergency_department.priority_text": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": false,
+            "HIPAA": false,
+            "examples": ["High", "Medium", "Low"],
+            "description": "Text description of the priority level assigned during triage."
+        }
+    },
+    "Nursing Interventions": {},
+    "Nursing Outcomes": {
+        "discharge_disposition.code": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": false,
+            "HIPAA": true,
+            "examples": ["01", "02"],
+            "description": "Code representing the discharge disposition of the patient."
+        },
+        "discharge_disposition.display": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": false,
+            "HIPAA": true,
+            "examples": ["Home", "Transferred"],
+            "description": "Display text for the discharge disposition."
+        }
+    },
+    "Other Nursing-Related Fields": {
+        "patient_location.location_id": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": false,
+            "HIPAA": true,
+            "examples": ["LOC123"],
+            "description": "Identifier for the patient's location."
+        },
+        "patient_location.mnemonic": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": false,
+            "HIPAA": true,
+            "examples": ["ER", "ICU"],
+            "description": "Mnemonic for the patient's location."
+        },
+        "patient_location.physical_type": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": false,
+            "HIPAA": true,
+            "examples": ["Room", "Bed"],
+            "description": "Physical type of the patient's location."
+        },
+        "emergency_department.edm_arrived_date_time": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": false,
+            "HIPAA": true,
+            "examples": ["2023-10-01T10:00:00Z"],
+            "description": "Date and time when the patient arrived at the emergency department."
+        },
+        "emergency_department.edm_departure_date_time": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": false,
+            "HIPAA": true,
+            "examples": ["2023-10-01T14:00:00Z"],
+            "description": "Date and time when the patient departed from the emergency department."
+        },
+        "emergency_department.departure_info.departure_disposition_code": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": false,
+            "HIPAA": true,
+            "examples": ["01", "02"],
+            "description": "Code representing the departure disposition of the patient."
+        },
+        "emergency_department.departure_info.departure_disposition_text": {
+            "type": "STRING",
+            "reference": "N/A",
+            "PII/PHI": false,
+            "HIPAA": true,
+            "examples": ["Home", "Transferred"],
+            "description": "Text description of the departure disposition."
+        }
+    }
+}

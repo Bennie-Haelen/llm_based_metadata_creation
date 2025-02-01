@@ -1,0 +1,11 @@
+{
+    "mapping_domains" : {
+        "nursing" : [
+            "Patient Information",
+            "Nursing Assessment",
+            "Nursing Interventions",
+            "Nursing Outcomes", 
+            "Other Nursing-Related Fields" 
+        ]
+    }
+}

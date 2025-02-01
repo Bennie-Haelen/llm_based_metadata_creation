@@ -1,0 +1,106 @@
+[
+  {
+    "name": "patient_location",
+    "description": "Details about the patient's location, including location ID, mnemonic, and physical type."
+  },
+  {
+    "name": "emergency_department",
+    "description": "Details related to the emergency department visit, including arrival, triage, and departure times, priority information, and patient location."
+  },
+  {
+    "name": "emergency_department.edm_arrived_date_time",
+    "description": "The date and time when the patient arrived at the emergency department."
+  },
+  {
+    "name": "emergency_department.edm_triaged_date_time",
+    "description": "The date and time when the patient was triaged in the emergency department."
+  },
+  {
+    "name": "emergency_department.edm_departure_date_time",
+    "description": "The date and time when the patient departed from the emergency department."
+  },
+  {
+    "name": "emergency_department.priority_rank",
+    "description": "The priority rank assigned to the patient in the emergency department."
+  },
+  {
+    "name": "emergency_department.priority_code",
+    "description": "The priority code assigned to the patient in the emergency department."
+  },
+  {
+    "name": "emergency_department.priority_text",
+    "description": "The priority text description for the patient in the emergency department."
+  },
+  {
+    "name": "emergency_department.patient_location.treatment_room",
+    "description": "Details about the treatment room assigned to the patient in the emergency department."
+  },
+  {
+    "name": "emergency_department.patient_location.treatment_room.room_code",
+    "description": "The code for the treatment room assigned to the patient."
+  },
+  {
+    "name": "emergency_department.patient_location.treatment_room.room_text",
+    "description": "The text description for the treatment room assigned to the patient."
+  },
+  {
+    "name": "emergency_department.patient_location.reserved_room",
+    "description": "Details about the reserved room for the patient in the emergency department."
+  },
+  {
+    "name": "emergency_department.patient_location.reserved_room.room_code",
+    "description": "The code for the reserved room for the patient."
+  },
+  {
+    "name": "emergency_department.patient_location.reserved_room.room_text",
+    "description": "The text description for the reserved room for the patient."
+  },
+  {
+    "name": "emergency_department.edm_transport",
+    "description": "Details about the transport information for the patient in the emergency department."
+  },
+  {
+    "name": "emergency_department.edm_transport.transport_company_code",
+    "description": "The code for the transport company used for the patient."
+  },
+  {
+    "name": "emergency_department.edm_transport.transport_company_display",
+    "description": "The display name for the transport company used for the patient."
+  },
+  {
+    "name": "emergency_department.edm_transport.transport_id_code",
+    "description": "The transport ID code used for the patient."
+  },
+  {
+    "name": "emergency_department.edm_transport.transport_id_display",
+    "description": "The display name for the transport ID used for the patient."
+  },
+  {
+    "name": "emergency_department.edm_transport.transport_call_date_time",
+    "description": "The date and time when the transport was called for the patient."
+  },
+  {
+    "name": "admission_date",
+    "description": "The date when the patient was admitted."
+  },
+  {
+    "name": "discharge_date",
+    "description": "The date when the patient was discharged."
+  },
+  {
+    "name": "alt_admission_date_time",
+    "description": "An alternative date and time for the patient's admission."
+  },
+  {
+    "name": "hl7_admission_date_time",
+    "description": "The HL7 formatted date and time for the patient's admission."
+  },
+  {
+    "name": "alt_discharge_date_time",
+    "description": "An alternative date and time for the patient's discharge."
+  },
+  {
+    "name": "hl7_discharge_date_time",
+    "description": "The HL7 formatted date and time for the patient's discharge."
+  }
+]
