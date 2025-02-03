@@ -34,6 +34,7 @@ class LevelOfDetail(Enum):
 
 
 # Function to load the schema from a JSON file
+@log_entry_exit
 def load_schema(schema_path):
     """Load the schema from a JSON file specified by the schema_path."""
 
@@ -42,153 +43,65 @@ def load_schema(schema_path):
     
 
 
-# Process the response to extract only the initial lines before "### Field Name"
-def extract_initial_lines(response_text):
-    delimiter = "### Field Name"
-    extracted_text = response_text.split(delimiter)[0].strip()
-    return extracted_text
+# @log_entry_exit
+# def create_sql_from_schema(schema_json, table_description, resource_name, full_table_name, llm, mode):
 
+#     if mode == "alter":
+#         logger.info("Creating ALTER TABLE SQL statements...")
+#         prompt_template = PromptTemplate(
+#                 input_variables=["schema_json", "resource_name", "full_table_name", "table_description"],
+#                 template="""
+#                     You are a data engineer who needs to write an ALTER TABLE query for an existing 
+#                     BigQuery {resource_name} table with name: {full_table_name}.
 
-# Function to escape descriptions safely for BigQuery SQL
-def escape_description(description):
-    """Removes newlines and normalizes whitespace in a string."""
-    cleaned_text = description.replace('\n', ' ').replace('\r', ' ')  # Replace newlines/CRs with spaces
-    cleaned_text = re.sub(r'\s+', ' ', cleaned_text).strip()  # Normalize whitespace (multiple spaces to single, remove leading/trailing)
-    
-    return cleaned_text
+#                     ### **Step 1: Modify the Table Description**
+#                     First, create an **ALTER TABLE** statement to add the following table description:
+#                     "{table_description}"
 
-@log_entry_exit  
-def generate_enriched_schema(json_schema, fhir_type, llm):
+#                     ### **Step 2: Modify Column Descriptions**
+#                     Here is the schema for the FHIR {resource_name} table. Write an **ALTER TABLE DDL** statement 
+#                     to **add column descriptions** to the encounter table:
+#                     {schema_json}
 
-    # Create parser
-    parser = JsonOutputParser()
-    instructions = parser.get_format_instructions()
+#                     Do NOT generate an ALTER COLUMN statement for nested fields.
 
-    prompt_template = PromptTemplate(
-        input_variables=["json_schema", "fhir_type"],
-        template="""
-        You are an advanced FHIR domain expert with deep knowledge of HL7, FHIR resources, and healthcare interoperability standards.
-
-        I have a JSON schema that represents a FHIR  `{fhir_type}` table.
-
-        You need to provide a the FHIR details summary for each field in the schema. THis is called the 'enriched version'. Limit this summary to 1024 characters
-
-        for example, if the field is 'discharge_date', the enriched version could be:
+#                 """)
         
-                ```The "discharge_date" field in a FHIR Encounter resource represents the date and time when the patient was officially discharged from the encounter.
+#     elif mode == "create":
+#         logger.info("Creating CREATE TABLE SQL statements...")
+#         prompt_template = PromptTemplate(
+#                 input_variables=["schema_json", "resource_name", "full_table_name", "table_description"],
+#                 template="""
+#                     You are a data engineer who needs to write an CREATE OR REPLACE TABLE query for a new 
+#                     BigQuery {resource_name} table with name: {full_table_name}.
 
-                    Key Considerations:
+#                     The schema of the table is here:
+#                     {schema_json}.
 
-                    Data Type: Typically represented as an instant data type in FHIR, which is a date and time with timezone.
-                    Clinical Significance:
-                    Marks the end of the encounter: Crucial for determining the duration of the encounter and for various clinical and operational purposes.
-                    Billing and Reimbursement: Essential for accurate billing and reimbursement calculations.
-                    Clinical Documentation: Used to document the patient's discharge time for continuity of care and medical record keeping.
-                    Quality Improvement: Can be used to analyze length of stay, identify potential delays, and improve patient flow.
-                    Relationship to Encounter Period: The "discharge_date" is closely related to the period element of the Encounter resource, which defines the overall timeframe of the encounter. The period.end should generally align with the discharge_date.
-                    Special Considerations:
-                    Not always applicable: For some encounter types (e.g., brief outpatient visits), a formal "discharge" may not be applicable.
-                    Accuracy: Ensuring accurate discharge dates is critical for data quality and clinical decision-making.
-                    In Summary:
+#                     Make sure to create a column-level description based upon the description fields in the schema
 
-                    The "discharge_date" field is a fundamental element of the FHIR Encounter resource, capturing the crucial point in time when the patient's interaction with the healthcare provider concludes. It plays a vital role in various aspects of healthcare delivery, from clinical documentation and billing to operational efficiency and quality improvement```
+#                     Make sure to add a table level description with this text: {table_description}.
 
+#                     Ensure that the SQL output is 100% valid SQL for BigQuery
 
-        **Requirements:**
-
-        * Do not omit any fields, include every field in the FHIR schema listed below, do not skip or omit any fields.
-        * Replace the `description` attribute of each field with the enriched version.
-        * Output must remain a valid JSON array.
-        * Do not add extra text, disclaimers, backticks, or markdown formatting.
-
-        **FHIR Schema:**
-        {json_schema}
-
-        **Output:**
-        Return only the enriched valid JSON array, ensuring all descriptions follow the above requirements.        
-        """
-        )
-    try:
-
-        # format the prompt
-        prompt = prompt_template.format(
-            json_schema=json_schema, 
-            fhir_type=fhir_type, 
-            character_limit=CHARACTER_LIMIT, 
-            instructions=instructions)
-
-        # Invoke the model
-        response = llm.invoke(prompt).content
-
-        # Use the JSsonOutputParser to extract the JSON array from the response
-        parsed_data = parser.parse(response)
-        return parsed_data
-
-    except Exception as e:
-        logger.error(f"Error generating schema with description for fhir resource: {fhir_type}': {e}")
-
-    return None
-
-
-@log_entry_exit
-def create_sql_from_schema(schema_json, table_description, resource_name, full_table_name, llm, mode):
-
-    if mode == "alter":
-        logger.info("Creating ALTER TABLE SQL statements...")
-        prompt_template = PromptTemplate(
-                input_variables=["schema_json", "resource_name", "full_table_name", "table_description"],
-                template="""
-                    You are a data engineer who needs to write an ALTER TABLE query for an existing 
-                    BigQuery {resource_name} table with name: {full_table_name}.
-
-                    ### **Step 1: Modify the Table Description**
-                    First, create an **ALTER TABLE** statement to add the following table description:
-                    "{table_description}"
-
-                    ### **Step 2: Modify Column Descriptions**
-                    Here is the schema for the FHIR {resource_name} table. Write an **ALTER TABLE DDL** statement 
-                    to **add column descriptions** to the encounter table:
-                    {schema_json}
-
-                    Do NOT generate an ALTER COLUMN statement for nested fields.
-
-                """)
-        
-    elif mode == "create":
-        logger.info("Creating CREATE TABLE SQL statements...")
-        prompt_template = PromptTemplate(
-                input_variables=["schema_json", "resource_name", "full_table_name", "table_description"],
-                template="""
-                    You are a data engineer who needs to write an CREATE OR REPLACE TABLE query for a new 
-                    BigQuery {resource_name} table with name: {full_table_name}.
-
-                    The schema of the table is here:
-                    {schema_json}.
-
-                    Make sure to create a column-level description based upon the description fields in the schema
-
-                    Make sure to add a table level description with this text: {table_description}.
-
-                    Ensure that the SQL output is 100% valid SQL for BigQuery
-
-                """)
-    else:
-        logger.error(f"Invalid mode specified: {mode}")
-        pass
+#                 """)
+#     else:
+#         logger.error(f"Invalid mode specified: {mode}")
+#         pass
      
-    # Create the prompt        
-    prompt = prompt_template.format(
-        schema_json=schema_json, 
-        full_table_name=full_table_name, 
-        table_description=table_description, 
-        resource_name=resource_name)
+#     # Create the prompt        
+#     prompt = prompt_template.format(
+#         schema_json=schema_json, 
+#         full_table_name=full_table_name, 
+#         table_description=table_description, 
+#         resource_name=resource_name)
 
-    # Invoke the model
-    messages = [HumanMessage(content=prompt)]
-    response = llm.invoke(input=messages)
+#     # Invoke the model
+#     messages = [HumanMessage(content=prompt)]
+#     response = llm.invoke(input=messages)
 
-    # Return the response
-    return response.content
+#     # Return the response
+#     return response.content
 
 
 # Function to save the enriched schema to a file
@@ -226,12 +139,15 @@ def save_final_sql(sql_statements, output_path):
             output_path (str): The path where the SQL statements will be saved.
     """
 
+    final_sql = "".join(sql_statements)    
+    
     # Ensure SQL statements contain actual newlines,
     # and save the file with proper formatting
     logger.info("Performing initial saving...")
-    formatted_sql = sql_statements.encode().decode('unicode_escape')
+
+    # formatted_sql = sql_statements.encode().decode('unicode_escape')
     with open(output_path, "w", encoding="utf-8") as f:
-        f.write(formatted_sql)
+        f.write(final_sql)
 
     """
     Reads the SQL code from input_file, removes any lines containing triple backticks,
@@ -371,30 +287,31 @@ def main():
     schema = load_schema(input_schema_location)
 
     # Determine the corresponding FHIR resource name from the table name
-    fhir_mgr = FHIRResourceManager(llm)
-    fhir_resource = fhir_mgr.get_fhir_resource_name(full_table_name)
-    logger.info(f"FHIR Resource Name Identified: {fhir_resource}")
+    fhir_mgr = FHIRResourceManager(llm, full_table_name)
+    logger.info(f"FHIR Resource Name Identified: {fhir_mgr.fhir_resource_name}")
 
 
     # Generate a table-level description for the FHIR table
-    table_description = fhir_mgr.generate_description(fhir_resource)
+    table_description = fhir_mgr.generate_table_description()
     logger.info(f"Table Description Generated...")
 
 
     # Create an enriched schema with additional descriptions for each field
-    logger.info("Generating enriched schema with descriptions...")
-    enriched_schema = generate_enriched_schema(schema, fhir_resource, llm)
-    logger.info("Enriched schema generation completed.")
+    # logger.info("Generating enriched schema with descriptions...")
+    # enriched_schema = fhir_mgr.generate_enriched_schema(schema)
+    # logger.info("Enriched schema generation completed.")
 
 
-    # Save the enriched schema to the output location
-    save_enriched_schema(enriched_schema, output_schema_location)
-    logger.info(f"Enriched schema successfully saved to: '{output_schema_location}'")
+    # # Save the enriched schema to the output location
+    # save_enriched_schema(enriched_schema, output_schema_location)
+    # logger.info(f"Enriched schema successfully saved to: '{output_schema_location}'")
+
+    with open(output_schema_location, 'r') as f:
+        enriched_schema = json.load(f)
 
     # Generate SQL statements (ALTER TABLE / CREATE TABLE) based on the mode
     logger.info("Starting the SQL generation process...")
-    generated_sql = create_sql_from_schema(
-        enriched_schema, table_description, fhir_resource, full_table_name, llm, mode)
+    generated_sql = fhir_mgr.create_sql_from_schema(enriched_schema, table_description, mode)
     logger.info("SQL generation completed.")
 
     # Save the generated SQL file
@@ -402,6 +319,7 @@ def main():
     logger.info(f"Generated SQL saved to: '{sql_output_location}'")
 
     logger.info("Process completed successfully.")
+
 # Execute the script
 if __name__ == "__main__":
     main()

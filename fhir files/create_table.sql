@@ -1,4 +1,4 @@
-ALTER TABLE `hca-sandbox.hca_metadata_pot.fhir_encounters`
+ALTER TABLE `hca-sandbox.hca_metadata_pot.test`
 SET OPTIONS (
   description = 'This table stores FHIR Encounter resources, representing healthcare encounters between a patient and a healthcare provider.  Data conforms to the FHIR Encounter resource specification and includes details such as encounter class, type, period, location, participants, and related resources.  See the FHIR specification (https://www.hl7.org/fhir/encounter.html) for more information.'
 );
