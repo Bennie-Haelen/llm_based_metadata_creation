@@ -11,7 +11,7 @@ bigquery:
   dataset_id: 'hca_metadata_pot'
   table_id: 'fhir_encounters'
   location: 'us'
-  mode: "create"
+  mode: "alter"
 
 # Logging configuration
 logging:
@@ -25,4 +25,4 @@ files:
   sql_output: "fhir files/alter_table.sql"
 
 llm:
-  model: "gemini-2.0-flash-exp"
+  model: "gpt-4o"

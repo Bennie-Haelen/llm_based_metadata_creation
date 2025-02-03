@@ -1,16 +1,10 @@
-import re
 import yaml
 import json
 import argparse
 import argparse
-from enum import Enum
 from pathlib import Path
 from dotenv import load_dotenv
 from logger_setup import logger, log_entry_exit
-
-from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import JsonOutputParser
-from langchain.schema import HumanMessage
 
 from modules.create_table_sql import generate_create_table_sql 
 from modules.FHIResourceManager import FHIRResourceManager 
@@ -26,12 +20,6 @@ CHARACTER_LIMIT = 1024
  # We store our API keys and other sensitive information in the .env file
 load_dotenv()
 
-class LevelOfDetail(Enum):
-    CONSISE = "concise"
-    DETAILED = "detailed"
-    MOST_DETAILED = "most_detailed"
-    FOCUS_ON_DATA_GOVERNANCE = "data_governance"
-
 
 # Function to load the schema from a JSON file
 @log_entry_exit
@@ -41,67 +29,6 @@ def load_schema(schema_path):
     with open(schema_path, 'r') as f:
         return json.load(f)
     
-
-
-# @log_entry_exit
-# def create_sql_from_schema(schema_json, table_description, resource_name, full_table_name, llm, mode):
-
-#     if mode == "alter":
-#         logger.info("Creating ALTER TABLE SQL statements...")
-#         prompt_template = PromptTemplate(
-#                 input_variables=["schema_json", "resource_name", "full_table_name", "table_description"],
-#                 template="""
-#                     You are a data engineer who needs to write an ALTER TABLE query for an existing 
-#                     BigQuery {resource_name} table with name: {full_table_name}.
-
-#                     ### **Step 1: Modify the Table Description**
-#                     First, create an **ALTER TABLE** statement to add the following table description:
-#                     "{table_description}"
-
-#                     ### **Step 2: Modify Column Descriptions**
-#                     Here is the schema for the FHIR {resource_name} table. Write an **ALTER TABLE DDL** statement 
-#                     to **add column descriptions** to the encounter table:
-#                     {schema_json}
-
-#                     Do NOT generate an ALTER COLUMN statement for nested fields.
-
-#                 """)
-        
-#     elif mode == "create":
-#         logger.info("Creating CREATE TABLE SQL statements...")
-#         prompt_template = PromptTemplate(
-#                 input_variables=["schema_json", "resource_name", "full_table_name", "table_description"],
-#                 template="""
-#                     You are a data engineer who needs to write an CREATE OR REPLACE TABLE query for a new 
-#                     BigQuery {resource_name} table with name: {full_table_name}.
-
-#                     The schema of the table is here:
-#                     {schema_json}.
-
-#                     Make sure to create a column-level description based upon the description fields in the schema
-
-#                     Make sure to add a table level description with this text: {table_description}.
-
-#                     Ensure that the SQL output is 100% valid SQL for BigQuery
-
-#                 """)
-#     else:
-#         logger.error(f"Invalid mode specified: {mode}")
-#         pass
-     
-#     # Create the prompt        
-#     prompt = prompt_template.format(
-#         schema_json=schema_json, 
-#         full_table_name=full_table_name, 
-#         table_description=table_description, 
-#         resource_name=resource_name)
-
-#     # Invoke the model
-#     messages = [HumanMessage(content=prompt)]
-#     response = llm.invoke(input=messages)
-
-#     # Return the response
-#     return response.content
 
 
 # Function to save the enriched schema to a file
@@ -231,15 +158,12 @@ def parse_yaml_data(config_data):
 
 
 
-# Initialize logger
-# logger = logging.getLogger(__name__)
-
 # Main function to orchestrate the process
 def main():
     """
     Parses arguments, reads YAML configuration, and orchestrates the process of
     generating enriched descriptions for FHIR schema fields and generating SQL statements
-    to either create a new table, or update an existing table with UPDATE statements.
+    to either create a new table, or update an existing table with ALTER statements.
     """
 
     # Argument parser for YAML file location
@@ -290,24 +214,19 @@ def main():
     fhir_mgr = FHIRResourceManager(llm, full_table_name)
     logger.info(f"FHIR Resource Name Identified: {fhir_mgr.fhir_resource_name}")
 
-
     # Generate a table-level description for the FHIR table
     table_description = fhir_mgr.generate_table_description()
     logger.info(f"Table Description Generated...")
 
 
     # Create an enriched schema with additional descriptions for each field
-    # logger.info("Generating enriched schema with descriptions...")
-    # enriched_schema = fhir_mgr.generate_enriched_schema(schema)
-    # logger.info("Enriched schema generation completed.")
+    logger.info("Generating enriched schema with descriptions...")
+    enriched_schema = fhir_mgr.generate_enriched_schema(schema)
+    logger.info("Enriched schema generation completed.")
 
-
-    # # Save the enriched schema to the output location
-    # save_enriched_schema(enriched_schema, output_schema_location)
-    # logger.info(f"Enriched schema successfully saved to: '{output_schema_location}'")
-
-    with open(output_schema_location, 'r') as f:
-        enriched_schema = json.load(f)
+    # Save the enriched schema to the output location
+    save_enriched_schema(enriched_schema, output_schema_location)
+    logger.info(f"Enriched schema successfully saved to: '{output_schema_location}'")
 
     # Generate SQL statements (ALTER TABLE / CREATE TABLE) based on the mode
     logger.info("Starting the SQL generation process...")

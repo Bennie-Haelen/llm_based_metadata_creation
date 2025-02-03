@@ -1,4 +1,3 @@
-import re
 import json
 from langchain.schema import HumanMessage
 from langchain_core.prompts import PromptTemplate
@@ -28,7 +27,8 @@ class FHIRResourceManager:
         Attributes:
         - self.llm_model: Stores the provided language model instance.
         - self._fhir_resource_name: Extracts and stores the FHIR resource name derived 
-        from the provided BigQuery table name.
+                                    from the provided BigQuery table name.
+        - self._full_table_name: Stores the provided full table name.
         """
 
         # Store the provided language model instance
@@ -59,6 +59,9 @@ class FHIRResourceManager:
 
     @property
     def full_table_name(self):
+        """     
+        Read-only property to access the full table name.
+        """
         return self._full_table_name
     
 
@@ -161,47 +164,7 @@ class FHIRResourceManager:
             return None
 
 
-
-    # @log_entry_exit  
-    # def generate_enriched_schema(self, json_schema):
-
-    #     # Create parser
-    #     parser = JsonOutputParser()
-    #     instructions = parser.get_format_instructions()
-
-    #     logger.info(f"Generating schema with description for fhir resource: {self._fhir_resource_name}")
-
-    #     try:
-            
-    #         # Retrieve the prompt template from the database
-    #         prompt_name = "generate_resource_schema_with_descriptions"
-    #         prompt_template_str = get_prompt_by_name(prompt_name)
-
-
-    #         # Set up the prompt template with the expected input variables                  
-    #         prompt_template = PromptTemplate(
-    #             input_variables=["json_schema", "fhir_type"],
-    #             template=prompt_template_str)
-
-    #         # format the prompt
-    #         prompt = prompt_template.format(
-    #             json_schema=json_schema, 
-    #             fhir_type=self.fhir_resource_name, 
-    #             character_limit=CHARACTER_LIMIT, 
-    #             instructions=instructions)
-
-    #         # Invoke the model
-    #         response = self.llm_model.invoke(prompt).content
-
-    #         # Use the JSsonOutputParser to extract the JSON array from the response
-    #         parsed_data = parser.parse(response)
-
-    #         print(f"The parsed data is: {parsed_data}")
-
-    #         return parsed_data
-
-    #     except Exception as e:
-    #         logger.error(f"Error generating schema with description for fhir resource: {self._fhir_resource_name}': {e}")
+    
 
     @log_entry_exit  
     def generate_enriched_schema(self, json_schema):
@@ -261,9 +224,8 @@ class FHIRResourceManager:
 
 
     @log_entry_exit
-    def create_sql_from_schema(self, enriched_schema_json, table_description, mode):
+    def create_sql_from_schema(self, schema_json, table_description, mode):
 
-        generated_sql = ""
         if mode == "alter":
             logger.info("Creating ALTER TABLE SQL statements...")
             prompt_template = PromptTemplate(
@@ -272,12 +234,19 @@ class FHIRResourceManager:
                         You are a data engineer who needs to write an ALTER TABLE query for an existing 
                         BigQuery {resource_name} table with name: {full_table_name}.
 
+                        ### **Step 1: Modify the Table Description**
+                        First, create an **ALTER TABLE** statement to add the following table description:
+                        "{table_description}"
 
+                        ### **Step 2: Modify Column Descriptions**
                         Here is the schema for the FHIR {resource_name} table. Write an **ALTER TABLE DDL** statement 
                         to **add column descriptions** to the encounter table:
                         {schema_json}
 
+                        Output multiple column statements, do not write multiple ALTER TABLE STATEMENTS, all column alters should be in one statement.
+
                         Do NOT generate an ALTER COLUMN statement for nested fields.
+                        Only output the SQL by itself, no prefix or postfix of any kind.
 
                     """)
             
@@ -286,88 +255,28 @@ class FHIRResourceManager:
             prompt_template = PromptTemplate(
                     input_variables=["schema_json", "resource_name", "full_table_name", "table_description"],
                     template="""
-                            You are an expert in SQL and FHIR schema design. Given the following JSON schema, generate valid BigQuery SQL column definitions.
+                        You are a data engineer who needs to write an CREATE OR REPLACE TABLE query for a new 
+                        BigQuery {resource_name} table with name: {full_table_name}. Include descriptions as well.
 
-                            ### **Requirements:**
-                            1. **Each field must be properly typed** according to BigQuery SQL conventions.
-                            2. **Descriptions in OPTIONS(description="...") must always be enclosed in double quotes**.
-                            - **Ensure that the description starts and ends with a double quote (`"`).**
-                            - **Never leave a description without a closing quote.**
-                            - **If a description ends  with a closing ), ensure that the description ends with a double quote (`"`).**
-                            3. **Do NOT generate `CREATE OR REPLACE TABLE`, only column definitions.**
-                            4. **Output must be a valid SQL list of column definitions.**
-                            5. **Each description should not exceed 1024 characters.**
+                        The schema of the table is here:
+                        {schema_json}.
 
-                            ### **Schema:**
-                            {schema_json}
-
-                            ### **Output Example:**
-                            encounter_id STRING OPTIONS(description="The 'encounter_id' field represents the unique identifier for a specific Encounter resource.)",
-                            hl7_message_date_time_UTC TIMESTAMP OPTIONS(description="The 'hl7_message_date_time_UTC' field represents the date and time when the original HL7 message related to this encounter was created, specifically in UTC (Coordinated Universal Time).)"
+                        Only output the SQL by itself, no prefix or postfix of any kind.
                     """)
         else:
             logger.error(f"Invalid mode specified: {mode}")
             pass
         
-        # Define chunk size (e.g., process 10 fields at a time)
-        try: 
-            chunk_size = 10
-            logger.info(f"Splitting schema into chunks of {chunk_size} fields...")
-            schema_chunks = [enriched_schema_json[i:i + chunk_size] for i in range(0, len(enriched_schema_json), chunk_size)]
+        # Create the prompt        
+        prompt = prompt_template.format(
+            schema_json=schema_json, 
+            full_table_name=self.full_table_name, 
+            table_description=table_description, 
+            resource_name=self.fhir_resource_name)
 
-            generated_sql = []
-        
-            # Initialize SQL script with only the `CREATE OR REPLACE TABLE` statement
-            generated_sql = f"CREATE OR REPLACE TABLE {self.full_table_name} (\n"
+        # Invoke the model
+        messages = [HumanMessage(content=prompt)]
+        response = self.llm_model.invoke(input=messages)
 
-            for idx, chunk in enumerate(schema_chunks):
-                logger.info(f"Processing chunk {idx + 1}/{len(schema_chunks)}...")
-
-                # Format the prompt with the chunk
-                prompt = prompt_template.format(
-                    schema_json=json.dumps(chunk, indent=2),
-                    full_table_name=self.full_table_name, 
-                    table_description=table_description,
-                    resource_name=self.fhir_resource_name)
-
-                # Create a message array containing the formatted prompt
-                messages = [HumanMessage(content=prompt)]
-                
-                # Send request to LLM
-                response = self.llm_model.invoke(input=messages)
-
-                # Extract valid SQL columns using regex
-                column_pattern = re.compile(r"(\s*\w+\s+\w+\s+OPTIONS\(description=.*?\)),?", re.DOTALL)
-                column_matches = column_pattern.findall(response.content)
-
-                # Fix missing closing quotes in OPTIONS(description="...")
-                fixed_columns = []
-                for col in column_matches:
-                    # # Ensure description starts with a quote if missing
-                    # col = re.sub(r'OPTIONS\(description=([^"])', r'OPTIONS(description="\1', col)
-
-                    # # Ensure description ends with a quote, but not duplicated
-                    # if not re.search(r'"\)$', col):  # If it does NOT already end with `")`
-                    #     col = re.sub(r'([^"]) \)$', r'\1")', col)  # Case: Ends with `)` but no quote before
-                    #     col = re.sub(r'([^"])$', r'\1")', col)     # Case: No `)` at the end, add quote at very end
-
-                    fixed_columns.append(col)
-
-
-                # Append new columns to the SQL statement, handling commas correctly
-                for col in fixed_columns:
-                    if generated_sql.endswith("(\n"):  # If this is the first column
-                        generated_sql += f"    {col}"  # No leading comma
-                    else:
-                        generated_sql += f",\n    {col}"  # Add comma before subsequent columns
-
-
-
-            # Close the SQL statement with `OPTIONS(...)`
-            generated_sql += "\n)\nOPTIONS(\n  description='FHIR Encounter Table'\n);"
-
-        except json.JSONDecodeError as e:
-            logger.error(f"Error parsing JSON for chunk {idx + 1}. error:{e}")
-
-        logger.info("Creation of SQL completed successfully...")
-        return generated_sql
+        # Return the response
+        return response.content
