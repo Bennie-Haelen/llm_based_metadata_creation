@@ -13,6 +13,9 @@ from db.get_prompt_by_name import get_prompt_by_name
 CHARACTER_LIMIT = 1024
 
 class FHIRResourceManager:
+    """
+    This class encapsulates the functionality to manage FHIR resources in the context of BigQuery tables.
+    """
 
     @log_entry_exit
     def __init__(self, llm, full_table_name):
@@ -22,7 +25,7 @@ class FHIRResourceManager:
         Parameters:
         - llm: The language model instance. Used for LLM processing in the class.
         - full_table_name (str): The fully qualified BigQuery table name in the format 
-        "project.dataset.table_name".
+          "project.dataset.table_name".
 
         Attributes:
         - self.llm_model: Stores the provided language model instance.
@@ -57,10 +60,18 @@ class FHIRResourceManager:
         # Return the stored FHIR resource name
         return self._fhir_resource_name  
 
+
+
     @property
     def full_table_name(self):
         """     
         Read-only property to access the full table name.
+
+        This property provides access to the full table name without allowing direct modification.
+        The value is set during object initialization and retrieved when accessed.
+
+        Returns:
+        - str: The full table name in the format "project.dataset.table_name".
         """
         return self._full_table_name
     
@@ -106,10 +117,13 @@ class FHIRResourceManager:
         return resource_name
 
 
+
     @log_entry_exit  # Decorator for logging function entry and exit
     def generate_table_description(self):
         """ 
-        Generates a description for a FHIR resource name using an LLM.
+        Generates a description for a FHIR resource name using an LLM. 
+        This description is at the resource (or table) level, so it
+        describes the resource as a whole.
 
         This method constructs a prompt dynamically using a stored prompt template and 
         then invokes the LLM model to generate a description of the given FHIR resource.
@@ -168,27 +182,44 @@ class FHIRResourceManager:
 
     @log_entry_exit  
     def generate_enriched_schema(self, json_schema):
+        """
+        This methoid generates an enriched schema by adding column-level 
+        descriptionss for a given FHIR resource.
 
-        # Create parser
+        Args:
+        - json_schema (dict): The JSON schema for the FHIR resource.
+
+        Returns:
+        - list: The enriched schema with the column descriptions.
+        """
+
+        # We use the JSON Output Parser to extract the JSON array from the response
+        # Using this parser, we get very predictable results, and we do not have
+        # to worry about the structure of the response and extra "bits" emitted
+        # by the LLM model
         parser = JsonOutputParser()
         instructions = parser.get_format_instructions()
 
-        logger.info(f"Generating schema with description for fhir resource: {self._fhir_resource_name}")
+        logger.info(f"Generating enriched schema for fhir resource: {self._fhir_resource_name}")
 
         try:
             # Define chunk size (e.g., process 10 fields at a time)
+            # Because of the potentially large size of the models, we decided to 
+            # use chunking here. This is a common practice when working with large
+            # models and large amounts of data. We can adjust the chunk size as needed, 
+            # but 10 is a good starting point.
             chunk_size = 10
             logger.info(f"Splitting schema into chunks of {chunk_size} fields...")
             schema_chunks = [json_schema[i:i + chunk_size] for i in range(0, len(json_schema), chunk_size)]
     
 
-            # Retrieve the prompt template from the database
+            # Retrieve the appropriate prompt template from our prompt database
             prompt_name = "generate_resource_schema_with_descriptions"
             prompt_template_str = get_prompt_by_name(prompt_name)
 
             # Set up the prompt template with the expected input variables                  
             prompt_template = PromptTemplate(
-                input_variables=["json_schema", "fhir_type"],
+                input_variables=["input_json_schema", "fhir_resource"],
                 template=prompt_template_str)
 
             # Process each chunk
@@ -197,7 +228,7 @@ class FHIRResourceManager:
                 logger.info(f"Processing chunk {idx + 1}/{len(schema_chunks)}...")
 
                 # Format the prompt with the chunk
-                prompt = prompt_template.format(fhir_type=self.fhir_resource_name, json_schema=json.dumps(chunk, indent=2))
+                prompt = prompt_template.format(fhir_resource=self.fhir_resource_name, input_json_schema=json.dumps(chunk, indent=2))
 
                 # Create a message array containing the formatted prompt
                 messages = [HumanMessage(content=prompt)]
@@ -207,19 +238,20 @@ class FHIRResourceManager:
 
                 # Parse response and extend enriched schema
                 try:
-                    # Use the JSsonOutputParser to extract the JSON array from the response
+                    # Use the JSsonOutputParser to extract the JSON array from the response,
+                    # and add it to the enriched schema
                     enriched_chunk = parser.parse(response)
                     enriched_schema.extend(enriched_chunk)
 
                 except json.JSONDecodeError as e:
-                    print(f"Error parsing JSON for chunk {idx + 1}. error:{e}")
+                    logger.error(f"Error parsing JSON for chunk {idx + 1}. error:{e}")
 
             logger.info("Creation of enriched schema completed successfully...")
             return enriched_schema
-
             
         except Exception as e:
             logger.error(f"Error generating schema with description for fhir resource: {self._fhir_resource_name}': {e}")
+
 
 
 
@@ -261,7 +293,11 @@ class FHIRResourceManager:
                         The schema of the table is here:
                         {schema_json}.
 
+                        In the CREATE TABLE statement, include the following table description:
+                        "{table_description}"
+                        
                         Only output the SQL by itself, no prefix or postfix of any kind.
+                        Make sure to handle embedded fields correctly, the generated SQL should be 100 percent in line with the BigQuery syntax
                     """)
         else:
             logger.error(f"Invalid mode specified: {mode}")
