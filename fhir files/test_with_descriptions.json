@@ -1,0 +1,537 @@
+[
+  {
+    "name": "encounter_id",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"encounter_id\" field uniquely identifies an encounter within a healthcare system. It is crucial for linking related data across different systems and ensuring continuity of care. This identifier is typically assigned by the healthcare provider's system and is used to track the patient's interactions with healthcare services. It is essential for data integration, reporting, and analytics, allowing for accurate retrieval and association of encounter-related information."
+  },
+  {
+    "name": "lastupdated",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE",
+    "description": "The \"lastupdated\" field indicates the most recent date and time when the encounter record was modified. This timestamp is vital for data synchronization and version control, ensuring that the most current information is available across systems. It helps in maintaining data integrity and is used in auditing processes to track changes over time. Accurate timestamps are crucial for clinical decision-making and operational efficiency."
+  },
+  {
+    "name": "hl7_message_date_time",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"hl7_message_date_time\" field represents the date and time when the HL7 message related to the encounter was generated. This field is important for message tracking and processing, ensuring timely communication between systems. It helps in understanding the sequence of events and is used in troubleshooting and auditing to verify message delivery and processing times."
+  },
+  {
+    "name": "hl7_message_date_time_UTC",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE",
+    "description": "The \"hl7_message_date_time_UTC\" field provides the date and time of the HL7 message in Coordinated Universal Time (UTC). This standardization is crucial for interoperability across different time zones, ensuring consistent interpretation of message timestamps. It aids in global data exchange and is essential for systems that operate across multiple regions, facilitating accurate synchronization and analysis."
+  },
+  {
+    "name": "hl7_message_control_id",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"hl7_message_control_id\" field is a unique identifier for an HL7 message, used to track and manage message exchanges. It ensures message integrity and is critical for acknowledging receipt and processing of messages. This identifier helps in preventing duplicate processing and is essential for troubleshooting communication issues between systems, providing a reference point for message audits."
+  },
+  {
+    "name": "meta_latest_source_date_time",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"meta_latest_source_date_time\" field indicates the most recent date and time when the source data for the encounter was updated. This field is important for data provenance and ensures that the latest information is being used for clinical and operational purposes. It helps in tracking data lineage and is crucial for maintaining data accuracy and reliability across systems."
+  },
+  {
+    "name": "intermediate_snapshot_creation_date_time",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"intermediate_snapshot_creation_date_time\" field records the date and time when an intermediate snapshot of the encounter data was created. This snapshot is used for data backup, recovery, and analysis, providing a point-in-time view of the data. It is essential for ensuring data consistency and is used in scenarios where data needs to be restored or compared over time."
+  },
+  {
+    "name": "final_fhir_write_date_time",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"final_fhir_write_date_time\" field represents the date and time when the encounter data was last written to the FHIR server. This timestamp is crucial for ensuring that the most recent data is available for clinical use and interoperability. It helps in tracking data updates and is essential for maintaining data accuracy and consistency across FHIR implementations."
+  },
+  {
+    "name": "final_fhir_commit_date_time",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE",
+    "description": "The \"final_fhir_commit_date_time\" field indicates the date and time when the encounter data was committed to the FHIR server. This timestamp is important for ensuring data integrity and consistency, marking the point at which data changes become permanent. It is used in auditing and version control, providing a reliable reference for data updates and ensuring accurate data representation."
+  },
+  {
+    "name": "encounter_version_id",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"encounter_version_id\" field uniquely identifies a specific version of an encounter record. This versioning is crucial for tracking changes over time and ensuring that the correct data is used in clinical and operational processes. It supports data integrity and is essential for auditing, allowing for the retrieval of historical data and understanding the evolution of an encounter."
+  },
+  {
+    "name": "version_id_fingerprint",
+    "type": "INTEGER",
+    "mode": "NULLABLE",
+    "description": "The 'version_id_fingerprint' field is used to uniquely identify a specific version of the Encounter resource. It ensures data integrity and version control, allowing systems to track changes and updates to the encounter information. This is crucial for maintaining accurate and up-to-date patient records, especially in environments where data is frequently updated or exchanged. The fingerprint is typically generated using a hash function, providing a compact and unique representation of the version."
+  },
+  {
+    "name": "consent_coid",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The 'consent_coid' field represents the consent identifier associated with the encounter. It is crucial for managing patient consent for data sharing and treatment, ensuring compliance with legal and ethical standards. This identifier links the encounter to specific consent records, facilitating the enforcement of patient preferences regarding data use and disclosure. Proper management of consent information is essential for protecting patient privacy and supporting informed decision-making."
+  },
+  {
+    "name": "meta_action_code",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The 'meta_action_code' field indicates the type of action performed on the Encounter resource, such as creation, update, or deletion. This field is vital for audit trails and data management, allowing systems to track changes and maintain a history of actions taken on the resource. Understanding the action code helps in synchronizing data across systems and ensuring that the most current and accurate information is available for clinical and administrative purposes."
+  },
+  {
+    "name": "hl7_v2_source_interface",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The 'hl7_v2_source_interface' field identifies the source interface from which the HL7 v2 message originated. This is important for interoperability and data integration, as it helps systems understand the context and origin of the data. Knowing the source interface can aid in troubleshooting, data validation, and ensuring that the data is correctly interpreted and processed by receiving systems. It plays a key role in maintaining data consistency across different healthcare systems."
+  },
+  {
+    "name": "patient_account_num",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The 'patient_account_num' field represents the unique account number assigned to the patient for billing and administrative purposes. It is essential for linking encounters to financial records, facilitating billing processes, and ensuring accurate reimbursement. This identifier helps healthcare providers manage patient accounts, track services rendered, and maintain financial records. Proper management of patient account numbers is crucial for operational efficiency and financial integrity in healthcare settings."
+  },
+  {
+    "name": "patient_primary_id",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The 'patient_primary_id' field is a unique identifier for the patient, used to link the encounter to the patient's medical record. It is critical for ensuring that the encounter data is accurately associated with the correct patient, supporting continuity of care and clinical decision-making. This identifier helps prevent errors in patient identification, which can lead to serious clinical and administrative consequences. It is a fundamental element in maintaining accurate and reliable patient records."
+  },
+  {
+    "name": "network_mnemonic",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The 'network_mnemonic' field is a shorthand identifier for the healthcare network associated with the encounter. It is used to categorize and manage encounters within a specific network, facilitating data organization and reporting. This field helps in understanding the context of the encounter, such as the network's policies, practices, and resources. Proper use of network mnemonics supports efficient data management and enhances the ability to analyze and improve healthcare delivery across networks."
+  },
+  {
+    "name": "medical_record_num",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The 'medical_record_num' field is a unique identifier for the patient's medical record, linking the encounter to the patient's comprehensive health history. It is crucial for accessing and updating the patient's medical information, supporting clinical care, and ensuring continuity of care. This identifier helps healthcare providers quickly retrieve relevant patient data, facilitating informed clinical decision-making and efficient care delivery. Accurate management of medical record numbers is essential for maintaining high-quality patient records."
+  },
+  {
+    "name": "coid",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The 'coid' field represents a unique identifier for the encounter, often used for internal tracking and management purposes. It is essential for distinguishing between different encounters, supporting data organization, and facilitating efficient retrieval and analysis of encounter information. This identifier helps ensure that each encounter is accurately recorded and managed, contributing to effective clinical and administrative operations. Proper use of encounter identifiers is crucial for maintaining data integrity and supporting healthcare delivery."
+  },
+  {
+    "name": "facility_mnemonic",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The 'facility_mnemonic' field is a shorthand identifier for the healthcare facility where the encounter took place. It is used to categorize and manage encounters by facility, supporting data organization and reporting. This field helps in understanding the context of the encounter, such as the facility's resources, practices, and policies. Proper use of facility mnemonics enhances data management and supports the analysis and improvement of healthcare delivery at the facility level."
+  },
+  {
+    "name": "fhir_visit_status",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"fhir_visit_status\" field in a FHIR Encounter resource indicates the current status of the encounter, such as planned, in-progress, or completed. It is crucial for tracking the encounter's lifecycle and managing workflows. This status helps in understanding the patient's current interaction with the healthcare system and is essential for operational management, resource allocation, and care coordination. Accurate status reporting ensures effective communication among healthcare providers and supports timely decision-making."
+  },
+  {
+    "name": "fhir_patient_class_code",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"fhir_patient_class_code\" field represents the classification of the patient during the encounter, such as inpatient, outpatient, or emergency. This classification is vital for determining the level of care, resource allocation, and billing processes. It helps in understanding the context of the encounter and is used for reporting and analytics. Accurate patient class coding is essential for compliance with healthcare regulations and for optimizing care delivery."
+  },
+  {
+    "name": "fhir_patient_class_display",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"fhir_patient_class_display\" field provides a human-readable description of the patient class code, such as 'Inpatient' or 'Outpatient'. This field enhances the interpretability of the patient class code, facilitating better communication among healthcare providers and stakeholders. It is useful for user interfaces and reports where a clear understanding of the patient's classification is necessary. Consistent and accurate display values support effective clinical and administrative workflows."
+  },
+  {
+    "name": "patient_type",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"patient_type\" field categorizes the patient based on specific criteria, such as new or established patient, or based on the type of care being provided. This classification aids in tailoring care plans, managing resources, and optimizing scheduling. It is also used in reporting and analytics to understand patient demographics and care patterns. Accurate patient type classification is crucial for personalized care delivery and efficient healthcare operations."
+  },
+  {
+    "name": "admission_type",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"admission_type\" field indicates the nature of the patient's admission, such as elective, emergency, or urgent. This information is critical for prioritizing care, managing hospital resources, and planning treatment strategies. It also plays a role in billing and reimbursement processes. Understanding the admission type helps in assessing the urgency of care and aligning healthcare services with patient needs. Accurate admission type coding supports effective clinical and operational decision-making."
+  },
+  {
+    "name": "patient_class_code",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"patient_class_code\" field specifies the classification of the patient during the encounter, similar to \"fhir_patient_class_code\". It is used to categorize the encounter context, such as inpatient or outpatient, and is essential for billing, resource management, and care coordination. Accurate patient class coding ensures compliance with healthcare standards and supports efficient healthcare delivery. It is a key element in understanding the scope and nature of the encounter."
+  },
+  {
+    "name": "account_status_code",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"account_status_code\" field represents the current status of the patient's account, such as active, inactive, or closed. This status is important for financial management, billing processes, and ensuring accurate record-keeping. It helps in tracking the financial aspects of the patient's care and supports revenue cycle management. Accurate account status coding is crucial for maintaining financial integrity and ensuring compliance with healthcare financial regulations."
+  },
+  {
+    "name": "vip_indicator_code",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"vip_indicator_code\" field identifies whether the patient is considered a VIP (Very Important Person) within the healthcare setting. This designation may affect the level of service, privacy considerations, and resource allocation. It is important for managing patient expectations and ensuring appropriate care delivery. Accurate VIP coding helps in providing personalized care and maintaining patient satisfaction, while also ensuring that healthcare resources are used effectively."
+  },
+  {
+    "name": "financial_class_code",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"financial_class_code\" field categorizes the patient's financial responsibility or insurance coverage, such as self-pay, insured, or government program. This classification is crucial for billing, reimbursement, and financial planning. It helps in understanding the patient's financial obligations and supports revenue cycle management. Accurate financial class coding ensures compliance with healthcare financial regulations and optimizes the billing process, contributing to the financial health of the healthcare organization."
+  },
+  {
+    "name": "mode_of_arrival_code",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"mode_of_arrival_code\" field indicates how the patient arrived at the healthcare facility, such as by ambulance, walk-in, or referral. This information is important for understanding the context of the encounter, planning resource allocation, and managing patient flow. It also plays a role in emergency preparedness and response planning. Accurate mode of arrival coding supports effective clinical and operational decision-making, ensuring that patients receive timely and appropriate care."
+  },
+  {
+    "name": "accommodation_code",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"accommodation_code\" field in a FHIR Encounter resource represents the specific type of accommodation provided to the patient during the encounter. This could include codes for different types of rooms or wards. It is important for resource allocation, billing, and patient management. The code is typically drawn from a standardized code system to ensure consistency across healthcare systems."
+  },
+  {
+    "name": "accommodation_code_category",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"accommodation_code_category\" field categorizes the type of accommodation provided during an encounter. It provides a higher-level classification than the specific accommodation code, helping in reporting and analysis. This categorization aids in understanding the general type of accommodation, such as 'private', 'semi-private', or 'ward', and is useful for operational and financial management."
+  },
+  {
+    "name": "hospital_service_type_code",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"hospital_service_type_code\" field identifies the specific type of service provided during the encounter, such as surgery, maternity, or emergency services. This code is crucial for clinical documentation, billing, and resource allocation. It is typically derived from a standardized code set to ensure interoperability and accurate reporting across healthcare systems."
+  },
+  {
+    "name": "hospital_service_type_text",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"hospital_service_type_text\" field provides a human-readable description of the service type provided during the encounter. It complements the \"hospital_service_type_code\" by offering a textual representation, which is useful for clinical documentation and communication among healthcare providers. This field enhances understanding and clarity in patient records."
+  },
+  {
+    "name": "admit_source_code",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"admit_source_code\" field indicates the source from which the patient was admitted to the healthcare facility, such as a physician referral, emergency room, or transfer from another facility. This information is vital for understanding patient flow, resource planning, and care coordination. It is typically coded using a standardized system to ensure consistency and interoperability."
+  },
+  {
+    "name": "discharge_disposition",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "name": "code",
+        "type": "STRING",
+        "description": "The \"code\" field within \"discharge_disposition\" represents the coded value indicating the patient's status or destination after discharge, such as home, another healthcare facility, or deceased. This code is essential for care transition planning, resource allocation, and quality reporting. It is typically derived from a standardized code set."
+      },
+      {
+        "name": "display",
+        "type": "STRING",
+        "description": "The \"display\" field within \"discharge_disposition\" provides a human-readable description of the discharge disposition code. It aids in understanding and communication among healthcare providers by offering a textual representation of the patient's status or destination post-discharge."
+      }
+    ],
+    "description": "The \"discharge_disposition\" field in a FHIR Encounter resource captures the patient's status or destination upon discharge. It includes both a coded value and a human-readable description, providing essential information for care transitions, resource planning, and quality reporting. This field is crucial for understanding patient outcomes and ensuring continuity of care."
+  },
+  {
+    "name": "patient_id",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"patient_id\" field uniquely identifies the patient associated with the encounter. It is a critical element for linking the encounter to the patient's medical record, ensuring accurate documentation, and facilitating continuity of care. This identifier is typically assigned by the healthcare organization and must be managed to maintain patient privacy and data integrity."
+  },
+  {
+    "name": "appointment_id",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"appointment_id\" field links the encounter to a specific appointment, if applicable. This connection is important for tracking patient visits, managing schedules, and ensuring that the encounter aligns with planned healthcare services. It helps in operational management and provides context for the encounter within the patient's care timeline."
+  },
+  {
+    "name": "account_id",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"account_id\" field associates the encounter with a specific financial account, facilitating billing and financial management. This identifier is crucial for tracking charges, payments, and insurance claims related to the encounter. It ensures that all financial transactions are accurately linked to the appropriate patient and encounter."
+  },
+  {
+    "name": "deceased_date_time",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"deceased_date_time\" field records the date and time of a patient's death, if applicable, during the encounter. This information is critical for clinical documentation, legal reporting, and care planning. It is typically represented as a date-time string, including time zone, to ensure accuracy and consistency in medical records."
+  },
+  {
+    "name": "admission_date",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"admission_date\" field in a FHIR Encounter resource represents the date and time when the patient was officially admitted for the encounter. Key Considerations: Data Type: Typically represented as a dateTime data type in FHIR, which includes date and time with time zone. Clinical Significance: Marks the start of the encounter, crucial for determining the duration and for clinical and operational purposes. Billing and Reimbursement: Essential for accurate billing and reimbursement calculations. Clinical Documentation: Used to document the patient's admission time for continuity of care and medical record keeping. Quality Improvement: Can be used to analyze admission patterns and improve patient flow. Relationship to Encounter Period: The \"admission_date\" is closely related to the period element of the Encounter resource, which defines the overall timeframe of the encounter. Special Considerations: Accuracy is critical for data quality and clinical decision-making."
+  },
+  {
+    "name": "discharge_date",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"discharge_date\" field in a FHIR Encounter resource represents the date and time when the patient was officially discharged from the encounter. Key Considerations: Data Type: Typically represented as an instant data type in FHIR, which is a date and time with time zone. Clinical Significance: Marks the end of the encounter, crucial for determining the duration and for clinical and operational purposes. Billing and Reimbursement: Essential for accurate billing and reimbursement calculations. Clinical Documentation: Used to document the patient's discharge time for continuity of care and medical record keeping. Quality Improvement: Can be used to analyze length of stay, identify potential delays, and improve patient flow. Relationship to Encounter Period: The \"discharge_date\" is closely related to the period element of the Encounter resource, which defines the overall timeframe of the encounter. Special Considerations: Not always applicable for some encounter types."
+  },
+  {
+    "name": "is_valid_date_ind",
+    "type": "BOOLEAN",
+    "mode": "NULLABLE",
+    "description": "The \"is_valid_date_ind\" field indicates whether the dates associated with the encounter are valid. Key Considerations: Data Type: Boolean, representing true or false. Clinical Significance: Ensures data integrity by confirming the validity of critical date fields such as admission and discharge dates. Data Quality: Helps in identifying and correcting erroneous or incomplete date entries, which is crucial for accurate clinical documentation and reporting. Operational Use: Can be used in data validation processes to flag records that require review or correction. Special Considerations: The criteria for determining validity should be clearly defined and consistently applied to maintain data quality across systems."
+  },
+  {
+    "name": "alt_admission_date_time",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"alt_admission_date_time\" field provides an alternative representation of the admission date and time for the encounter. Key Considerations: Data Type: Typically a string representing a dateTime, possibly in a different format or time zone. Clinical Significance: Offers flexibility in representing admission times, accommodating different systems or regional formats. Data Integration: Useful in scenarios where data is aggregated from multiple sources with varying date formats. Special Considerations: Consistency with the primary \"admission_date\" is crucial to avoid discrepancies. The alternative format should be clearly documented to ensure accurate interpretation and use."
+  },
+  {
+    "name": "hl7_admission_date_time",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"hl7_admission_date_time\" field represents the admission date and time formatted according to HL7 standards. Key Considerations: Data Type: Typically a string formatted as per HL7 specifications, often including time zone information. Clinical Significance: Ensures interoperability by adhering to widely accepted HL7 standards, facilitating data exchange between systems. Data Integration: Critical for systems that rely on HL7 messaging for communication, ensuring consistent and accurate data representation. Special Considerations: Consistency with other date fields is essential to maintain data integrity. Understanding HL7 formatting rules is necessary for accurate data handling and interpretation."
+  },
+  {
+    "name": "alt_discharge_date_time",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"alt_discharge_date_time\" field provides an alternative representation of the discharge date and time for the encounter. Key Considerations: Data Type: Typically a string representing a dateTime, possibly in a different format or time zone. Clinical Significance: Offers flexibility in representing discharge times, accommodating different systems or regional formats. Data Integration: Useful in scenarios where data is aggregated from multiple sources with varying date formats. Special Considerations: Consistency with the primary \"discharge_date\" is crucial to avoid discrepancies. The alternative format should be clearly documented to ensure accurate interpretation and use."
+  },
+  {
+    "name": "hl7_discharge_date_time",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"hl7_discharge_date_time\" field represents the discharge date and time formatted according to HL7 standards. Key Considerations: Data Type: Typically a string formatted as per HL7 specifications, often including time zone information. Clinical Significance: Ensures interoperability by adhering to widely accepted HL7 standards, facilitating data exchange between systems. Data Integration: Critical for systems that rely on HL7 messaging for communication, ensuring consistent and accurate data representation. Special Considerations: Consistency with other date fields is essential to maintain data integrity. Understanding HL7 formatting rules is necessary for accurate data handling and interpretation."
+  },
+  {
+    "name": "reason_for_visit_text",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"reason_for_visit_text\" field captures the patient's reason for the encounter in a textual format. Key Considerations: Data Type: String, allowing for a descriptive narrative of the patient's presenting complaint or reason for visit. Clinical Significance: Provides context for the encounter, aiding in clinical decision-making and documentation. Patient Communication: Reflects the patient's perspective and can be used to ensure alignment between patient expectations and clinical care. Special Considerations: Consistency and clarity in documentation are important to avoid ambiguity. May be complemented by coded data for structured analysis and reporting."
+  },
+  {
+    "name": "mt_reason_for_visit_code",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The \"mt_reason_for_visit_code\" field represents the reason for the encounter using a standardized code. Key Considerations: Data Type: String, typically referencing a code from a standardized terminology such as SNOMED CT or ICD. Clinical Significance: Facilitates structured data analysis, reporting, and interoperability by using standardized codes. Data Integration: Enables consistent representation of clinical concepts across systems, supporting data exchange and aggregation. Special Considerations: Accurate coding is essential for meaningful use and quality reporting. Should be used in conjunction with \"reason_for_visit_text\" for comprehensive documentation."
+  },
+  {
+    "name": "patient_location",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "description": "The \"patient_location\" field captures details about the patient's location during the encounter. Key Considerations: Data Type: A complex data type (RECORD) that may include multiple fields such as location_id, mnemonic, and physical_type. Clinical Significance: Provides context for the encounter, indicating where the patient was located, which can impact care delivery and resource allocation. Operational Use: Useful for tracking patient movement within a facility and managing bed occupancy. Special Considerations: Accurate and consistent location data is crucial for operational efficiency and patient safety. May be used for reporting and analysis of patient flow and resource utilization.",
+    "fields": [
+      {
+        "name": "location_id",
+        "type": "STRING",
+        "description": "The \"location_id\" field uniquely identifies a specific location within a healthcare facility. Key Considerations: Data Type: String, typically a unique identifier assigned to a location. Clinical Significance: Essential for accurately documenting the patient's location during an encounter, which can impact care delivery and resource allocation. Operational Use: Supports tracking of patient movement and management of facility resources. Special Considerations: Consistency in location identifiers is crucial for data integrity and interoperability. May be used in conjunction with other location-related fields for comprehensive documentation."
+      },
+      {
+        "name": "mnemonic",
+        "type": "STRING",
+        "description": "The \"mnemonic\" field provides a shorthand or abbreviated representation of a location within a healthcare facility. Key Considerations: Data Type: String, often a short code or abbreviation. Clinical Significance: Facilitates quick identification and communication of locations within a facility. Operational Use: Useful for staff to efficiently reference locations, especially in large or complex facilities. Special Considerations: Consistency and clarity in mnemonic usage are important to avoid confusion. Should be standardized across the organization to ensure effective communication and data integration."
+      },
+      {
+        "name": "physical_type",
+        "type": "STRING",
+        "description": "The \"physical_type\" field describes the type of physical location where the patient is situated during the encounter. Key Considerations: Data Type: String, typically referencing a category such as room, bed, ward, or department. Clinical Significance: Provides context for the encounter, indicating the nature of the location, which can impact care delivery and resource allocation. Operational Use: Useful for managing facility resources and planning patient care. Special Considerations: Consistency in categorizing physical types is crucial for data integrity and operational efficiency. May be used for reporting and analysis of resource utilization and patient flow."
+      }
+    ]
+  },
+  {
+    "name": "emergency_department",
+    "type": "RECORD",
+    "fields": [
+      {
+        "name": "edm_arrived_date_time",
+        "type": "STRING",
+        "description": "The 'edm_arrived_date_time' field represents the date and time when the patient arrived at the emergency department. This timestamp is crucial for tracking the patient's journey through the healthcare system, assessing wait times, and initiating the encounter period. It is typically recorded as a dateTime data type in FHIR, capturing both date and time with time zone information. Accurate recording of this field is essential for operational efficiency, resource allocation, and quality improvement initiatives."
+      },
+      {
+        "name": "edm_triaged_date_time",
+        "type": "STRING",
+        "description": "The 'edm_triaged_date_time' field indicates the date and time when the patient was triaged in the emergency department. Triage is a critical process that prioritizes patient care based on the severity of their condition. This field helps in understanding the time taken from arrival to triage, which is vital for evaluating emergency department performance and patient flow. It is typically represented as a dateTime data type in FHIR, ensuring precise time zone capture."
+      },
+      {
+        "name": "edm_departure_date_time",
+        "type": "STRING",
+        "description": "The 'edm_departure_date_time' field captures the date and time when the patient departs from the emergency department. This field is essential for calculating the total duration of the emergency department encounter, which can impact clinical decision-making, resource management, and billing processes. It is typically recorded as a dateTime data type in FHIR, including time zone information to ensure accuracy across different regions."
+      },
+      {
+        "name": "coid",
+        "type": "STRING",
+        "description": "The 'coid' field represents a unique identifier for the encounter or patient visit within the emergency department. This identifier is crucial for linking various data elements related to the encounter, ensuring data integrity and facilitating seamless information exchange across systems. It is typically a string data type, allowing for flexibility in the format used by different healthcare organizations."
+      },
+      {
+        "name": "priority_rank",
+        "type": "STRING",
+        "description": "The 'priority_rank' field indicates the assigned priority level of the patient's condition during triage. This ranking helps in determining the order of treatment based on the severity and urgency of the patient's condition. It is typically a string data type, representing a numerical or categorical value that aligns with the healthcare facility's triage protocol."
+      },
+      {
+        "name": "priority_code",
+        "type": "STRING",
+        "description": "The 'priority_code' field provides a coded representation of the patient's triage priority. This code is used to standardize the classification of patient urgency across different systems and facilities. It is typically a string data type, often following a standardized coding system such as SNOMED CT or LOINC, to ensure interoperability and consistency in patient care."
+      },
+      {
+        "name": "priority_text",
+        "type": "STRING",
+        "description": "The 'priority_text' field offers a textual description of the patient's triage priority. This description provides additional context to the priority code, aiding healthcare providers in understanding the patient's condition and urgency. It is typically a string data type, allowing for detailed narrative that complements the coded information."
+      },
+      {
+        "name": "edm_reason_for_visit_code",
+        "type": "STRING",
+        "description": "The 'edm_reason_for_visit_code' field captures a coded representation of the patient's reason for visiting the emergency department. This code is essential for categorizing and analyzing patient visits, supporting clinical decision-making, and facilitating research and quality improvement initiatives. It is typically a string data type, often using standardized coding systems like SNOMED CT or ICD-10."
+      },
+      {
+        "name": "edm_reason_for_visit_text",
+        "type": "STRING",
+        "description": "The 'edm_reason_for_visit_text' field provides a textual description of the patient's reason for visiting the emergency department. This narrative complements the coded information, offering additional context for healthcare providers to understand the patient's presenting complaint. It is typically a string data type, allowing for detailed and flexible documentation."
+      },
+      {
+        "name": "departure_info",
+        "type": "RECORD",
+        "fields": [
+          {
+            "name": "departure_disposition_code",
+            "type": "STRING",
+            "description": "The 'departure_disposition_code' field represents a coded value indicating the patient's status or destination upon leaving the emergency department. This code is crucial for understanding patient outcomes and planning subsequent care. It is typically a string data type, often using standardized coding systems like SNOMED CT or HL7 V3."
+          },
+          {
+            "name": "departure_disposition_text",
+            "type": "STRING",
+            "description": "The 'departure_disposition_text' field provides a textual description of the patient's status or destination upon leaving the emergency department. This narrative complements the coded disposition, offering additional context for healthcare providers and supporting continuity of care. It is typically a string data type, allowing for detailed documentation."
+          },
+          {
+            "name": "departure_disposition_display",
+            "type": "STRING",
+            "description": "The 'departure_disposition_display' field offers a human-readable display of the coded departure disposition. This field is used to present the disposition information in a user-friendly format, aiding healthcare providers in quickly understanding patient outcomes. It is typically a string data type, ensuring clarity and ease of interpretation."
+          },
+          {
+            "name": "departure_condition_code",
+            "type": "STRING",
+            "description": "The 'departure_condition_code' field captures a coded representation of the patient's condition at the time of departure from the emergency department. This code is important for assessing patient outcomes and planning follow-up care. It is typically a string data type, often using standardized coding systems like SNOMED CT or LOINC."
+          },
+          {
+            "name": "departure_condition_text",
+            "type": "STRING",
+            "description": "The 'departure_condition_text' field provides a textual description of the patient's condition at the time of departure from the emergency department. This narrative complements the coded condition, offering additional context for healthcare providers and supporting continuity of care. It is typically a string data type, allowing for detailed documentation."
+          },
+          {
+            "name": "departure_condition_display",
+            "type": "STRING",
+            "description": "The 'departure_condition_display' field offers a human-readable display of the coded departure condition. This field is used to present the condition information in a user-friendly format, aiding healthcare providers in quickly understanding patient outcomes. It is typically a string data type, ensuring clarity and ease of interpretation."
+          },
+          {
+            "name": "departure_comments",
+            "type": "STRING",
+            "description": "The 'departure_comments' field allows for additional narrative comments regarding the patient's departure from the emergency department. This field is used to capture any relevant observations or instructions that may not be covered by other structured fields. It is typically a string data type, providing flexibility for detailed and context-specific documentation."
+          }
+        ]
+      },
+      {
+        "name": "patient_location",
+        "type": "RECORD",
+        "fields": [
+          {
+            "name": "treatment_room",
+            "type": "RECORD",
+            "fields": [
+              {
+                "name": "room_code",
+                "type": "STRING",
+                "description": "The 'room_code' field within 'treatment_room' represents a coded identifier for the specific room where the patient is treated in the emergency department. This code is crucial for tracking patient location, managing room assignments, and optimizing resource utilization. It is typically a string data type, often using a facility-specific coding system."
+              },
+              {
+                "name": "room_text",
+                "type": "STRING",
+                "description": "The 'room_text' field within 'treatment_room' provides a textual description of the specific room where the patient is treated in the emergency department. This narrative complements the room code, offering additional context for healthcare providers and supporting operational management. It is typically a string data type, allowing for detailed and flexible documentation."
+              }
+            ]
+          },
+          {
+            "name": "edm_location",
+            "type": "RECORD",
+            "fields": [
+              {
+                "name": "location_code",
+                "type": "STRING",
+                "description": "The 'location_code' field within 'edm_location' represents a coded identifier for the specific location within the emergency department. This code is essential for tracking patient movement, managing space utilization, and ensuring efficient care delivery. It is typically a string data type, often using a facility-specific coding system."
+              },
+              {
+                "name": "location_text",
+                "type": "STRING",
+                "description": "The 'location_text' field within 'edm_location' provides a textual description of the specific location within the emergency department. This narrative complements the location code, offering additional context for healthcare providers and supporting operational management. It is typically a string data type, allowing for detailed and flexible documentation."
+              }
+            ]
+          },
+          {
+            "name": "reserved_room",
+            "type": "RECORD",
+            "fields": [
+              {
+                "name": "room_code",
+                "type": "STRING",
+                "description": "The 'room_code' field within 'reserved_room' represents a coded identifier for a room reserved for the patient in the emergency department. This code is crucial for managing room reservations, optimizing resource allocation, and ensuring patient privacy and comfort. It is typically a string data type, often using a facility-specific coding system."
+              },
+              {
+                "name": "room_text",
+                "type": "STRING",
+                "description": "The 'room_text' field within 'reserved_room' provides a textual description of a room reserved for the patient in the emergency department. This narrative complements the room code, offering additional context for healthcare providers and supporting operational management. It is typically a string data type, allowing for detailed and flexible documentation."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "edm_transport",
+        "type": "RECORD",
+        "fields": [
+          {
+            "name": "transport_company_code",
+            "type": "STRING",
+            "description": "The 'transport_company_code' field represents a coded identifier for the transport company involved in the patient's transfer to or from the emergency department. This code is essential for coordinating transport services, managing logistics, and ensuring continuity of care. It is typically a string data type, often using a facility-specific or standardized coding system."
+          },
+          {
+            "name": "transport_company_display",
+            "type": "STRING",
+            "description": "The 'transport_company_display' field offers a human-readable display of the coded transport company. This field is used to present the transport company information in a user-friendly format, aiding healthcare providers in quickly identifying the service provider. It is typically a string data type, ensuring clarity and ease of interpretation."
+          },
+          {
+            "name": "transport_id_code",
+            "type": "STRING",
+            "description": "The 'transport_id_code' field represents a coded identifier for the specific transport vehicle or service used for the patient's transfer. This code is crucial for tracking transport logistics, managing resources, and ensuring patient safety. It is typically a string data type, often using a facility-specific or standardized coding system."
+          },
+          {
+            "name": "transport_id_display",
+            "type": "STRING",
+            "description": "The 'transport_id_display' field offers a human-readable display of the coded transport identifier. This field is used to present the transport information in a user-friendly format, aiding healthcare providers in quickly identifying the transport service. It is typically a string data type, ensuring clarity and ease of interpretation."
+          },
+          {
+            "name": "transport_call_date_time",
+            "type": "STRING",
+            "description": "The 'transport_call_date_time' field captures the date and time when the transport service was called for the patient's transfer. This timestamp is crucial for coordinating transport logistics, managing response times, and ensuring timely patient care. It is typically recorded as a dateTime data type in FHIR, including time zone information to ensure accuracy."
+          }
+        ]
+      }
+    ],
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "registration_query",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "name": "mnemonic",
+        "type": "STRING",
+        "description": "The 'mnemonic' field in 'registration_query' represents a shorthand or code used to identify a specific registration question. This mnemonic is crucial for efficiently referencing and managing registration queries within healthcare systems. It is typically a string data type, allowing for flexibility in the format used by different organizations."
+      },
+      {
+        "name": "question",
+        "type": "STRING",
+        "description": "The 'question' field in 'registration_query' provides the full text of a registration question posed to the patient or their representative. This field is essential for capturing patient information, supporting administrative processes, and ensuring accurate data collection. It is typically a string data type, allowing for detailed and flexible documentation."
+      },
+      {
+        "name": "response",
+        "type": "STRING",
+        "description": "The 'response' field in 'registration_query' captures the patient's or their representative's answer to a registration question. This field is crucial for collecting patient information, supporting administrative processes, and ensuring accurate data entry. It is typically a string data type, allowing for detailed and flexible documentation."
+      }
+    ]
+  },
+  {
+    "name": "insert_timestamp",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE",
+    "description": "The 'insert_timestamp' field records the date and time when the encounter data was inserted into the system. This timestamp is crucial for data management, ensuring data integrity, and supporting audit trails. It is typically represented as a timestamp data type in FHIR, capturing both date and time with time zone information to ensure accuracy across different regions."
+  }
+]

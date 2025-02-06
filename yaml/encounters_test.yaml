@@ -1,0 +1,28 @@
+# YAML conifguration file for MetadataGenerator app
+
+# Application settings
+app:
+  app_name: MetadataGenerator
+  app_version: 0.1.1
+
+# GCP Configuration
+bigquery:
+  project_id: 'hca-sandbox'
+  dataset_id: 'hca_metadata_pot'
+  table_id: 'fhir_encounters'
+  location: 'us'
+  mode: "create"
+
+# Logging configuration
+logging:
+    debug: Info
+    file: "metadata_generator.log"
+
+# File paths
+files:
+  input_schema: "fhir files/test.json"
+  output_schema: "fhir files/test_with_descriptions.json"
+  sql_output: "fhir files/test_create_table.sql"
+
+llm:
+  model: "gpt-4o"

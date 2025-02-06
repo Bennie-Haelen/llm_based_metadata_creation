@@ -66,38 +66,38 @@ def save_final_sql(sql_statements, output_path):
             output_path (str): The path where the SQL statements will be saved.
     """
 
-    final_sql = "".join(sql_statements)    
+    # final_sql = "".join(sql_statements)    
     
-    # Ensure SQL statements contain actual newlines,
-    # and save the file with proper formatting
+    # # Ensure SQL statements contain actual newlines,
+    # # and save the file with proper formatting
     logger.info("Performing initial saving...")
 
-    # formatted_sql = sql_statements.encode().decode('unicode_escape')
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(final_sql)
+    # # formatted_sql = sql_statements.encode().decode('unicode_escape')
+    # with open(output_path, "w", encoding="utf-8") as f:
+    #     f.write(final_sql)
 
-    """
-    Reads the SQL code from input_file, removes any lines containing triple backticks,
-    and writes the cleaned code to output_file.
-    """
+    # """
+    # Reads the SQL code from input_file, removes any lines containing triple backticks,
+    # and writes the cleaned code to output_file.
+    # """
 
-    # Read the SQL code from the input file and remove lines with 
-    # triple backticks and/or sql prefix
-    logger.info("Re-reading the file and cleaning the SQL code...")
-    with open(output_path, 'r', encoding='utf-8') as infile:
-        lines = infile.readlines()
+    # # Read the SQL code from the input file and remove lines with 
+    # # triple backticks and/or sql prefix
+    # logger.info("Re-reading the file and cleaning the SQL code...")
+    # with open(output_path, 'r', encoding='utf-8') as infile:
+    #     lines = infile.readlines()
 
-    cleaned_lines = []
-    for line in lines:
-        # Skip lines containing only triple backticks
-        # (You can adjust this check if your triple backticks appear differently)
-        if line.strip() in ("```sql", "```"):
-            continue
-        cleaned_lines.append(line)
+    # cleaned_lines = []
+    # for line in lines:
+    #     # Skip lines containing only triple backticks
+    #     # (You can adjust this check if your triple backticks appear differently)
+    #     if line.strip() in ("```sql", "```"):
+    #         continue
+    #     cleaned_lines.append(line)
 
     # Write the cleaned SQL code to the output file
     with open(output_path, 'w', encoding='utf-8') as outfile:
-        outfile.writelines(cleaned_lines)
+        outfile.writelines(sql_statements)
     
     logger.info("Final Save completed, cleaned SQL code saved")
 
@@ -228,9 +228,15 @@ def main():
     save_enriched_schema(enriched_schema, output_schema_location)
     logger.info(f"Enriched schema successfully saved to: '{output_schema_location}'")
 
+    # print(f"Outpuit Schema Location: {output_schema_location}")
+    # with open(output_schema_location, 'r') as f:
+    #     enriched_schema =  json.load(f)
+
+    # print(f"Eriched Schema: {enriched_schema}")
+    
     # Generate SQL statements (ALTER TABLE / CREATE TABLE) based on the mode
     logger.info("Starting the SQL generation process...")
-    generated_sql = fhir_mgr.create_sql_from_schema(enriched_schema, table_description, mode)
+    generated_sql = fhir_mgr.generate_sql(enriched_schema, table_description, mode)
     logger.info("SQL generation completed.")
 
     # Save the generated SQL file

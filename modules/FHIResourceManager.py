@@ -3,7 +3,8 @@ from langchain.schema import HumanMessage
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 
-
+from prompts.read_prompt_template import read_prompt_template
+from prompts import prompt_names
 from logger_setup import logger, log_entry_exit
 from db.get_prompt_by_name import get_prompt_by_name
 
@@ -149,17 +150,19 @@ class FHIRResourceManager:
 
         try:
             # Retrieve the prompt template from the database
-            prompt_name = "get_table_description"
-            prompt_template_str = get_prompt_by_name(prompt_name)
+            prompt_name = prompt_names.GET_TABLE_DESCRIPTION
+            prompt_template_str = read_prompt_template(prompt_name)
 
             # Set up the prompt template with the expected input variable
             prompt_template = PromptTemplate(
-                input_variables=["table_name"],
+                input_variables=["table_name", "description_length"],
                 template=prompt_template_str
             )
 
             # Format the prompt by injecting the FHIR resource name
-            prompt = prompt_template.format(table_name=self.fhir_resource_name) 
+            prompt = prompt_template.format(
+                            table_name=self.fhir_resource_name, 
+                            description_length=CHARACTER_LIMIT) 
 
             # Create a message array containing the formatted prompt
             messages = [HumanMessage(content=prompt)]
@@ -177,8 +180,6 @@ class FHIRResourceManager:
             logger.error(f"Error generating description for FHIR resource '{self._fhir_resource_name}': {e}")
             return None
 
-
-    
 
     @log_entry_exit  
     def generate_enriched_schema(self, json_schema):
@@ -214,12 +215,12 @@ class FHIRResourceManager:
     
 
             # Retrieve the appropriate prompt template from our prompt database
-            prompt_name = "generate_resource_schema_with_descriptions"
-            prompt_template_str = get_prompt_by_name(prompt_name)
+            prompt_name = prompt_names.GENERATE_RESOURCE_SCHEMA_DESCRIPTIONS
+            prompt_template_str = read_prompt_template(prompt_name, "prompts")
 
             # Set up the prompt template with the expected input variables                  
             prompt_template = PromptTemplate(
-                input_variables=["input_json_schema", "fhir_resource"],
+                input_variables=["input_json_schema", "fhir_resource", "character_length"],
                 template=prompt_template_str)
 
             # Process each chunk
@@ -228,7 +229,10 @@ class FHIRResourceManager:
                 logger.info(f"Processing chunk {idx + 1}/{len(schema_chunks)}...")
 
                 # Format the prompt with the chunk
-                prompt = prompt_template.format(fhir_resource=self.fhir_resource_name, input_json_schema=json.dumps(chunk, indent=2))
+                prompt = prompt_template.format(
+                                fhir_resource=self.fhir_resource_name, 
+                                character_length = CHARACTER_LIMIT,
+                                input_json_schema=json.dumps(chunk, indent=2))
 
                 # Create a message array containing the formatted prompt
                 messages = [HumanMessage(content=prompt)]
@@ -254,203 +258,295 @@ class FHIRResourceManager:
 
 
 
+    @log_entry_exit
+    def escape_description(self, desc: str) -> str:
+        """
+        Escapes special characters in descriptions for BigQuery SQL.
+        
+        Args:
+            desc: The description text to escape
+            
+        Returns:
+            Escaped string safe for BigQuery description options
+        """
+        return (
+            desc.replace("\\", "\\\\")   # Escape backslashes
+                .replace("'", "\\'")     # Escape single quotes
+                .replace("\"", "\\\"")   # Escape double quotes
+        )
+
+
 
     @log_entry_exit
-    def create_sql_from_schema(self, schema_json, table_description, mode):
-
-        if mode == "alter":
-            logger.info("Creating ALTER TABLE SQL statements...")
-            prompt_template = PromptTemplate(
-                    input_variables=["schema_json", "resource_name", "full_table_name", "table_description"],
-                    template="""
-                        You are a data engineer who needs to write an ALTER TABLE query for an existing 
-                        BigQuery {resource_name} table with name: {full_table_name}.
-
-                        ### **Step 1: Modify the Table Description**
-                        First, create an **ALTER TABLE** statement to add the following table description:
-                        "{table_description}"
-
-                        ### **Step 2: Modify Column Descriptions**
-                        Here is the schema for the FHIR {resource_name} table. Write an **ALTER TABLE DDL** statement 
-                        to **add column descriptions** to the encounter table:
-                        {schema_json}
-
-                        Output multiple column statements, do not write multiple ALTER TABLE STATEMENTS, all column alters should be in one statement.
-
-                        Do NOT generate an ALTER COLUMN statement for nested fields.
-                        Only output the SQL by itself, no prefix or postfix of any kind.
-
-                    """)
-            
-        elif mode == "create":
-            logger.info("Creating CREATE TABLE SQL statements...")
-            prompt_template = PromptTemplate(
-                    input_variables=["schema_json", "resource_name", "full_table_name", "table_description"],
-                    template="""
-                        You are a data engineer who needs to write an CREATE OR REPLACE TABLE query for a new 
-                        BigQuery {resource_name} table with name: {full_table_name}. Include descriptions as well.
-
-                        The schema of the table is here:
-                        {schema_json}.
-
-                        In the CREATE TABLE statement, include the following table description:
-                        "{table_description}"
-                        
-                        Only output the SQL by itself, no prefix or postfix of any kind.
-                        Make sure to handle embedded fields correctly, the generated SQL should be 100 percent in line with the BigQuery syntax
-                    """)
-        else:
-            logger.error(f"Invalid mode specified: {mode}")
-            pass
+    def build_struct_fields(self, fields: list) -> str:
+        """
+        Creates the inner content of a STRUCT definition from a list of fields.
         
-        # Create the prompt        
-        prompt = prompt_template.format(
-            schema_json=schema_json, 
-            full_table_name=self.full_table_name, 
-            table_description=table_description, 
-            resource_name=self.fhir_resource_name)
+        Args:
+            fields (list): List of field definitions to process
+            
+        Returns:
+            str: Comma-separated string of field definitions
+        """
+        # Process each subfield recursively
+        subfield_sql_parts = []
+        for subfield in fields:
+            # Generate SQL for each subfield, including field name
+            subfield_sql = self.get_field_sql(subfield, include_name=True)
+            subfield_sql_parts.append(subfield_sql)
+        
+        # Join all parts with commas
+        return ", ".join(subfield_sql_parts)
 
-        # Invoke the model
-        messages = [HumanMessage(content=prompt)]
-        response = self.llm_model.invoke(input=messages)
 
-        # Return the response
-        return response.content
-    
+
     @log_entry_exit
-    def create_sql_from_schema_gemini(self, enriched_schema_json, table_description, mode):
+    def get_field_sql(self, field: dict, include_name: bool) -> str:
+        """
+        Recursively generates BigQuery column/subfield definition.
+        
+        Handles:
+        - Nested STRUCT fields via recursion
+        - REPEATED mode (ARRAY<...>)
+        - Description attachment via OPTIONS
+        
+        Parameters:
+        - field: Dictionary containing field metadata
+        - include_name: Whether to prepend the field name
+        
+        Returns:
+        A valid BigQuery DDL snippet for the field
+        """
+        # Extract field metadata with defaults
+        name = field.get("name", "")
+        field_type = field.get("type", "").upper()
+        mode = field.get("mode", "NULLABLE").upper()
+        description = field.get("description", "")
 
-        generated_sql = ""
-        if mode == "alter":
-            logger.info("Creating ALTER TABLE SQL statements...")
-            prompt_template = PromptTemplate(
-                    input_variables=["schema_json", "resource_name", "full_table_name", "table_description"],
-                    template="""
-                        You are a data engineer who needs to write an ALTER TABLE query for an existing 
-                        BigQuery {resource_name} table with name: {full_table_name}.
-
-
-                        Here is the schema for the FHIR {resource_name} table. Write an **ALTER TABLE DDL** statement 
-                        to **add column descriptions** to the encounter table:
-                        {schema_json}
-
-                        Do NOT generate an ALTER COLUMN statement for nested fields.
-
-                    """)
-            
-        elif mode == "create":
-            logger.info("Creating CREATE TABLE SQL statements...")
-            prompt_template = PromptTemplate(
-                    input_variables=["schema_json", "resource_name", "full_table_name", "table_description"],
-                    template="""
-                            You are an expert in SQL and FHIR schema design. Given the following JSON schema, generate valid BigQuery SQL column definitions.
-
-                            ### **Requirements:**
-                            1. **Each field must be properly typed** according to BigQuery SQL conventions.
-                            2. **Descriptions in OPTIONS(description="...") must always be enclosed in double quotes**.
-                            - **Ensure that the description starts and ends with a double quote (`"`).**
-                            - **Never leave a description without a closing quote.**
-                            - **If a description ends  with a closing ), ensure that the description ends with a double quote (`"`).**
-                            3. **Do NOT generate `CREATE OR REPLACE TABLE`, only column definitions.**
-                            4. **Output must be a valid SQL list of column definitions.**
-                            5. **Rephrase descriptions that are more than 1024 characters.**
-                            6. **For "REPEATED" mode and "RECORD" type columns, use valid BigQuery SQL syntax.**
-                            7. **DO NOT enclose the output with triple backticks.**
-
-                            ### **Schema enclosed with ```:**
-                           ```{schema_json}```
-
-                            #### **Input Example 1:**
-                            {{
-                                "name": "encounter_id",
-                                "mode": "",
-                                "type": "STRING",
-                                "description": "The 'encounter_id' field represents the unique identifier for a specific Encounter resource within the FHIR system. This is typically a UUID or a system-specific identifier. Key Considerations: Data Type: String, allowing for alphanumeric characters and special symbols. Uniqueness: Must be unique within the scope of the FHIR server or system. Clinical Significance: Used to reference a specific encounter in other resources and systems. Essential for tracking and managing patient encounters. Relationship to Other Resources: Used as a foreign key in other resources that reference the encounter. Special Considerations: Should be generated using a consistent method to ensure uniqueness. In Summary: The 'encounter_id' is a fundamental element for identifying and referencing a specific patient encounter within a FHIR environment.",
-                                "fields": []
-                            }}
-                            
-                            #### **Output Example 1:**
-                            encounter_id STRING OPTIONS(description="The 'encounter_id' field represents the unique identifier for a specific Encounter resource.)",
-
-                            #### **Input Example 2:**
-                            {{
-                            "name": "registration_query",
-                            "mode": "REPEATED",
-                            "type": "RECORD",
-                            "description": "The 'registration_query' field is a repeated record containing details about questions asked during the patient registration process and their corresponding responses. This field is used to capture structured data related to patient intake and demographics. It is a repeated structure, allowing for multiple questions and answers to be recorded.",
-                            "fields": [
-                              {{
-                                "name": "mnemonic",
-                                "mode": "",
-                                "type": "STRING",
-                                "description": "The 'mnemonic' field represents a short, memorable code or identifier for a specific question asked during the patient registration process. This mnemonic is used to quickly identify the question and its associated response. It is typically a string value. This field is essential for efficient data retrieval and analysis.",
-                                "fields": []
-                              }},
-                              {{
-                                "name": "question",
-                                "mode": "",
-                                "type": "STRING",
-                                "description": "The 'question' field represents the actual text of the question asked during the patient registration process. This field provides a human-readable representation of the question. It is typically a string value. This field is essential for understanding the context of the response.",
-                                "fields": []
-                              }},
-                              {{
-                                "name": "response",
-                                "mode": "",
-                                "type": "STRING",
-                                "description": "The 'response' field represents the patient's answer to the corresponding question asked during the registration process. This field captures the patient's input. It is typically a string value. This field is essential for collecting patient information during registration.",
-                                "fields": []
-                              }}
-                              ]
-                              }}
-                            
-                            #### **Output Example 2:**
-                            registration_query ARRAY<STRUCT<
-                                    mnemonic STRING OPTIONS(description="The 'mnemonic' field represents a short, memorable code or identifier for a specific question asked during the patient registration process. This mnemonic is used to quickly identify the question and its associated response. It is typically a string value. This field is essential for efficient data retrieval and analysis."),
-                                    question STRING OPTIONS(description="The 'question' field represents the actual text of the question asked during the patient registration process. This field provides a human-readable representation of the question. It is typically a string value. This field is essential for understanding the context of the response."),
-                                    response STRING OPTIONS(description="The 'response' field represents the patient's answer to the corresponding question asked during the registration process. This field captures the patient's input. It is typically a string value. This field is essential for collecting patient information during registration.")
-                                >> OPTIONS(description="The 'registration_query' field is a repeated record containing details about questions asked during the patient registration process and their corresponding responses. This field is used to capture structured data related to patient intake and demographics. It is a repeated structure, allowing for multiple questions and answers to be recorded."),
-                    """)
+        # 1) Build base type: STRUCT<...> or scalar type
+        if field_type in ("RECORD", "STRUCT"):
+            # Handle nested fields 
+            nested_fields = field.get("fields", [])
+            struct_inner = self.build_struct_fields(nested_fields)
+            base_type = f"STRUCT<{struct_inner}>"
         else:
-            logger.error(f"Invalid mode specified: {mode}")
-            pass
+            # Default to STRING if type is missing
+            base_type = field_type if field_type else "STRING"
+
+        # 2) Wrap in ARRAY if mode is REPEATED
+        if mode == "REPEATED":
+            base_type = f"ARRAY<{base_type}>"
+
+        # 3) Conditionally add field name
+        definition = f"{name} {base_type}" if include_name else base_type
+
+        # 4) Add description if available
+        if description:
+            escaped_desc = self.escape_description(description)
+            definition += f" OPTIONS(description='{escaped_desc}')"
+
+        return definition
+
+
         
-        # Define chunk size (e.g., process 10 fields at a time)
-        try: 
-            chunk_size = 10
-            logger.info(f"Splitting schema into chunks of {chunk_size} fields...")
-            schema_chunks = [enriched_schema_json[i:i + chunk_size] for i in range(0, len(enriched_schema_json), chunk_size)]
-
-            generated_sql = []
+    @log_entry_exit
+    def filter_empty_structs(self, schema: list) -> list:
+        """
+        Recursively remove any RECORD fields that have no subfields.
+        This is necessary because BigQuery does not allow empty STRUCTs.
         
-            # Initialize SQL script with only the `CREATE OR REPLACE TABLE` statement
-            generated_sql = f"CREATE OR REPLACE TABLE {self.full_table_name} (\n"
-
-            for idx, chunk in enumerate(schema_chunks):
-                logger.info(f"Processing chunk {idx + 1}/{len(schema_chunks)}...")
-
-                # Format the prompt with the chunk
-                prompt = prompt_template.format(
-                    schema_json=json.dumps(chunk, indent=2),
-                    full_table_name=self.full_table_name, 
-                    table_description=table_description,
-                    resource_name=self.fhir_resource_name)
-
-                # Create a message array containing the formatted prompt
-                messages = [HumanMessage(content=prompt)]
+        Args:
+            schema (list): The input schema to filter.
+        
+        Returns:
+            list: The filtered schema with empty structs removed.
+        """
+        filtered = []
+        for field in schema:
+            field_type = field.get("type", "").upper()
+            
+            # Check if the field is a nested structure (RECORD or STRUCT)
+            if field_type in ("RECORD", "STRUCT"):
+                # Get the subfields, defaulting to an empty list
+                subfields = field.get("fields", [])
                 
-                # Send request to LLM
-                response = self.llm_model.invoke(input=messages)
-
-                if idx!=0:
-                    generated_sql+=f",\n    {response.content}"
+                # Recursively filter the subfields first
+                # This handles nested structs with potentially empty subfields
+                subfields = self.filter_empty_structs(subfields)
+                
+                # If there are subfields after filtering, keep the field
+                if subfields:
+                    field["fields"] = subfields
+                    filtered.append(field)
                 else:
-                    generated_sql+=f"    {response.content}"
+                    # If no subfields remain, skip this struct
+                    print(f"Skipping empty struct field: {field['name']}")
+            else:
+                # For non-struct fields, keep them as-is
+                filtered.append(field)
+        
+        return filtered
 
-            # Close the SQL statement with `OPTIONS(...)`
-            generated_sql += "\n)\nOPTIONS(\n  description='FHIR Encounter Table'\n);"
 
-        except json.JSONDecodeError as e:
-            logger.error(f"Error parsing JSON for chunk {idx + 1}. error:{e}")
 
-        logger.info("Creation of SQL completed successfully...")
-        return generated_sql
+    @log_entry_exit
+    def generate_create_table_sql(self, schema: list, table_description: str = "") -> str:
+        """
+        Generates a CREATE OR REPLACE TABLE SQL statement for BigQuery using the provided schema.
+        Also sets table-level description.
+
+        Parameters
+        ----------
+        full_table_name : str
+            The fully-qualified table name, e.g. "project.dataset.table"
+        schema : list
+            A list of field dictionaries (the JSON schema).
+        table_description : str
+            Description for the table itself.
+
+        Returns
+        -------
+        str
+            The complete CREATE OR REPLACE TABLE statement.
+        """
+        # Build a comma-separated list of column definitions
+        fields_sql = ",\n  ".join(self.get_field_sql(field, include_name=True) for field in schema)
+
+        # Generate CREATE TABLE statement
+        create_stmt = f"CREATE OR REPLACE TABLE `{self.full_table_name}` (\n  {fields_sql}\n)"
+
+        # Optionally add the table-level description
+        if table_description:
+            escaped_table_desc = self.escape_description(table_description)
+            create_stmt += f"\nOPTIONS(description=\"{escaped_table_desc}\");"
+        else:
+            create_stmt += ";"
+
+        return create_stmt
+
+
+
+    @log_entry_exit
+    def generate_alter_table_sql(self, schema, table_description=""):
+        """
+        Generates up to TWO BigQuery ALTER TABLE statements:
+
+        1) Table-level description (if provided):
+                ALTER TABLE `project.dataset.table`
+                SET OPTIONS(description="...");
+            
+            Ends with a semicolon (no trailing comma).
+
+        2) A single statement for any top-level columns that need new descriptions:
+                ALTER TABLE `project.dataset.table`
+                ALTER COLUMN col1 SET OPTIONS(description="..."),
+                ALTER COLUMN col2 SET OPTIONS(description="...");
+            
+            Each column update ends with a comma except the last one, 
+            and then the statement ends with a semicolon.
+
+        BigQuery does not allow altering nested (RECORD/STRUCT) fields, so we skip them.
+        
+        Returns:
+            str
+                One or two ALTER TABLE statements, each ending with a semicolon, 
+                separated by a newline if both exist.
+        """
+        statements = []
+
+        # ----- 1) Table-level description as its own statement -----
+        if table_description:
+            escaped_table_desc = (
+                table_description
+                .replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+            )
+            # Single statement, ends with semicolon, no trailing commas
+            stmt_table_desc = (
+                f'ALTER TABLE `{self.full_table_name}`\n'
+                f'  SET OPTIONS(description="{escaped_table_desc}");'
+            )
+            statements.append(stmt_table_desc)
+
+        # ----- 2) Gather column-level statements in a single ALTER TABLE -----
+        column_ops = []
+        for field in schema:
+            name = field.get("name", "")
+            if not name:
+                continue
+
+            field_type = (field.get("type") or "").upper()
+            description = field.get("description", "")
+
+            # Skip nested fields (RECORD/STRUCT)
+            if field_type in ("RECORD", "STRUCT"):
+                continue
+
+            # If there's a description for a top-level column, prepare a sub-clause
+            if description:
+                escaped_desc = (
+                    description
+                    .replace("\\", "\\\\")
+                    .replace("\"", "\\\"")
+                )
+                column_ops.append(
+                    f'ALTER COLUMN {name} SET OPTIONS (description="{escaped_desc}")'
+                )
+
+        # Only generate the second statement if we have any column_ops
+        if column_ops:
+            # Join column_ops with commas, and the final entry ends the line (no trailing comma)
+            if len(column_ops) == 1:
+                # Just one column => no comma needed
+                clauses_str = column_ops[0]
+            else:
+                # Multiple columns => separate sub-clauses with commas
+                # Each clause is on its own line
+                clauses_str = ",\n  ".join(column_ops)
+
+            stmt_column_desc = (
+                f'ALTER TABLE `{self.full_table_name}`\n'
+                f'  {clauses_str};'
+            )
+            statements.append(stmt_column_desc)
+
+        # Join both statements (if present) with a newline
+        return "\n".join(statements)
+
+
+
+
+
+
+    @log_entry_exit
+    def generate_sql(self, json_schema, table_description, mode):
+        """
+        Generates a CREATE TABLE or ALTER TABLE SQL statement based on the 
+        provided schema and the passed-in mode
+
+        args:
+            - json_schema (dict): The JSON schema for the FHIR resource.
+            - table_description (str): The description for the table.
+            - mode (str): The mode to use, either "create" or "alter".
+
+        returns:
+            - str: The generated SQL statement. 
+        """
+
+        # First, we clean the schema by removing any empty structs, 
+        # which are not allowed in BigQuery
+        cleaned_schema = self.filter_empty_structs(json_schema)
+
+        # Check the mode, and generate the appropriate SQL
+        if mode == "alter":
+            return self.generate_alter_table_sql(cleaned_schema, table_description)
+        
+
+        elif mode == "create":
+            return self.generate_create_table_sql(cleaned_schema, table_description)
+
+        else:
+            raise ValueError(f"Invalid mode specified: {mode}")
+        
+    
+    
