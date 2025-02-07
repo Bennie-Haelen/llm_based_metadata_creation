@@ -25,4 +25,4 @@ files:
   sql_output: "fhir files/create_table.sql"
 
 llm:
-  model: "gpt-4o"
+  model: "gemini-1.5-pro"

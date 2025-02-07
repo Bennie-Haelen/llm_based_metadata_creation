@@ -227,14 +227,9 @@ def main():
     # Save the enriched schema to the output location
     save_enriched_schema(enriched_schema, output_schema_location)
     logger.info(f"Enriched schema successfully saved to: '{output_schema_location}'")
-
-    # print(f"Outpuit Schema Location: {output_schema_location}")
-    # with open(output_schema_location, 'r') as f:
-    #     enriched_schema =  json.load(f)
-
-    # print(f"Eriched Schema: {enriched_schema}")
     
-    # Generate SQL statements (ALTER TABLE / CREATE TABLE) based on the mode
+    # Generate SQL statements (ALTER 
+    # TABLE / CREATE TABLE) based on the mode
     logger.info("Starting the SQL generation process...")
     generated_sql = fhir_mgr.generate_sql(enriched_schema, table_description, mode)
     logger.info("SQL generation completed.")

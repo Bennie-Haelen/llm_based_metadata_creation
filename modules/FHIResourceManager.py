@@ -258,7 +258,6 @@ class FHIRResourceManager:
 
 
 
-    @log_entry_exit
     def escape_description(self, desc: str) -> str:
         """
         Escapes special characters in descriptions for BigQuery SQL.
@@ -277,7 +276,6 @@ class FHIRResourceManager:
 
 
 
-    @log_entry_exit
     def build_struct_fields(self, fields: list) -> str:
         """
         Creates the inner content of a STRUCT definition from a list of fields.
@@ -300,7 +298,6 @@ class FHIRResourceManager:
 
 
 
-    @log_entry_exit
     def get_field_sql(self, field: dict, include_name: bool) -> str:
         """
         Recursively generates BigQuery column/subfield definition.
@@ -349,7 +346,6 @@ class FHIRResourceManager:
 
 
         
-    @log_entry_exit
     def filter_empty_structs(self, schema: list) -> list:
         """
         Recursively remove any RECORD fields that have no subfields.

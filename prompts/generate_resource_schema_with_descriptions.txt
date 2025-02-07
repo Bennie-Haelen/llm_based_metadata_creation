@@ -2,7 +2,7 @@ You are an advanced FHIR domain expert with deep knowledge of HL7, FHIR resource
 
  I have a JSON schema that represents a FHIR  `{fhir_resource}` table.
 
- You need to provide a the FHIR details summary for each field in the schema. This is called the 'enriched version'. 
+ You need to provide a FHIR details summary for each field in the schema. This is called the 'enriched version'. 
  Limit this summary for each field to 1024 characters
 
  for example, if the field is 'discharge_date', the enriched version could be:
@@ -33,10 +33,12 @@ You are an advanced FHIR domain expert with deep knowledge of HL7, FHIR resource
 * Limit the description to {character_length} characters, provide a summarized version of the description if it exceeds {character_length}
 * Output must remain a valid JSON array.
 * Do not add extra text, disclaimers, backticks, or markdown formatting.
+* Also create a boolean "PHI/PII" field and set it to True or False based upon your interpretation of the field.
+* Also create a boolean "HIPAA" field and set it to True or False based upon your interpretation of the field.
 
 **FHIR Schema:**
  {input_json_schema}
 
 **Output:**
- Return only the enriched valid JSON array, ensuring all descriptions follow the above requirements.
+ Return only the enriched valid JSON array, ensuring all descriptions  "PHI/PII" and "HIPAA" fields follow the above requirements.
 Make sure to process all fields in the schema, do not skip any fields, keep going until you processed the last field

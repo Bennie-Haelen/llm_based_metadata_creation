@@ -36,6 +36,15 @@ class SchemaViewerApp:
         self.description_label = ttk.Label(self.frame_right, text="", wraplength=450, justify="left")
         self.description_label.pack(anchor="w", pady=5)
 
+        self.hipaa_label = ttk.Label(self.frame_right, text="", font=("Arial", 10))
+        self.hipaa_label.pack(anchor="w")
+
+        self.phi_pii_label = ttk.Label(self.frame_right, text="", font=("Arial", 10))
+        self.phi_pii_label.pack(anchor="w")
+
+        self.description_length_label = ttk.Label(self.frame_right, text="", font=("Arial", 10, "italic"))
+        self.description_length_label.pack(anchor="w", pady=5)
+
         # Bind selection event
         self.tree.bind("<<TreeviewSelect>>", self.display_details)
 
@@ -49,10 +58,16 @@ class SchemaViewerApp:
     def populate_tree(self, schema, parent=""):
         """ Recursively populates the tree with schema fields. """
         self.tree.delete(*self.tree.get_children())  # Clear existing tree if starting fresh
-        
+
         def insert_nodes(fields, parent_node):
             for field in fields:
-                node_id = self.tree.insert(parent_node, "end", text=field["name"], values=(field["type"], field["description"]))
+                values = (
+                    field.get("type", ""),
+                    field.get("description", ""),
+                    field.get("HIPAA", False),
+                    field.get("PHI/PII", False)
+                )
+                node_id = self.tree.insert(parent_node, "end", text=field["name"], values=values)
                 if "fields" in field and isinstance(field["fields"], list):  # Ensure fields exist and are a list
                     insert_nodes(field["fields"], node_id)
 
@@ -65,10 +80,15 @@ class SchemaViewerApp:
             field_name = self.tree.item(node_id, "text")
             field_type = self.tree.item(node_id, "values")[0]
             field_description = self.tree.item(node_id, "values")[1]
+            field_hipaa = self.tree.item(node_id, "values")[2]
+            field_phi_pii = self.tree.item(node_id, "values")[3]
 
             self.name_label.config(text=f"Field Name: {field_name}")
             self.type_label.config(text=f"Type: {field_type}")
             self.description_label.config(text=f"Description: {field_description}")
+            self.hipaa_label.config(text=f"HIPAA: {'Yes' if field_hipaa else 'No'}")
+            self.phi_pii_label.config(text=f"PHI/PII: {'Yes' if field_phi_pii else 'No'}")
+            self.description_length_label.config(text=f"Description Length: {len(field_description)} characters")
 
 # Run Application
 if __name__ == "__main__":
